@@ -10,5 +10,5 @@ class Quack extends Model
     /** @use HasFactory<\Database\Factories\QuackFactory> */
     use HasFactory;
 
-    protected $fillable = ['contenido', 'nickname'];
+    protected $fillable = ['content', 'display_name'];
 }
