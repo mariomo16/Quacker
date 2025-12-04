@@ -1,19 +1,18 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\Quack;
+use App\Models\Quashtag;
 use Illuminate\Http\Request;
 
-class QuacksController extends Controller
+class QuashtagController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('quacks.index', [
-            'quacks' => Quack::latest()->get()
+        return view('quashtags.index', [
+            'quashtags' => Quashtag::latest()->get()
         ]);
     }
 
@@ -22,7 +21,7 @@ class QuacksController extends Controller
      */
     public function create()
     {
-        return view('quacks.create');
+        return view('quashtags.create');
     }
 
     /**
@@ -30,38 +29,41 @@ class QuacksController extends Controller
      */
     public function store(Request $request)
     {
-        Quack::create(request()->all());
-        return redirect('/quacks');
+        $request->validate([
+            'name' => 'required|string'
+        ]);
+
+        Quashtag::create([
+            'name' => $request->name
+        ]);
+
+        return redirect('/quashtags');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Quack $quack)
+    public function show(Quashtag $quashtag)
     {
-        return view('quacks.show', [
-            'quack' => $quack
-        ]);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Quack $quack)
+    public function edit(string $id)
     {
-        return view('quacks.edit', [
-            'quack' => $quack
-        ]);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Quack $quack)
+    public function update(Request $request, Quashtag $quashtag)
     {
-        $quack;
-        $quack->update(request()->all());
-        return redirect('/quacks');
+        $quashtag;
+        $quashtag->update(request()->all());
+        return redirect('/quashtags');
     }
 
     /**
@@ -69,7 +71,7 @@ class QuacksController extends Controller
      */
     public function destroy(string $id)
     {
-        Quack::destroy($id);
-        return redirect('/quacks');
+        Quashtag::destroy($id);
+        return redirect('/quashtags');
     }
 }
