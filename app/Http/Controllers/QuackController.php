@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Quack;
 use Illuminate\Http\Request;
 
-class QuacksController extends Controller
+class QuackController extends Controller
 {
     /**
      * Display a listing of the resource.
