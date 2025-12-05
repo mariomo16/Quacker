@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quacks</title>
+    <title>Quacks / Quacker</title>
     <style>
         main {
             width: 80%;
@@ -32,74 +32,39 @@
             background-color: lightblue;
         }
 
+        div.btn {
+            position: fixed;
+            left: 20px;
+            transition: all 0.2 ease;
+        }
+        
+        div.btn:hover {
+            transform: scale(1.1);
+        }
+        
+        div.btn p {
+            font-size: 2rem;
+            background-color: lightblue;
+            margin: 0;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        div.btn a {
+            text-decoration: none;
+        }
+
         div.quackea {
-            position: fixed;
             top: 20px;
-            left: 20px;
-            transition: all 0.2s ease;
         }
 
-        div.quackea:hover {
-            transform: scale(1.1);
-        }
-
-        div.quackea p {
-            font-size: 2rem;
-            background-color: lightblue;
-            padding: 10px;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-
-        div.quackea a {
-            text-decoration: none;
-        }
-
-        div.quashea {
-            position: fixed;
+        div.users {
             top: 100px;
-            left: 20px;
-            transition: all 0.2s ease;
         }
 
-        div.quashea:hover {
-            transform: scale(1.1);
-        }
-
-        div.quashea p {
-            font-size: 2rem;
-            background-color: lightblue;
-            padding: 10px;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-
-        div.quashea a {
-            text-decoration: none;
-        }
-
-
-        div.quasheados {
-            position: fixed;
-            top: 200px;
-            left: 20px;
-            transition: all 0.2s ease;
-        }
-
-        div.quasheados:hover {
-            transform: scale(1.1);
-        }
-
-        div.quasheados p {
-            font-size: 2rem;
-            background-color: lightblue;
-            padding: 10px;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-
-        div.quasheados a {
-            text-decoration: none;
+        div.quashtags {
+            top: 180px;
         }
     </style>
 </head>
@@ -120,14 +85,14 @@
             </article>
         @endforeach
     </main>
-    <div class="quackea">
+    <div class="btn quackea">
         <p><a href="/quacks/create">🦆</a></p>
     </div>
-    <div class="quashea">
-        <p><a href="/quashtags/create">new #</a></p>
+    <div class="btn users">
+        <p><a href="/users">👤</a></p>
     </div>
-    <div class="quasheados">
-        <p><a href="/quashtags">#??</a></p>
+    <div class="btn quashtags">
+        <p><a href="/quashtags">#️⃣</a></p>
     </div>
 </body>
 
