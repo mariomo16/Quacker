@@ -61,8 +61,7 @@ class QuashtagController extends Controller
      */
     public function update(Request $request, Quashtag $quashtag)
     {
-        $quashtag;
-        $quashtag->update(request()->all());
+        $quashtag->update($request->all());
         return redirect('/quashtags');
     }
 
