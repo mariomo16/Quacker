@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Quashtag extends Model
 {
-     /** @use HasFactory<\Database\Factories\QuashtagFactory> */
+    /** @use HasFactory<\Database\Factories\QuashtagFactory> */
     use HasFactory;
 
     protected $fillable = ['name'];
