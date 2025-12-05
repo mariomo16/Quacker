@@ -2,10 +2,12 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-use App\Models\Quack;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+
+use App\Models\User;
+use App\Models\Quack;
+use App\Models\Quashtag;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,5 +20,6 @@ class DatabaseSeeder extends Seeder
     {
         User::factory(50)->create();
         Quack::factory(200)->create();
+        Quashtag::factory(30)->create();
     }
 }
