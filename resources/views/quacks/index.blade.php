@@ -54,6 +54,53 @@
         div.quackea a {
             text-decoration: none;
         }
+
+        div.quashea {
+            position: fixed;
+            top: 100px;
+            left: 20px;
+            transition: all 0.2s ease;
+        }
+
+        div.quashea:hover {
+            transform: scale(1.1);
+        }
+
+        div.quashea p {
+            font-size: 2rem;
+            background-color: lightblue;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        div.quashea a {
+            text-decoration: none;
+        }
+
+
+        div.quasheados {
+            position: fixed;
+            top: 200px;
+            left: 20px;
+            transition: all 0.2s ease;
+        }
+
+        div.quasheados:hover {
+            transform: scale(1.1);
+        }
+
+        div.quasheados p {
+            font-size: 2rem;
+            background-color: lightblue;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        div.quasheados a {
+            text-decoration: none;
+        }
     </style>
 </head>
 
@@ -61,8 +108,8 @@
     <main>
         @foreach ($quacks as $quack)
             <article>
-                <h3>{{ $quack->display_name }} ({{ $quack->created_at }})</h3>
-                <p>{{ $quack->content }}</p>
+                <h3>{{ $quack->nickname }} ({{ $quack->created_at }})</h3>
+                <p>{{ $quack->contenido }}</p>
                 <p><a href="/quacks/{{ $quack->id }}">Ver más detalles</a></p>
                 <form action="/quacks/{{ $quack->id }}" method="POST">
                     @csrf
@@ -75,6 +122,12 @@
     </main>
     <div class="quackea">
         <p><a href="/quacks/create">🦆</a></p>
+    </div>
+    <div class="quashea">
+        <p><a href="/quashtags/create">new #</a></p>
+    </div>
+    <div class="quasheados">
+        <p><a href="/quashtags">#??</a></p>
     </div>
 </body>
 

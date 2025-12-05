@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -30,37 +29,31 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        User::create($request->all());
-        return redirect('/users');
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(User $user)
+    public function show(string $id)
     {
-        return view('users.show', [
-            'user' => $user
-        ]);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(User $user)
+    public function edit(string $id)
     {
-        return view('users.edit', [
-            'user' => $user
-        ]);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, string $id)
     {
-        $user->update($request->all());
-        return redirect('/users');
+        //
     }
 
     /**
@@ -68,7 +61,6 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        User::destroy($id);
-        return redirect('/users');
+        //
     }
 }

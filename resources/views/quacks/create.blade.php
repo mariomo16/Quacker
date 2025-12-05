@@ -24,9 +24,9 @@
     <main>
         <form action="/quacks" method="POST">
             <label>
-                Nick: <input type="text" name="display_name" placeholder="Nombre">
+                Nick: <input type="text" name="nickname" placeholder="Nombre de usuario">
             </label><br>
-            <textarea name="content" placeholder="Escribe tu Quack" rows="3" cols="30"></textarea><br>
+            <textarea name="contenido" placeholder="Escribe tu Quack" rows="3" cols="30"></textarea><br>
             <button>¡Quackea o muere!</button>
             @csrf
         </form>
