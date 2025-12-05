@@ -30,7 +30,7 @@ class QuackController extends Controller
      */
     public function store(Request $request)
     {
-        Quack::create(request()->all());
+        Quack::create($request->all());
         return redirect('/quacks');
     }
 
@@ -59,8 +59,7 @@ class QuackController extends Controller
      */
     public function update(Request $request, Quack $quack)
     {
-        $quack;
-        $quack->update(request()->all());
+        $quack->update($request->all());
         return redirect('/quacks');
     }
 

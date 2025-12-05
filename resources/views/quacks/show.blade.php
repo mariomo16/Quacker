@@ -30,8 +30,8 @@
 <body>
     <main>
         <article>
-            <h3>{{ $quack->nickname }} ({{ $quack->created_at }})</h3>
-            <p>{{ $quack->contenido }}</p>
+            <h3>{{ $quack->display_name }} ({{ $quack->created_at }})</h3>
+            <p>{{ $quack->content }}</p>
             <p><a href="/quacks">Volver</a></p>
         </article>
     </main>

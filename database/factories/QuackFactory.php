@@ -17,8 +17,8 @@ class QuackFactory extends Factory
     public function definition(): array
     {
         return [
-            'contenido' => fake() -> text(150),
-            'nickname' => fake() -> userName(),
+            'display_name' => fake()->name(),
+            'content' => fake()->text(280),
         ];
     }
 }

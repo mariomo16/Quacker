@@ -24,9 +24,10 @@
     <main>
         <form action="/quacks/{{ $quack->id }}" method="POST">
             <label>
-                Nick: <input type="text" name="nickname" placeholder="Nombre de usuario" value="{{ $quack->nickname }}">
+                Nick: <input type="text" name="display_name" placeholder="Nombre" value="{{ $quack->display_name }}">
             </label><br>
-            <textarea name="contenido" placeholder="Escribe tu Quack"rows="3" cols="30">{{ $quack->contenido }}</textarea><br>
+            <textarea name="content" placeholder="Escribe tu Quack" rows="3"
+                cols="30">{{ $quack->content }}</textarea><br>
             <button>¡Quackea o muere!</button>
             @csrf
             @method('PATCH')

@@ -4,17 +4,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quacks</title>
+    <title>Tu cuenta / Quacker</title>
+    <style>
+        main {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        button {
+            border-radius: 10px;
+            padding: 5px 10px;
+            border: none;
+            background-color: lightblue;
+        }
+    </style>
 </head>
 
 <body>
     <main>
-        <form action="/users/{{ $quack->id }}" method="POST">
+        <form action="/users/{{ $user->id }}" method="POST">
             <label>
-                Nick: <input type="text" name="nickname" placeholder="Nombre de usuario" value="{{ $quack->nickname }}">
+                Nombre: <input type="text" name="display_name" placeholder="Nombre" value="{{ $user->display_name }}">
             </label><br>
-            <textarea name="contenido" placeholder="Escribe tu Quack"rows="3" cols="30">{{ $quack->contenido }}</textarea><br>
-            <button>¡Quackea o muere!</button>
+            <label>
+                Nombre de usuario: <input type="text" name="username" placeholder="Nombre"
+                    value="{{ $user->username }}">
+            </label><br>
+            <label>
+                Correo electrónico: <input type="text" name="email" placeholder="Nombre" value="{{ $user->email }}">
+            </label><br>
+            <button>Guardar</button>
             @csrf
             @method('PATCH')
         </form>
