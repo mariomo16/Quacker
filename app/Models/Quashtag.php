@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Quack extends Model
+class Quashtag extends Model
 {
-    /** @use HasFactory<\Database\Factories\QuackFactory> */
+    /** @use HasFactory<\Database\Factories\QuashtagFactory> */
     use HasFactory;
 
-    protected $fillable = ['content', 'display_name'];
+    protected $fillable = ['name'];
 }

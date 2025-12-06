@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quacks / Quacker</title>
+    <title>Usuarios / Quacker</title>
     <style>
         main {
             width: 80%;
@@ -55,11 +55,11 @@
             text-decoration: none;
         }
 
-        div.quackea {
+        div.create-user {
             top: 20px;
         }
 
-        div.users {
+        div.quacks {
             top: 100px;
         }
 
@@ -71,25 +71,25 @@
 
 <body>
     <main>
-        @foreach ($quacks as $quack)
+        @foreach ($users as $user)
             <article>
-                <h3>{{ $quack->display_name }} ({{ $quack->created_at }})</h3>
-                <p>{{ $quack->content }}</p>
-                <p><a href="/quacks/{{ $quack->id }}">Ver más detalles</a></p>
-                <form action="/quacks/{{ $quack->id }}" method="POST">
+                <h3>{{ $user->display_name }} {{ '@' }}{{ $user->username }}</h3>
+                <p>{{ $user->email }}</p>
+                <p><a href="/users/{{ $user->id }}">Perfil</a></p>
+                <p><a href="/users/{{ $user->id }}/edit">Editar perfil</a></p>
+                <form action="/users/{{ $user->id }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <button>Eliminar</button>
                 </form>
-                <p><a href="/quacks/{{ $quack->id }}/edit">Editar</a></p>
             </article>
         @endforeach
     </main>
-    <div class="btn quackea">
-        <p><a href="/quacks/create">🦆</a></p>
+    <div class="btn create-user">
+        <p><a href="/users/create">👤</a></p>
     </div>
-    <div class="btn users">
-        <p><a href="/users">👤</a></p>
+    <div class="btn quacks">
+        <p><a href="/quacks">🦆</a></p>
     </div>
     <div class="btn quashtags">
         <p><a href="/quashtags">#️⃣</a></p>

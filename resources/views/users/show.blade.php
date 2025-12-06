@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quacks</title>
+    <title>{{ $user->display_name }} ({{ '@' }}{{ $user->username }}) / Quacker</title>
     <style>
         main {
             width: 80%;
@@ -30,9 +30,10 @@
 <body>
     <main>
         <article>
-            <h3>{{ $quack->display_name }} ({{ $quack->created_at }})</h3>
-            <p>{{ $quack->content }}</p>
-            <p><a href="/quacks">Volver</a></p>
+            <h3>{{ $user->display_name }} {{ '@' }}{{ $user->username }}</h3>
+            <p>{{ $user->email }}</p>
+            <p>{{ $user->created_at }}</p>
+            <p><a href="/users">Volver</a></p>
         </article>
     </main>
 </body>

@@ -10,11 +10,9 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('quacks', function (Blueprint $table) {
+        Schema::create('quashtags', function (Blueprint $table) {
             $table->id();
-            // $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('display_name', 50); // Mientras no haya relaciones con users
-            $table->text('content');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -24,6 +22,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('quacks');
+        Schema::dropIfExists('quashtags');
     }
 };

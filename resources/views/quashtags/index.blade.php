@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quacks / Quacker</title>
+    <title>Quashtags / Quacker</title>
     <style>
         main {
             width: 80%;
@@ -37,11 +37,11 @@
             left: 20px;
             transition: all 0.2 ease;
         }
-        
+
         div.btn:hover {
             transform: scale(1.1);
         }
-        
+
         div.btn p {
             font-size: 2rem;
             background-color: lightblue;
@@ -55,7 +55,7 @@
             text-decoration: none;
         }
 
-        div.quackea {
+        div.create-quashtag {
             top: 20px;
         }
 
@@ -63,7 +63,7 @@
             top: 100px;
         }
 
-        div.quashtags {
+        div.quacks {
             top: 180px;
         }
     </style>
@@ -71,28 +71,26 @@
 
 <body>
     <main>
-        @foreach ($quacks as $quack)
+        @foreach ($quashtags as $quashtag)
             <article>
-                <h3>{{ $quack->display_name }} ({{ $quack->created_at }})</h3>
-                <p>{{ $quack->content }}</p>
-                <p><a href="/quacks/{{ $quack->id }}">Ver más detalles</a></p>
-                <form action="/quacks/{{ $quack->id }}" method="POST">
+                <h3>{{ $quashtag->name }} ({{ $quashtag->created_at }})</h3>
+                <form action="/quashtags/{{ $quashtag->id }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <button>Eliminar</button>
                 </form>
-                <p><a href="/quacks/{{ $quack->id }}/edit">Editar</a></p>
             </article>
         @endforeach
+        <p><a href="/quacks">Volver</a></p>
     </main>
-    <div class="btn quackea">
-        <p><a href="/quacks/create">🦆</a></p>
+    <div class="btn create-quashtag">
+        <p><a href="/quashtags/create">#️⃣</a></p>
     </div>
     <div class="btn users">
         <p><a href="/users">👤</a></p>
     </div>
-    <div class="btn quashtags">
-        <p><a href="/quashtags">#️⃣</a></p>
+    <div class="btn quacks">
+        <p><a href="/quacks">🦆</a></p>
     </div>
 </body>
 

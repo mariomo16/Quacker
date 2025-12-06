@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Quack;
 use Illuminate\Http\Request;
 
-class QuacksController extends Controller
+class QuackController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -30,7 +30,7 @@ class QuacksController extends Controller
      */
     public function store(Request $request)
     {
-        Quack::create(request()->all());
+        Quack::create($request->all());
         return redirect('/quacks');
     }
 
@@ -59,8 +59,7 @@ class QuacksController extends Controller
      */
     public function update(Request $request, Quack $quack)
     {
-        $quack;
-        $quack->update(request()->all());
+        $quack->update($request->all());
         return redirect('/quacks');
     }
 

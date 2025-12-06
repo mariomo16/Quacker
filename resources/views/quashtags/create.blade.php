@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quacks</title>
+    <title>Quashtag Creacion</title>
     <style>
         main {
             width: 80%;
@@ -22,15 +22,11 @@
 
 <body>
     <main>
-        <form action="/quacks/{{ $quack->id }}" method="POST">
-            <label>
-                Nick: <input type="text" name="display_name" placeholder="Nombre" value="{{ $quack->display_name }}">
-            </label><br>
-            <textarea name="content" placeholder="Escribe tu Quack" rows="3"
-                cols="30">{{ $quack->content }}</textarea><br>
-            <button>¡Quackea o muere!</button>
+        <form action="/quashtags" method="POST">
+            <h1>CREA TU QUASHTAG!!!</h1>
+            <textarea name="name" placeholder="No olvides tu #" rows="3" cols="30"></textarea><br>
+            <button type="submit">Mu malo</button>
             @csrf
-            @method('PATCH')
         </form>
     </main>
 </body>
