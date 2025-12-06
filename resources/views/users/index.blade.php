@@ -32,27 +32,39 @@
             background-color: lightblue;
         }
 
-        div.create-user {
+        div.btn {
             position: fixed;
-            top: 20px;
             left: 20px;
-            transition: all 0.2s ease;
+            transition: all 0.2 ease;
         }
-
-        div.create-user:hover {
+        
+        div.btn:hover {
             transform: scale(1.1);
         }
-
-        div.create-user p {
+        
+        div.btn p {
             font-size: 2rem;
             background-color: lightblue;
+            margin: 0;
             padding: 10px;
             border-radius: 50%;
             cursor: pointer;
         }
 
-        div.create-user a {
+        div.btn a {
             text-decoration: none;
+        }
+
+        div.create-user {
+            top: 20px;
+        }
+
+        div.quacks {
+            top: 100px;
+        }
+
+        div.quashtags {
+            top: 180px;
         }
     </style>
 </head>
@@ -73,8 +85,14 @@
             </article>
         @endforeach
     </main>
-    <div class="create-user">
-        <p><a href="/users/create">🦆</a></p>
+    <div class="btn create-user">
+        <p><a href="/users/create">👤</a></p>
+    </div>
+    <div class="btn quacks">
+        <p><a href="/quacks">🦆</a></p>
+    </div>
+    <div class="btn quashtags">
+        <p><a href="/quashtags">#️⃣</a></p>
     </div>
 </body>
 
