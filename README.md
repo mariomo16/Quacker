@@ -14,6 +14,12 @@
     composer install; npm install
     ```
 
+3. Ejecutar el entorno de desarrollo:
+
+    ```bash
+    php artisan serve # o composer run dev / composer run dev:linux si prefieres usar los scripts definidos
+    ```
+
 ---
 
 ## Visualización de la base de datos
