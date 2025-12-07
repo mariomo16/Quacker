@@ -86,7 +86,7 @@
         @endforeach
     </main>
     <div class="btn quackea">
-        <p><a href="/quacks/create">🦆</a></p>
+        <p><a href="/quacks/create">➕</a></p>
     </div>
     <div class="btn users">
         <p><a href="/users">👤</a></p>
