@@ -5,7 +5,7 @@
 1. Clonar el repositorio y entrar en la carpeta:
 
     ```bash
-    git clone https://github.com/mariomo16/Quacker && cd Quacker
+    git clone https://github.com/mariomo16/Quacker.git && cd Quacker
     ```
 
 2. Instalar dependencias de PHP y Node.js:
@@ -17,7 +17,7 @@
 3. Ejecutar el entorno de desarrollo:
 
     ```bash
-    php artisan serve # o composer run dev / composer run dev:linux si prefieres usar los scripts definidos
+    php artisan serve # o composer run dev si prefieres usar el script definido
     ```
 
 ---
