@@ -86,7 +86,7 @@
         @endforeach
     </main>
     <div class="btn create-user">
-        <p><a href="/users/create">👤</a></p>
+        <p><a href="/users/create">➕</a></p>
     </div>
     <div class="btn quacks">
         <p><a href="/quacks">🦆</a></p>

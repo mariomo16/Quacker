@@ -81,10 +81,9 @@
                 </form>
             </article>
         @endforeach
-        <p><a href="/quacks">Volver</a></p>
     </main>
     <div class="btn create-quashtag">
-        <p><a href="/quashtags/create">#️⃣</a></p>
+        <p><a href="/quashtags/create">➕</a></p>
     </div>
     <div class="btn users">
         <p><a href="/users">👤</a></p>
