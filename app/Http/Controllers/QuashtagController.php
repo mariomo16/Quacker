@@ -45,15 +45,19 @@ class QuashtagController extends Controller
      */
     public function show(Quashtag $quashtag)
     {
-        //
+        return view('quashtags.show', [
+            'quashtag' => $quashtag
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Quashtag $quashtag)
     {
-        //
+        return view('quashtags.edit', [
+            'quashtag' => $quashtag
+        ]);
     }
 
     /**

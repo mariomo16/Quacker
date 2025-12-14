@@ -74,6 +74,8 @@
         @foreach ($quashtags as $quashtag)
             <article>
                 <h3>{{ $quashtag->name }} ({{ $quashtag->created_at }})</h3>
+                <a href="/quashtags/{{ $quashtag->id }}">Mostrar más</a>
+                <a href="/quashtags/{{ $quashtag->id }}/edit">Editar</a>
                 <form action="/quashtags/{{ $quashtag->id }}" method="POST">
                     @csrf
                     @method('DELETE')
