@@ -14,18 +14,35 @@
             @csrf
             @method('PATCH')
             <label>
-                <span class="text-muted">Nombre</span><input type="text" name="display_name"
-                    placeholder="Usuario Quacker" value="{{ $user->display_name }}" required>
+                <span class="text-muted">Nombre</span>
+                @error('display_name')
+                    <p class="error-message">{{ $message }}</p>
+                @enderror
+                <input type="text" name="display_name" placeholder="Usuario Quacker" value="{{ $user->display_name }}"
+                    required>
             </label>
             <label>
                 <span class="text-muted">Nombre de usuario</span>
+                @error('username')
+                    <p class="error-message">{{ $message }}</p>
+                @enderror
                 <input type="text" name="username" placeholder="usuario_quacker" value="{{ $user->username }}"
                     required>
             </label>
             <label>
                 <span class="text-muted">Correo electrónico</span>
+                @error('email')
+                    <p class="error-message">{{ $message }}</p>
+                @enderror
                 <input type="text" name="email" placeholder="usuario@quacker.es" value="{{ $user->email }}"
                     required>
+            </label>
+            <label>
+                <span class="text-muted">Correo electrónico</span>
+                @error('password')
+                    <p class="error-message">{{ $message }}</p>
+                @enderror
+                <input type="password" name="password" placeholder="P@ssw0rd"" required>
             </label>
             <div class="resource-actions resource-actions--end">
                 <a href="/users" class="btn-cancel">Cancelar</a>

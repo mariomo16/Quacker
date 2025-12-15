@@ -14,8 +14,12 @@
             @csrf
             @method('PATCH')
             <label>
-                <span class="text-muted">Quashtag</span><input type="text" name="name"
-                    placeholder="QuackerEsMejorQueX" value="{{ $quashtag->name }}" required>
+                <span class="text-muted">Quashtag</span>
+                @error('name')
+                    <p class="error-message">{{ $message }}</p>
+                @enderror
+                <input type="text" name="name" placeholder="QuackerEsMejorQueX" value="{{ $quashtag->name }}"
+                    required>
             </label>
             <div class="resource-actions resource-actions--end">
                 <a href="/quashtags" class="btn-cancel">Cancelar</a>

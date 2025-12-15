@@ -192,3 +192,8 @@ form textarea {
 form textarea:focus {
     border: 1px solid var(--color-primary);
 }
+
+p.error-message {
+    float: inline-end;
+    color: var(--color-btn-danger);
+}

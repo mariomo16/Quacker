@@ -14,21 +14,33 @@
             @csrf
             <label>
                 <span class="text-muted">Nombre</span>
+                @error('display_name')
+                    <p class="error-message">{{ $message }}</p>
+                @enderror
                 <input type="text" name="display_name" placeholder="usuario_quacker" value="{{ old('display_name') }}"
                     required>
             </label>
             <label>
                 <span class="text-muted">Nombre de usuario</span>
+                @error('username')
+                    <p class="error-message">{{ $message }}</p>
+                @enderror
                 <input type="text" name="username" placeholder="Usuario Quacker" value="{{ old('username') }}"
                     required>
             </label>
             <label>
                 <span class="text-muted">Correo electrónico</span>
                 <input type="email" name="email" placeholder="usuario@quacker.es" value="{{ old('email') }}"
-                    required>
+                required>
+                @error('email')
+                    <p class="error-message">{{ $message }}</p>
+                @enderror
             </label>
             <label>
                 <span class="text-muted">Contraseña</span>
+                @error('password')
+                    <p class="error-message">{{ $message }}</p>
+                @enderror
                 <input type="password" name="password" placeholder="P@ssw0rd" value="{{ old('password') }}" required>
             </label>
             <div class="resource-actions resource-actions--end">

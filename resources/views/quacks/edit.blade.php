@@ -15,6 +15,9 @@
             @method('PATCH')
             <label>
                 <span class="text-muted">Quack, quack, ¿qué pasa?</span>
+                @error('content')
+                    <p class="error-message">{{ $message }}</p>
+                @enderror
             </label>
             <textarea name="content" required>{{ $quack->content }}</textarea>
             <div class="resource-actions resource-actions--end">

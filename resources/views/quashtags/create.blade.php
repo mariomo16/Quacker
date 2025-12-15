@@ -14,6 +14,9 @@
             @csrf
             <label>
                 <span class="text-muted">Quashtag</span>
+                @error('name')
+                    <p class="error-message">{{ $message }}</p>
+                @enderror
                 <input type="text" name="name" placeholder="QuackerEsMejorQueX" value="{{ old('name') }}"
                     required>
             </label>
