@@ -4,26 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tu cuenta / Quacker</title>
-    <style>
-        button {
-            border-radius: 10px;
-            padding: 5px 10px;
-            border: none;
-            background-color: lightblue;
-        }
-    </style>
+    <title>🦆{{ $quashtag->name }} / {{ config('app.name') }}</title>
+    @vite(['resources/css/app.css'])
 </head>
 
 <body>
     <main>
-        <form action="/quashtags/{{ $quashtag->id }}" method="POST">
-            <label>
-                Editar quashtag: <input type="text" name="name" placeholder="quashtag" value="{{ $quashtag->name }}">
-            </label><br>
-            <button>Guardar</button>
+        <form method="POST" action="/quashtags/{{ $quashtag->id }}" class="resource-form">
             @csrf
             @method('PATCH')
+            <label>
+                <span class="text-muted">Quashtag</span><input type="text" name="name"
+                    placeholder="QuackerEsMejorQueX" value="{{ $quashtag->name }}" required>
+            </label>
+            <div class="resource-actions resource-actions--end">
+                <a href="/quashtags" class="btn-cancel">Cancelar</a>
+                <button type="submit" class="btn-save">Guardar</button>
+            </div>
         </form>
     </main>
 </body>

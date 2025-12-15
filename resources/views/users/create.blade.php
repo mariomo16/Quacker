@@ -4,39 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Regístrate en Quacker / Quacker</title>
-    <style>
-        main {
-            width: 80%;
-            margin: 0 auto;
-        }
-
-        button {
-            border-radius: 10px;
-            padding: 5px 10px;
-            border: none;
-            background-color: lightblue;
-        }
-    </style>
+    <title>Crear usuario / {{ config('app.name') }}</title>
+    @vite(['resources/css/app.css'])
 </head>
 
 <body>
     <main>
-        <form action="/users" method="POST">
-            <label>
-                Nombre: <input type="text" name="display_name" placeholder="Nombre">
-            </label><br>
-            <label>
-                Nombre de usuario: <input type="text" name="username" placeholder="Nombre de usuario">
-            </label><br>
-            <label>
-                Correo electrónico: <input type="email" name="email" placeholder="Correo electrónico">
-            </label><br>
-            <label>
-                Contraseña: <input type="password" name="password" placeholder="Contraseña">
-            </label><br>
-            <button>Completar registro</button>
+        <form method="POST" action="/users" class="resource-form">
             @csrf
+            <label>
+                <span class="text-muted">Nombre</span>
+                <input type="text" name="display_name" placeholder="usuario_quacker" value="{{ old('display_name') }}"
+                    required>
+            </label>
+            <label>
+                <span class="text-muted">Nombre de usuario</span>
+                <input type="text" name="username" placeholder="Usuario Quacker" value="{{ old('username') }}"
+                    required>
+            </label>
+            <label>
+                <span class="text-muted">Correo electrónico</span>
+                <input type="email" name="email" placeholder="usuario@quacker.es" value="{{ old('email') }}"
+                    required>
+            </label>
+            <label>
+                <span class="text-muted">Contraseña</span>
+                <input type="password" name="password" placeholder="P@ssw0rd" value="{{ old('password') }}" required>
+            </label>
+            <div class="resource-actions resource-actions--end">
+                <a href="/users" class="btn-cancel">Cancelar</a>
+                <button class="btn-save">Crear usuario</button>
+            </div>
         </form>
     </main>
 </body>
