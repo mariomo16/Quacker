@@ -4,29 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quashtag Creacion</title>
-    <style>
-        main {
-            width: 80%;
-            margin: 0 auto;
-        }
-
-        button {
-            border-radius: 10px;
-            padding: 5px 10px;
-            border: none;
-            background-color: lightblue;
-        }
-    </style>
+    <title>Crear quashtag / {{ config('app.name') }}</title>
+    @vite(['resources/css/app.css'])
 </head>
 
 <body>
     <main>
-        <form action="/quashtags" method="POST">
-            <h1>CREA TU QUASHTAG!!!</h1>
-            <textarea name="name" placeholder="No olvides tu #" rows="3" cols="30"></textarea><br>
-            <button type="submit">Mu malo</button>
+        <form method="POST" action="/quashtags" class="resource-form">
             @csrf
+            <label>
+                <span class="text-muted">Quashtag</span>
+                @error('name')
+                    <p class="error-message">{{ $message }}</p>
+                @enderror
+                <input type="text" name="name" placeholder="QuackerEsMejorQueX" value="{{ old('name') }}"
+                    required>
+            </label>
+            <div class="resource-actions resource-actions--end">
+                <a href="/quashtags" class="btn-cancel">Cancelar</a>
+                <button class="btn-save">Crear quashtag</button>
+            </div>
         </form>
     </main>
 </body>

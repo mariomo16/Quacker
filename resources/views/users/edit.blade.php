@@ -4,38 +4,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tu cuenta / Quacker</title>
-    <style>
-        main {
-            width: 80%;
-            margin: 0 auto;
-        }
-
-        button {
-            border-radius: 10px;
-            padding: 5px 10px;
-            border: none;
-            background-color: lightblue;
-        }
-    </style>
+    <title>{{ '@' }}{{ $user->username }} / {{ config('app.name') }}</title>
+    @vite(['resources/css/app.css'])
 </head>
 
 <body>
     <main>
-        <form action="/users/{{ $user->id }}" method="POST">
-            <label>
-                Nombre: <input type="text" name="display_name" placeholder="Nombre" value="{{ $user->display_name }}">
-            </label><br>
-            <label>
-                Nombre de usuario: <input type="text" name="username" placeholder="Nombre"
-                    value="{{ $user->username }}">
-            </label><br>
-            <label>
-                Correo electrónico: <input type="text" name="email" placeholder="Nombre" value="{{ $user->email }}">
-            </label><br>
-            <button>Guardar</button>
+        <form method="POST" action="/users/{{ $user->id }}" class="resource-form">
             @csrf
             @method('PATCH')
+            <label>
+                <span class="text-muted">Nombre</span>
+                @error('display_name')
+                    <p class="error-message">{{ $message }}</p>
+                @enderror
+                <input type="text" name="display_name" placeholder="Usuario Quacker" value="{{ $user->display_name }}"
+                    required>
+            </label>
+            <label>
+                <span class="text-muted">Nombre de usuario</span>
+                @error('username')
+                    <p class="error-message">{{ $message }}</p>
+                @enderror
+                <input type="text" name="username" placeholder="usuario_quacker" value="{{ $user->username }}"
+                    required>
+            </label>
+            <label>
+                <span class="text-muted">Correo electrónico</span>
+                @error('email')
+                    <p class="error-message">{{ $message }}</p>
+                @enderror
+                <input type="text" name="email" placeholder="usuario@quacker.es" value="{{ $user->email }}"
+                    required>
+            </label>
+            <label>
+                <span class="text-muted">Correo electrónico</span>
+                @error('password')
+                    <p class="error-message">{{ $message }}</p>
+                @enderror
+                <input type="password" name="password" placeholder="P@ssw0rd"" required>
+            </label>
+            <div class="resource-actions resource-actions--end">
+                <a href="/users" class="btn-cancel">Cancelar</a>
+                <button type="submit" class="btn-save">Guardar</button>
+            </div>
         </form>
     </main>
 </body>
