@@ -17,14 +17,14 @@
                 @error('email')
                     <p class="error-message">{{ $message }}</p>
                 @enderror
-                <input type="email" name="email">
+                <input type="email" name="email" required>
             </label>
             <label>
                 <span class="text-muted">Contraseña</span>
                 @error('password')
                     <p class="error-message">{{ $message }}</p>
                 @enderror
-                <input type="password" name="password">
+                <input type="password" name="password" required>
             </label>
             <button type="submit" class="btn-login">Iniciar sesión</button>
         </form>
