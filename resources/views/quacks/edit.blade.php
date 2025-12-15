@@ -4,33 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quacks</title>
-    <style>
-        main {
-            width: 80%;
-            margin: 0 auto;
-        }
-
-        button {
-            border-radius: 10px;
-            padding: 5px 10px;
-            border: none;
-            background-color: lightblue;
-        }
-    </style>
+    <title>Quack {{ $quack->id }} / {{ config('app.name') }}</title>
+    @vite(['resources/css/app.css'])
 </head>
 
 <body>
     <main>
-        <form action="/quacks/{{ $quack->id }}" method="POST">
-            <label>
-                Nick: <input type="text" name="display_name" placeholder="Nombre" value="{{ $quack->display_name }}">
-            </label><br>
-            <textarea name="content" placeholder="Escribe tu Quack" rows="3"
-                cols="30">{{ $quack->content }}</textarea><br>
-            <button>¡Quackea o muere!</button>
+        <form method="POST" action="/quacks/{{ $quack->id }}" class="resource-form">
             @csrf
             @method('PATCH')
+            <label>
+                <span class="text-muted">Quack, quack, ¿qué pasa?</span>
+            </label>
+            <textarea name="content" required>{{ $quack->content }}</textarea>
+            <div class="resource-actions resource-actions--end">
+                <a href="/quacks" class="btn-cancel">Cancelar</a>
+                <button type="submit" class="btn-save">Guardar</button>
+            </div>
         </form>
     </main>
 </body>
