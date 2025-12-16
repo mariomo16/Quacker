@@ -49,6 +49,11 @@ Puedes visualizar la base de datos SQLite (`database/database.sqlite`) con:
 -   [DB Browser for SQLite](https://sqlitebrowser.org) (gratuito, específico SQLite)
 -   [TablePlus](https://tableplus.com) (freemium, interfaz moderna)
 
+## Referencias
+
+-   [Laravel : Carbon shorten diffForHumans()](https://stackoverflow.com/questions/52371097/laravel-carbon-shorten-diffforhumans)
+-   [laravel/docs/12.x/validation#rule-unique](https://laravel.com/docs/12.x/validation#rule-unique)
+
 ## Equipo de Desarrollo
 
-Desarrollado por [@mariomo16](https://github.com/mariomo16), [@alfonsogomez45](https://github.com/alfonsogomez45) y [@ByAlberto](https://github.com/ByAlberto).
+Desarrollado por [@mariomo16](https://github.com/mariomo16), [@alfonsogomez45](https://github.com/alfonsogomez45) y [@ByAlberto](https://github.com/ByAlberto)

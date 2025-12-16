@@ -34,7 +34,7 @@
                 @error('email')
                     <p class="error-message">{{ $message }}</p>
                 @enderror
-                <input type="text" name="email" placeholder="usuario@quacker.es" value="{{ $user->email }}"
+                <input type="email" name="email" placeholder="usuario@quacker.es" value="{{ $user->email }}"
                     required>
             </label>
             <label>
