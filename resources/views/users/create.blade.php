@@ -30,18 +30,18 @@
             </label>
             <label>
                 <span class="text-muted">Correo electrónico</span>
-                <input type="email" name="email" placeholder="usuario@quacker.es" value="{{ old('email') }}"
-                required>
                 @error('email')
                     <p class="error-message">{{ $message }}</p>
                 @enderror
+                <input type="email" name="email" placeholder="usuario@quacker.es" value="{{ old('email') }}"
+                    required>
             </label>
             <label>
                 <span class="text-muted">Contraseña</span>
                 @error('password')
                     <p class="error-message">{{ $message }}</p>
                 @enderror
-                <input type="password" name="password" placeholder="P@ssw0rd" value="{{ old('password') }}" required>
+                <input type="password" name="password" placeholder="P@ssw0rd" required>
             </label>
             <div class="resource-actions resource-actions--end">
                 <a href="/users" class="btn-cancel">Cancelar</a>
