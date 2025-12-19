@@ -4,35 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quacks</title>
-    <style>
-        main {
-            width: 80%;
-            margin: 0 auto;
-        }
-
-        article {
-            background-color: lightcyan;
-            padding: 10px;
-            margin: 20px 0;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-            box-shadow: 5px 5px 5px rgb(0, 0, 0, 0.5);
-        }
-
-        article:hover {
-            transform: scale(1.05);
-            box-shadow: 10px 10px 10px rgb(0, 0, 0, 0.5);
-        }
-    </style>
+    <title>Quack {{ $quack->id }} / {{ config('app.name') }}</title>
+    @vite(['resources/css/app.css'])
 </head>
 
 <body>
     <main>
-        <article>
-            <h3>{{ $quack->nickname }} ({{ $quack->created_at }})</h3>
-            <p>{{ $quack->contenido }}</p>
-            <p><a href="/quacks">Volver</a></p>
+        <article class="show">
+            <p>{{ $quack->user->display_name }} <span
+                    class="text-muted">{{ '@' }}{{ $quack->user->username }}</span>
+            </p>
+            <p class="quack-content">{{ $quack->content }}</p>
+            <p><span class="text-muted">{{ $quack->created_at->isoFormat('h:mm a · D MMM YYYY') }}</span></p>
+            <div class="resource-actions">
+                <a href="/quacks">Volver</a>
+                <a href="/quacks/{{ $quack->id }}/edit">Editar</a>
+                <form method="POST" action="/quacks/{{ $quack->id }}">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn-delete">Eliminar</button>
+                </form>
+            </div>
         </article>
     </main>
 </body>
