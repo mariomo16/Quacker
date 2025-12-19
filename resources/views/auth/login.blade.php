@@ -10,7 +10,7 @@
 
 <body>
     <main>
-        <form method="POST" action="/login" class="resource-form">
+        <form method="POST" action="/login" class="resource-form login">
             @csrf
             <label>
                 <span class="text-muted">Correo electrónico</span>
@@ -26,7 +26,8 @@
                 @enderror
                 <input type="password" name="password" required>
             </label>
-            <button type="submit" class="btn-login">Iniciar sesión</button>
+            <a href="/register" class="btn-login-form">Registrarse</a>
+            <button type="submit" class="btn-login-form">Iniciar sesión</button>
         </form>
     </main>
     <footer>

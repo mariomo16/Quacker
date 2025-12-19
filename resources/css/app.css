@@ -145,7 +145,7 @@ div.resource-actions .cancel:hover {
 }
 
 form.resource-form {
-    margin: 30% 0;
+    margin: 25% 0;
     height: fit-content;
 	padding: 12px 16px;
     border: 1px solid var(--color-border);
@@ -198,16 +198,23 @@ p.error-message {
     color: var(--color-btn-danger);
 }
 
-button.btn-login {
-	padding: 12px 16px;
-	margin-top: 20px;
+form.login {
+    display: block;
+}
+
+form.login .btn-login-form {
+    padding: 12px 16px;
+	margin-top: 0.4rem;
 	background-color: var(--color-primary);
 	border: 1px solid var(--color-border);
 	border-radius: 50px;
 	transition: all 0.2s ease;
+    width: 49.5%;
+    display: inline-block;
+    text-align: center;
 }
 
-button.btn-login:hover {
+form.login .btn-login-form:hover {
 	cursor: pointer;
 	color: var(--color-primary);
 	background-color: var(--color-btn-light-hover);

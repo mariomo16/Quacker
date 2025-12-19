@@ -10,7 +10,7 @@
 
 <body>
     <main>
-        <form method="POST" action="/register" class="resource-form">
+        <form method="POST" action="/register" class="resource-form login">
             @csrf
             <label>
                 <span class="text-muted">Nombre</span>
@@ -47,7 +47,8 @@
                 @enderror
                 <input type="password" name="password_confirmation" required>
             </label>
-            <button type="submit" class="btn-login">Registrarse</button>
+            <a href="/login" class="btn-login-form">Iniciar sesión</a>
+            <button type="submit" class="btn-login-form">Registrarse</button>
         </form>
     </main>
 </body>
