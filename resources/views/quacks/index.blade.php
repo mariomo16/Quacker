@@ -12,8 +12,8 @@
     <main>
         @foreach ($quacks as $quack)
             <article>
-                <p><b>{{ $quack->display_name }}</b> <span
-                        class="text-muted">{{ '@' }}{{ $quack->display_name }}
+                <p><b>{{ $quack->user->display_name }}</b> <span
+                        class="text-muted">{{ '@' }}{{ $quack->user->username }}
                         ·
                         {{ $quack->created_at->diffForHumans(null, true, true, 1) }}</span></p>
                 <p>{{ $quack->content }}</p>

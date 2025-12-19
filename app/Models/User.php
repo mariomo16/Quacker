@@ -46,4 +46,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function quack()
+    {
+        return $this->hasMany(Quack::class);
+    }
 }
