@@ -10,7 +10,7 @@
 
 <body>
     <main>
-        <form method="POST" action="/login" class="resource-form">
+        <form method="POST" action="/login" class="resource-form login">
             @csrf
             <label>
                 <span class="text-muted">Correo electrónico</span>

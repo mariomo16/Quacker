@@ -55,6 +55,18 @@
             </svg>
         </a>
     </nav>
+
+    @auth
+        <div class="welcome">
+            Bienvenido <strong>{{ auth()->user()->display_name }}</strong>
+            <span class="welcome-user">&commat;{{ auth()->user()->username }}</span>
+
+            <form method="POST" action="{{ route('logout') }}" class="logout-form">
+                @csrf
+                <button type="submit">Cerrar sesión</button>
+            </form>
+        </div>
+    @endauth
 </body>
 
 </html>

@@ -19,7 +19,7 @@
                     <p class="error-message">{{ $message }}</p>
                 @enderror
                 <input type="text" name="display_name" placeholder="Usuario Quacker" value="{{ $user->display_name }}"
-                    required>
+                    maxlength="50" required>
             </label>
             <label>
                 <span class="text-muted">Nombre de usuario</span>
@@ -27,7 +27,7 @@
                     <p class="error-message">{{ $message }}</p>
                 @enderror
                 <input type="text" name="username" placeholder="usuario_quacker" value="{{ $user->username }}"
-                    required>
+                    maxlength="15" required>
             </label>
             <label>
                 <span class="text-muted">Correo electrónico</span>

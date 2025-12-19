@@ -10,7 +10,7 @@
 
 <body>
     <main>
-        <form method="POST" action="/register" class="login">
+        <form method="POST" action="/register" class="resource-form login">
             @csrf
             <label>
                 <span class="text-muted">Nombre</span>
@@ -45,7 +45,7 @@
                 @error('email')
                     <p class="error-message">{{ $message }}</p>
                 @enderror
-                <input type="password" name="password_confirmation" required>
+                <input type="password" name="password_confirmation" placeholder="P@ssw0rd" required>
             </label>
             <button type="submit" class="btn-login">Registrarse</button>
             <p class="auth-text">¿Ya tienes cuenta? <a href="/login">Inicia sesión</a></p>

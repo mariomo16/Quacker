@@ -11,30 +11,29 @@
 }
 
 :root {
-    /* Hue Saturation Lightness */
+    /* hsl: Hue Saturation Lightness */
 	/* Primarios */
-	--color-primary: hsl(202.82, 89.12%, 53.14%);
-    --color-primary-hover: hsl(204, 78.51%, 47.45%);
-    --color-danger: hsl(356.3, 90.56%, 54.31%);
-	--color-danger-hover: hsl(356.53, 76%, 49.02%);
+	--color-primary: hsl(203, 89%, 53%);
+    --color-primary-hover: hsl(204, 7%, 47%);
+    --color-danger: hsl(356, 91%, 54%);
+	--color-danger-hover: hsl(357, 76%, 49%);
 
 	/* Fondos */
-	--bg-primary: hsl(210, 34.38%, 12.55%);
-	--bg-primary-hover: hsl(208.57, 27.27%, 15.1%);
+	--bg-primary: hsl(210, 34%, 13%);
+	--bg-secondary: hsl(209, 27%, 15%);
 
 	/* Bordes */
-	--border: hsl(205.71, 15.79%, 26.08%);
+	--border: hsl(206, 16%, 30%);
 
 	/* Texto */
-	--text-primary: hsl(180, 14.29%, 97.25%);
-	--text-secondary: hsl(210, 12.62%, 65%);
-	--text-inverse: hsl(210, 25%, 7.84%);
+	--text-primary: hsl(180, 14%, 97%);
+	--text-secondary: hsl(210, 13%, 65%);
+	--text-inverse: hsl(210, 25%, 8%);
 
 	/* Botones */
-    --button-dark: hsl(210, 34.38%, 12.55%);
-	--button-dark-hover: hsl(208.57, 20%, 20.59%);
-	--button-light: hsl(192, 18.52%, 94.71%);
-	--button-light-hover: hsl(192, 6.67%, 85.29%);
+	--button-hover: hsl(209, 20%, 21%);
+	--button-light: hsl(192, 19%, 95%);
+	--button-light-hover: hsl(192, 7%, 85%);
 }
 
 body {
@@ -50,24 +49,27 @@ nav.nav-menu {
 	position: fixed;
 	display: flex;
 	flex-direction: column;
-	gap: 10px;
-	top: 20px;
-	left: 20px;
+	gap: 8px;
+	top: 0;
+	left: 0;
+    padding: 16px;
 }
 
 nav.nav-menu a {
-    display: block;
-    margin: auto;
 	padding: 10px;
 	border-radius: 50%;
-	cursor: pointer;
 	transition: all 0.2s ease;
 }
 
 nav.nav-menu a:hover {
     color: var(--color-primary);
-	background-color: var(--button-dark-hover);
+	background-color: var(--button-hover);
 	transform: scale(1.1);
+}
+
+nav.nav-menu a svg {
+	width: 44px;
+	height: 44px;
 }
 
 main {
@@ -92,6 +94,7 @@ article.show {
     text-align: center;
 	border-radius: 10px;
     justify-items: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
 span.text-muted {
@@ -122,12 +125,12 @@ div.resource-actions .btn-delete {
 }
 
 div.resource-actions .btn-save:hover {
-    color: var(--text-inverse);
-    background-color: var(--text-primary);
+    background-color: var(--color-primary);
 }
 
 div.resource-actions .btn-cancel:hover {
-    background-color: var(--bg-primary-hover);
+    color: var(--text-primary);
+    background-color: var(--color-danger);
 }
 
 div.resource-actions a:hover {
@@ -143,27 +146,30 @@ div.resource-actions .btn-delete:hover {
     color: var(--text-primary);
 }
 
-div.resource-actions .cancel:hover {
-	background-color: var(--bg-primary-hover);
-}
-
 form.resource-form {
-    margin: 25% 0;
+    margin: 10vh auto 0;
     height: fit-content;
-	padding: 12px 16px;
+	padding: 24px;
+    background-color: var(--bg-secondary); /* Faltaba */
     border: 1px solid var(--border);
-	border-radius: 10px;
+	border-radius: 12px;
 	line-height: 20px;
     justify-items: center;
     display: flex;
     flex-direction: column;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
 form label {
-    font-size: large;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+    display: block;
 }
 
 form input {
+    background-color: var(--bg-primary);
     width: 100%;
     margin-top: 0.4rem;
     margin-bottom: 1rem;
@@ -182,7 +188,7 @@ form input:focus {
 form textarea {
     display: inline-block;
     height: 200px;
-    margin-top: 0.4rem;
+    margin-top: 0.1rem;
     font-size: large;
     border: 1px solid var(--border);
     overflow: hidden;
@@ -190,6 +196,8 @@ form textarea {
     padding: 10px;
     outline: none;
     transition: all 0.4s ease;
+    background-color: var(--bg-primary);
+    resize: none;
 }
 
 form textarea:focus {
@@ -232,14 +240,18 @@ form.login {
     margin-top: 0.4rem;
 }
 
-a {
+form.login a {
     color: var(--color-primary);
     text-decoration: none;
     transition: all 0.2s ease;
 }
 
-a:hover {
+form.login a:hover {
     color: var(--color-primary-hover);
+}
+
+form.login input {
+    margin-top: 0.2rem;
 }
 
 footer {
@@ -251,4 +263,10 @@ footer {
 	flex-direction: column;
 	text-align: center;
 	font-size: large;
+}
+
+.welcome {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
 }
