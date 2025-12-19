@@ -2,9 +2,13 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+
+use App\Models\User;
+use App\Models\Quack;
+use App\Models\Quashtag;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,11 +19,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(200)->create();
+        User::factory(50)->create();
+        Quack::factory(200)->create();
+        Quashtag::factory(30)->create();
 
+        // Usuario de prueba para desarrollo
         User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+            'username' => 'admin',
+            'display_name' => 'Quacker',
+            'email' => 'admin@quacker.es',
+            'email_verified_at' => now(),
+            'password' => Hash::make('Admin123'),
         ]);
     }
 }
