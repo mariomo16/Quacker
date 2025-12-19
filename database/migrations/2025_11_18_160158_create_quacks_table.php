@@ -12,9 +12,8 @@ return new class extends Migration {
     {
         Schema::create('quacks', function (Blueprint $table) {
             $table->id();
-            // $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('display_name', 50); // Mientras no haya relaciones con users
-            $table->text('content');
+            $table->text('contenido');
+            $table->string('nickname');
             $table->timestamps();
         });
     }
