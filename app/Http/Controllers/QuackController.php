@@ -30,6 +30,19 @@ class QuackController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate(
+            [
+                'display_name' => 'required|max:50',
+                'content' => 'required|max:280'
+            ],
+            [
+                'display_name.required' => 'Este campo es obligatorio',
+                'display_name.max' => 'Máximo 50 caracteres',
+                'content.required' => 'Este campo es obligatorio',
+                'content.max' => 'Máximo 280 caracteres'
+            ]
+        );
+
         Quack::create($request->all());
         return redirect('/quacks');
     }
@@ -59,6 +72,16 @@ class QuackController extends Controller
      */
     public function update(Request $request, Quack $quack)
     {
+        $request->validate(
+            [
+                'content' => 'required|max:280'
+            ],
+            [
+                'content.required' => 'Este campo es obligatorio',
+                'content.max' => 'Máximo 280 caracteres'
+            ]
+        );
+
         $quack->update($request->all());
         return redirect('/quacks');
     }
