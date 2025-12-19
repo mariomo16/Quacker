@@ -17,7 +17,7 @@
                 @error('display_name')
                     <p class="error-message">{{ $message }}</p>
                 @enderror
-                <input type="text" name="display_name" placeholder="usuario_quacker" value="{{ old('display_name') }}"
+                <input type="text" name="display_name" placeholder="Usuario Quacker" value="{{ old('display_name') }}"
                     required>
             </label>
             <label>
@@ -25,7 +25,7 @@
                 @error('username')
                     <p class="error-message">{{ $message }}</p>
                 @enderror
-                <input type="text" name="username" placeholder="Usuario Quacker" value="{{ old('username') }}"
+                <input type="text" name="username" placeholder="usuario_quacker" value="{{ old('username') }}"
                     required>
             </label>
             <label>
