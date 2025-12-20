@@ -21,9 +21,6 @@
             </label>
             <label>
                 <span class="text-muted">Contraseña</span>
-                @error('password')
-                    <p class="error-message">{{ $message }}</p>
-                @enderror
                 <input type="password" name="password" required>
             </label>
             <button type="submit">Iniciar sesión</button>
