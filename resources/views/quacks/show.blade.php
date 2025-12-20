@@ -11,7 +11,8 @@
 <body>
     <main>
         <article class="show">
-            <p>{{ $quack->display_name }} <span class="text-muted">{{ '@' }}{{ $quack->display_name }}</span>
+            <p>{{ $quack->user->display_name }} <span
+                    class="text-muted">{{ '@' }}{{ $quack->user->username }}</span>
             </p>
             <p class="quack-content">{{ $quack->content }}</p>
             <p><span class="text-muted">{{ $quack->created_at->isoFormat('h:mm a · D MMM YYYY') }}</span></p>

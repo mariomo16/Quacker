@@ -21,6 +21,7 @@ class User extends Authenticatable
         'username',
         'display_name',
         'email',
+        'email_verified_at',
         'password',
     ];
 
@@ -45,5 +46,10 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function quack()
+    {
+        return $this->hasMany(Quack::class);
     }
 }

@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Quack;
 use Illuminate\Http\Request;
 
@@ -32,18 +31,20 @@ class QuackController extends Controller
     {
         $request->validate(
             [
-                'display_name' => 'required|max:50',
+
                 'content' => 'required|max:280'
             ],
             [
-                'display_name.required' => 'Este campo es obligatorio',
-                'display_name.max' => 'Máximo 50 caracteres',
+
                 'content.required' => 'Este campo es obligatorio',
                 'content.max' => 'Máximo 280 caracteres'
             ]
         );
 
-        Quack::create($request->all());
+        $data = $request->all();
+        $data['user_id'] = auth()->id();
+
+        Quack::create($data);
         return redirect('/quacks');
     }
 

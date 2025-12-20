@@ -10,5 +10,15 @@ class Quack extends Model
     /** @use HasFactory<\Database\Factories\QuackFactory> */
     use HasFactory;
 
-    protected $fillable = ['content', 'display_name'];
+    protected $fillable = ['content', 'user_id'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function quashtag()
+    {
+        return $this->hasMany(Quashtag::class);
+    }
 }
