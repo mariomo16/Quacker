@@ -211,13 +211,12 @@ form.auth-form a:hover {
 form label {
 	font-size: 1rem;
 	font-weight: 500;
-	margin-bottom: 8px;
 	color: var(--text-primary);
 	display: block;
 }
 
 form input {
-	margin-top: 0.2rem;
+	margin: 0.2rem 0;
 	background-color: var(--bg-primary);
 	width: 100%;
 	font-size: x-large;
@@ -236,7 +235,6 @@ form input:focus {
 form textarea {
 	display: inline-block;
 	height: 200px;
-	margin-top: 0.1rem;
 	font-size: large;
 	border: 1px solid var(--border);
 	overflow: hidden;
@@ -269,7 +267,7 @@ footer {
 	font-size: large;
 }
 
-.auth-widget {
+div.auth-widget {
 	position: fixed;
 	bottom: 0;
 	left: 0;
@@ -285,17 +283,17 @@ footer {
 	color: var(--text-primary);
 }
 
-.auth-widget-username {
+div.auth-widget p span.auth-widget-username {
 	color: var(--text-secondary);
 	opacity: 0.7;
 }
 
-button.auth-widget-logout-btn {
+div.auth-widget form button.auth-widget-logout-btn {
 	color: var(--color-primary);
 	cursor: pointer;
 	transition: all 0.2s ease;
 }
 
-button.auth-widget-logout-btn:hover {
+div.auth-widget form button.auth-widget-logout-btn:hover {
 	color: var(--color-primary-hover);
 }
