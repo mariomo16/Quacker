@@ -10,7 +10,7 @@ class Quack extends Model
     /** @use HasFactory<\Database\Factories\QuackFactory> */
     use HasFactory;
 
-    protected $fillable = ['content', 'display_name'];
+    protected $fillable = ['content', 'user_id'];
 
     public function user()
     {
