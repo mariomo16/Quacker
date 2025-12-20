@@ -14,14 +14,14 @@
             @csrf
             <label>
                 <span class="text-muted">Nombre</span>
-                @error('email')
+                @error('display_name')
                     <p class="error-message">{{ $message }}</p>
                 @enderror
                 <input type="text" name="display_name" placeholder="Usuario Quacker" required>
             </label>
             <label>
                 <span class="text-muted">Nombre de usuario</span>
-                @error('email')
+                @error('username')
                     <p class="error-message">{{ $message }}</p>
                 @enderror
                 <input type="text" name="username" placeholder="usuario_quacker" required>
@@ -35,14 +35,14 @@
             </label>
             <label>
                 <span class="text-muted">Contraseña</span>
-                @error('email')
+                @error('password')
                     <p class="error-message">{{ $message }}</p>
                 @enderror
                 <input type="password" name="password" placeholder="P@ssw0rd" required>
             </label>
             <label>
                 <span class="text-muted">Repite la contraseña</span>
-                @error('email')
+                @error('password_confirmation')
                     <p class="error-message">{{ $message }}</p>
                 @enderror
                 <input type="password" name="password_confirmation" placeholder="P@ssw0rd" required>
