@@ -82,11 +82,16 @@ main {
 	box-shadow: 0 0 16px hsla(0, 0%, 0%, 0.4);
 }
 
-article.index {
-	margin: 0;
+article.index,
+article.show {
 	padding: 12px 16px;
 	border: 1px solid var(--border);
 	line-height: 20px;
+}
+
+article.index {
+	margin: 0;
+	border-top: none;
 	transition: all 0.2s ease;
 }
 
@@ -95,11 +100,8 @@ article.show {
 	justify-items: center;
 	height: fit-content;
 	margin: 30% 0;
-	padding: 12px 16px;
-	border: 1px solid var(--border);
 	border-radius: 10px;
 	box-shadow: 0 0 16px hsla(0, 0%, 0%, 0.4);
-	line-height: 20px;
 	text-align: center;
 }
 
