@@ -43,9 +43,9 @@
                 @enderror
                 <input type="password" name="password" placeholder="P@ssw0rd" required>
             </label>
-            <div class="resource-actions resource-actions--end">
-                <a href="/users" class="btn-cancel">Cancelar</a>
-                <button class="btn-save">Crear usuario</button>
+            <div class="form-actions">
+                <a href="/users">Cancelar</a>
+                <button type="submit">Crear usuario</button>
             </div>
         </form>
     </main>

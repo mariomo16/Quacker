@@ -20,9 +20,9 @@
                 @enderror
             </label>
             <textarea name="content" required>{{ $quack->content }}</textarea>
-            <div class="resource-actions resource-actions--end">
-                <a href="/quacks" class="btn-cancel">Cancelar</a>
-                <button type="submit" class="btn-save">Guardar</button>
+            <div class="form-actions">
+                <a href="/quacks">Cancelar</a>
+                <button type="submit">Guardar</button>
             </div>
         </form>
     </main>

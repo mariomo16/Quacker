@@ -10,7 +10,7 @@
 
 <body>
     <main>
-        <form method="POST" action="/register" class="resource-form login">
+        <form method="POST" action="/register" class="auth-form">
             @csrf
             <label>
                 <span class="text-muted">Nombre</span>
@@ -47,8 +47,8 @@
                 @enderror
                 <input type="password" name="password_confirmation" placeholder="P@ssw0rd" required>
             </label>
-            <button type="submit" class="btn-login">Registrarse</button>
-            <p class="auth-text">¿Ya tienes cuenta? <a href="/login">Inicia sesión</a></p>
+            <button type="submit">Registrarse</button>
+            <p class="auth-redirect">¿Ya tienes cuenta? <a href="/login">Inicia sesión</a></p>
         </form>
     </main>
 </body>

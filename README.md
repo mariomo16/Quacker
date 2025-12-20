@@ -9,6 +9,11 @@
 [![Release](https://img.shields.io/github/v/release/mariomo16/Quacker)](https://github.com/mariomo16/Quacker/releases)
 [![Last Commit](https://img.shields.io/github/last-commit/mariomo16/Quacker)](https://github.com/mariomo16/Quacker/commits/main)
 
+## Usuario para pruebas
+
+Correo electrónico: **admin@quacker.es**\
+Contraseña: **Admin123**
+
 ## Instalación
 
 ### Clonar el repositorio
@@ -40,8 +45,6 @@ php artisan serve
 > ```
 
 La aplicación estará disponible en `http://127.0.0.1:8000/`
-
-El usuario para probar es admin@quacker.es y su respectiva contraseña es Admin123(Si algo falla estan todos los datos en el login del Quacker)
 
 ## Gestión de base de datos
 
