@@ -11,7 +11,7 @@
 <body>
     <main>
         @foreach ($quacks as $quack)
-            <article>
+            <article class="index">
                 <p><b>{{ $quack->user->display_name }}</b> <span
                         class="text-muted">{{ '@' }}{{ $quack->user->username }}
                         ·
@@ -23,7 +23,7 @@
                     <form method="POST" action="/quacks/{{ $quack->id }}">
                         @csrf
                         @method('DELETE')
-                        <button class="btn-delete">Eliminar</button>
+                        <button>Eliminar</button>
                     </form>
                 </div>
             </article>
@@ -48,13 +48,13 @@
     </nav>
 
     @auth
-        <div class="welcome">
-            Bienvenido <strong>{{ auth()->user()->display_name }}</strong>
-            <span class="welcome-user">&commat;{{ auth()->user()->username }}</span>
+        <div class="auth-widget">
+            <p>Bienvenido <b>{{ auth()->user()->display_name }}</b> <span
+                    class="auth-widget-username">{{ '@' }}{{ auth()->user()->username }}</span></p>
 
-            <form method="POST" action="{{ route('logout') }}" class="logout-form">
+            <form method="POST" action="{{ route('logout') }}">
                 @csrf
-                <button type="submit">Cerrar sesión</button>
+                <button type="submit" class="auth-widget-logout-btn">Cerrar sesión</button>
             </form>
         </div>
     @endauth

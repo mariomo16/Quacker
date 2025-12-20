@@ -20,9 +20,9 @@
                 <input type="text" name="name" placeholder="QuackerEsMejorQueX" value="{{ old('name') }}"
                     required>
             </label>
-            <div class="resource-actions resource-actions--end">
-                <a href="/quashtags" class="btn-cancel">Cancelar</a>
-                <button class="btn-save">Crear quashtag</button>
+            <div class="form-actions">
+                <a href="/quashtags">Cancelar</a>
+                <button type="submit">Crear quashtag</button>
             </div>
         </form>
     </main>
