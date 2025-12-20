@@ -19,9 +19,9 @@
                 @enderror
             </label>
             <textarea name="content" required>{{ old('content') }}</textarea>
-            <div class="resource-actions resource-actions--end">
-                <a href="/quacks" class="btn-cancel">Cancelar</a>
-                <button class="btn-save">Crear quack</button>
+            <div class="form-actions">
+                <a href="/quacks">Cancelar</a>
+                <button type="submit">Crear quack</button>
             </div>
         </form>
     </main>

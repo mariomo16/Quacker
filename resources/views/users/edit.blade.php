@@ -38,15 +38,15 @@
                     required>
             </label>
             <label>
-                <span class="text-muted">Correo electrónico</span>
+                <span class="text-muted">Contraseña</span>
                 @error('password')
                     <p class="error-message">{{ $message }}</p>
                 @enderror
-                <input type="password" name="password" placeholder="P@ssw0rd"" required>
+                <input type="password" name="password" placeholder="P@ssw0rd" required>
             </label>
-            <div class="resource-actions resource-actions--end">
-                <a href="/users" class="btn-cancel">Cancelar</a>
-                <button type="submit" class="btn-save">Guardar</button>
+            <div class="form-actions">
+                <a href="/users">Cancelar</a>
+                <button type="submit">Guardar</button>
             </div>
         </form>
     </main>

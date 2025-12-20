@@ -11,7 +11,7 @@
 <body>
     <main>
         @foreach ($quashtags as $quashtag)
-            <article>
+            <article class="index">
                 <p>🦆{{ $quashtag->name }} <span class="text-muted">ID: {{ $quashtag->id }}</span></p>
                 <div class="resource-actions">
                     <a href="/quashtags/{{ $quashtag->id }}">Mostrar más</a>
@@ -57,13 +57,13 @@
     </nav>
 
     @auth
-        <div class="welcome">
-            Bienvenido <strong>{{ auth()->user()->display_name }}</strong>
-            <span class="welcome-user">&commat;{{ auth()->user()->username }}</span>
+        <div class="auth-widget">
+            <p>Bienvenido <b>{{ auth()->user()->display_name }}</b> <span
+                    class="auth-widget-username">{{ '@' }}{{ auth()->user()->username }}</span></p>
 
-            <form method="POST" action="{{ route('logout') }}" class="logout-form">
+            <form method="POST" action="{{ route('logout') }}">
                 @csrf
-                <button type="submit">Cerrar sesión</button>
+                <button type="submit" class="auth-widget-logout-btn">Cerrar sesión</button>
             </form>
         </div>
     @endauth
