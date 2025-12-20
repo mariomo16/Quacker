@@ -31,26 +31,18 @@ class QuackController extends Controller
     {
         $request->validate(
             [
-                
+
                 'content' => 'required|max:280'
             ],
             [
-                
+
                 'content.required' => 'Este campo es obligatorio',
                 'content.max' => 'Máximo 280 caracteres'
             ]
         );
 
-        
-        //$post = new Quack();
-        //$post->user_id = Auth()->user->id();
-        //$post->content = $request['content'];
-        //$post->save();
-
-        $data = $request ->all();
+        $data = $request->all();
         $data['user_id'] = auth()->id();
-
-        //dd($request);
 
         Quack::create($data);
         return redirect('/quacks');
