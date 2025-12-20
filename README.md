@@ -41,6 +41,8 @@ php artisan serve
 
 La aplicación estará disponible en `http://127.0.0.1:8000/`
 
+El usuario para probar es admin@quacker.es y su respectiva contraseña es Admin123(Si algo falla estan todos los datos en el login del Quacker)
+
 ## Gestión de base de datos
 
 Puedes visualizar la base de datos SQLite (`database/database.sqlite`) con:
