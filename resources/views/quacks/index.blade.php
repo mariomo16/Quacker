@@ -19,12 +19,14 @@
                 <p>{{ $quack->content }}</p>
                 <div class="resource-actions">
                     <a href="{{ route('quacks.show', $quack) }}">Mostrar más</a>
-                    <a href="{{ route('quacks.edit', $quack) }}">Editar</a>
-                    <form method="POST" action="{{ route('quacks.destroy', $quack) }}">
-                        @csrf
-                        @method('DELETE')
-                        <button>Eliminar</button>
-                    </form>
+                    @can('manage', $quack)
+                        <a href="{{ route('quacks.edit', $quack) }}">Editar</a>
+                        <form method="POST" action="{{ route('quacks.destroy', $quack) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button>Eliminar</button>
+                        </form>
+                    @endcan
                 </div>
             </article>
         @endforeach
