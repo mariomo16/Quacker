@@ -40,10 +40,6 @@ class AuthController extends Controller
     // Método para mostrar el formulario de inicio de sesión 
     public function showLoginForm()
     {
-        if (auth()->check()) {
-            return redirect('/quacks');
-        }
-
         return view('auth.login');
     }
 
