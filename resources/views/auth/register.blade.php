@@ -10,7 +10,7 @@
 
 <body>
     <main>
-        <form method="POST" action="/register" class="auth-form">
+        <form method="POST" action="{{ route('register') }}" class="auth-form">
             @csrf
             <label>
                 <span class="text-muted">Nombre</span>
@@ -51,7 +51,7 @@
                 <input type="password" name="password_confirmation" placeholder="P@ssw0rd" minlength="6" required>
             </label>
             <button type="submit">Registrarse</button>
-            <p class="auth-redirect">¿Ya tienes cuenta? <a href="/login">Inicia sesión</a></p>
+            <p class="auth-redirect">¿Ya tienes cuenta? <a href="{{ route('login') }}">Inicia sesión</a></p>
         </form>
     </main>
 </body>

@@ -18,9 +18,9 @@
                     {{ $user->created_at->isoFormat('YYYY') }}</span></p>
 
             <div class="resource-actions">
-                <a href="/users">Volver</a>
-                <a href="/users/{{ $user->id }}/edit">Editar</a>
-                <form method="POST" action="/users/{{ $user->id }}">
+                <a href="{{ route('users.index') }}">Volver</a>
+                <a href="{{ route('users.edit', $user) }}">Editar</a>
+                <form method="POST" action="{{ route('users.destroy', $user) }}">
                     @csrf
                     @method('DELETE')
                     <button class="btn-delete">Eliminar</button>

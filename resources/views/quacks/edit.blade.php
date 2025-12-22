@@ -10,7 +10,7 @@
 
 <body>
     <main>
-        <form method="POST" action="/quacks/{{ $quack->id }}" class="resource-form">
+        <form method="POST" action="{{ route('quacks.update', $quack) }}" class="resource-form">
             @csrf
             @method('PATCH')
             <label>
@@ -21,7 +21,7 @@
             </label>
             <textarea name="content" maxlength="280" required>{{ $quack->content }}</textarea>
             <div class="form-actions">
-                <a href="/quacks">Cancelar</a>
+                <a href="{{ route('quacks.index') }}">Cancelar</a>
                 <button type="submit">Guardar</button>
             </div>
         </form>

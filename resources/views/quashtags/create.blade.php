@@ -10,7 +10,7 @@
 
 <body>
     <main>
-        <form method="POST" action="/quashtags" class="resource-form">
+        <form method="POST" action="{{ route('quashtags.store') }}" class="resource-form">
             @csrf
             <label>
                 <span class="text-muted">Quashtag</span>
@@ -21,7 +21,7 @@
                     required>
             </label>
             <div class="form-actions">
-                <a href="/quashtags">Cancelar</a>
+                <a href="{{ route('quashtags.index') }}">Cancelar</a>
                 <button type="submit">Crear quashtag</button>
             </div>
         </form>

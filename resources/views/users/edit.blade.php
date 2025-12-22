@@ -10,7 +10,7 @@
 
 <body>
     <main>
-        <form method="POST" action="/users/{{ $user->id }}" class="resource-form">
+        <form method="POST" action="{{ route('users.update', $user) }}" class="resource-form">
             @csrf
             @method('PATCH')
             <label>
@@ -45,7 +45,7 @@
                 <input type="password" name="password" placeholder="P@ssw0rd" required>
             </label>
             <div class="form-actions">
-                <a href="/users">Cancelar</a>
+                <a href="{{ route('users.index') }}">Cancelar</a>
                 <button type="submit">Guardar</button>
             </div>
         </form>

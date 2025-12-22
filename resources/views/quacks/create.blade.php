@@ -10,7 +10,7 @@
 
 <body>
     <main>
-        <form method="POST" action="/quacks" class="resource-form">
+        <form method="POST" action="{{ route('quacks.store') }}" class="resource-form">
             @csrf
             <label>
                 <span class="text-muted">Quack, quack, ¿qué pasa?</span>
@@ -20,7 +20,7 @@
             </label>
             <textarea name="content" maxlength="280" required>{{ old('content') }}</textarea>
             <div class="form-actions">
-                <a href="/quacks">Cancelar</a>
+                <a href="{{ route('quacks.index') }}">Cancelar</a>
                 <button type="submit">Crear quack</button>
             </div>
         </form>

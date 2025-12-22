@@ -10,7 +10,7 @@
 
 <body>
     <main>
-        <form method="POST" action="/users" class="resource-form">
+        <form method="POST" action="{{ route('users.store') }}" class="resource-form">
             @csrf
             <label>
                 <span class="text-muted">Nombre</span>
@@ -44,7 +44,7 @@
                 <input type="password" name="password" placeholder="P@ssw0rd" required>
             </label>
             <div class="form-actions">
-                <a href="/users">Cancelar</a>
+                <a href="{{ route('users.index') }}">Cancelar</a>
                 <button type="submit">Crear usuario</button>
             </div>
         </form>
