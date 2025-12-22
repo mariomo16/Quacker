@@ -17,9 +17,9 @@
             <p class="quack-content">{{ $quack->content }}</p>
             <p><span class="text-muted">{{ $quack->created_at->isoFormat('h:mm a · D MMM YYYY') }}</span></p>
             <div class="resource-actions">
-                <a href="/quacks">Volver</a>
-                <a href="/quacks/{{ $quack->id }}/edit">Editar</a>
-                <form method="POST" action="/quacks/{{ $quack->id }}">
+                <a href="{{ route('quacks.index') }}">Volver</a>
+                <a href="{{ route('quacks.edit', $quack) }}">Editar</a>
+                <form method="POST" action="{{ route('quacks.destroy', $quack) }}">
                     @csrf
                     @method('DELETE')
                     <button class="btn-delete">Eliminar</button>
