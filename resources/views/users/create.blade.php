@@ -17,23 +17,23 @@
                 @error('display_name')
                     <p class="error-message">{{ $message }}</p>
                 @enderror
-                <input type="text" name="display_name" placeholder="Usuario Quacker" value="{{ old('display_name') }}"
-                    required>
+                <input type="text" name="display_name" value="{{ old('display_name') }}" placeholder="Usuario Quacker"
+                    maxlength="50" required>
             </label>
             <label>
                 <span class="text-muted">Nombre de usuario</span>
                 @error('username')
                     <p class="error-message">{{ $message }}</p>
                 @enderror
-                <input type="text" name="username" placeholder="usuario_quacker" value="{{ old('username') }}"
-                    required>
+                <input type="text" name="username" value="{{ old('username') }}" placeholder="usuario_quacker"
+                    maxlength="15" required>
             </label>
             <label>
                 <span class="text-muted">Correo electrónico</span>
                 @error('email')
                     <p class="error-message">{{ $message }}</p>
                 @enderror
-                <input type="email" name="email" placeholder="usuario@quacker.es" value="{{ old('email') }}"
+                <input type="email" name="email" value="{{ old('email') }}" placeholder="usuario@quacker.es"
                     required>
             </label>
             <label>

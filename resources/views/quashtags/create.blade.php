@@ -17,7 +17,7 @@
                 @error('name')
                     <p class="error-message">{{ $message }}</p>
                 @enderror
-                <input type="text" name="name" placeholder="QuackerEsMejorQueX" value="{{ old('name') }}"
+                <input type="text" name="name" value="{{ old('name') }}" placeholder="QuackerEsMejorQueX"
                     required>
             </label>
             <div class="form-actions">

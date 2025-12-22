@@ -18,7 +18,7 @@
                 @error('display_name')
                     <p class="error-message">{{ $message }}</p>
                 @enderror
-                <input type="text" name="display_name" placeholder="Usuario Quacker" value="{{ $user->display_name }}"
+                <input type="text" name="display_name" value="{{ $user->display_name }}" placeholder="Usuario Quacker"
                     maxlength="50" required>
             </label>
             <label>
@@ -26,7 +26,7 @@
                 @error('username')
                     <p class="error-message">{{ $message }}</p>
                 @enderror
-                <input type="text" name="username" placeholder="usuario_quacker" value="{{ $user->username }}"
+                <input type="text" name="username" value="{{ $user->username }}" placeholder="usuario_quacker"
                     maxlength="15" required>
             </label>
             <label>
@@ -34,7 +34,7 @@
                 @error('email')
                     <p class="error-message">{{ $message }}</p>
                 @enderror
-                <input type="email" name="email" placeholder="usuario@quacker.es" value="{{ $user->email }}"
+                <input type="email" name="email" value="{{ $user->email }}" placeholder="usuario@quacker.es"
                     required>
             </label>
             <label>

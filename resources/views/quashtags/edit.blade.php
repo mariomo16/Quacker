@@ -18,7 +18,7 @@
                 @error('name')
                     <p class="error-message">{{ $message }}</p>
                 @enderror
-                <input type="text" name="name" placeholder="QuackerEsMejorQueX" value="{{ $quashtag->name }}"
+                <input type="text" name="name" value="{{ $quashtag->name }}" placeholder="QuackerEsMejorQueX"
                     required>
             </label>
             <div class="form-actions">

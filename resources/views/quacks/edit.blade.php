@@ -19,7 +19,7 @@
                     <p class="error-message">{{ $message }}</p>
                 @enderror
             </label>
-            <textarea name="content" required>{{ $quack->content }}</textarea>
+            <textarea name="content" maxlength="280" required>{{ $quack->content }}</textarea>
             <div class="form-actions">
                 <a href="/quacks">Cancelar</a>
                 <button type="submit">Guardar</button>
