@@ -18,12 +18,14 @@
             <p><span class="text-muted">{{ $quack->created_at->isoFormat('h:mm a · D MMM YYYY') }}</span></p>
             <div class="resource-actions">
                 <a href="{{ route('quacks.index') }}">Volver</a>
-                <a href="{{ route('quacks.edit', $quack) }}">Editar</a>
-                <form method="POST" action="{{ route('quacks.destroy', $quack) }}">
-                    @csrf
-                    @method('DELETE')
-                    <button class="btn-delete">Eliminar</button>
-                </form>
+                @can('manage', $quack)
+                    <a href="{{ route('quacks.edit', $quack) }}">Editar</a>
+                    <form method="POST" action="{{ route('quacks.destroy', $quack) }}">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn-delete">Eliminar</button>
+                    </form>
+                @endcan
             </div>
         </article>
     </main>
