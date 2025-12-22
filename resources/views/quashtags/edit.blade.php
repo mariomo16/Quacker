@@ -10,7 +10,7 @@
 
 <body>
     <main>
-        <form method="POST" action="/quashtags/{{ $quashtag->id }}" class="resource-form">
+        <form method="POST" action="{{ route('quashtags.update', $quashtag) }}" class="resource-form">
             @csrf
             @method('PATCH')
             <label>
@@ -18,11 +18,11 @@
                 @error('name')
                     <p class="error-message">{{ $message }}</p>
                 @enderror
-                <input type="text" name="name" placeholder="QuackerEsMejorQueX" value="{{ $quashtag->name }}"
+                <input type="text" name="name" value="{{ $quashtag->name }}" placeholder="QuackerEsMejorQueX"
                     required>
             </label>
             <div class="form-actions">
-                <a href="/quashtags">Cancelar</a>
+                <a href="{{ route('quashtags.index') }}">Cancelar</a>
                 <button type="submit">Guardar</button>
             </div>
         </form>

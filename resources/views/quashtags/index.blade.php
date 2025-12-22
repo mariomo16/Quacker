@@ -14,9 +14,9 @@
             <article class="index">
                 <p>🦆{{ $quashtag->name }} <span class="text-muted">ID: {{ $quashtag->id }}</span></p>
                 <div class="resource-actions">
-                    <a href="/quashtags/{{ $quashtag->id }}">Mostrar más</a>
-                    <a href="/quashtags/{{ $quashtag->id }}/edit">Editar</a>
-                    <form method="POST" action="/quashtags/{{ $quashtag->id }}">
+                    <a href="{{ route('quashtags.show', $quashtag) }}">Mostrar más</a>
+                    <a href="{{ route('quashtags.edit', $quashtag) }}">Editar</a>
+                    <form method="POST" action="{{ route('quashtags.destroy', $quashtag) }}">
                         @csrf
                         @method('DELETE')
                         <button class="btn-delete">Eliminar</button>
@@ -26,18 +26,18 @@
         @endforeach
     </main>
     <nav class="nav-menu">
-        <a href="/quashtags/create"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
-                fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+        <a href="{{ route('quashtags.create') }}"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                class="bi bi-plus-lg" viewBox="0 0 16 16">
                 <path fill-rule="evenodd"
                     d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2" />
             </svg></a>
-        <a href="/users"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+        <a href="{{ route('users.index') }}"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                 class="bi bi-person" viewBox="0 0 16 16">
                 <path
                     d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" />
             </svg></a>
-        <a href="/quacks">
-            <svg width="40" height="40" viewBox="0 0 165.8996 185.85983" sodipodi:docname="quacker_logo.svg"
+        <a href="{{ route('quacks.index') }}">
+            <svg viewBox="0 0 165.8996 185.85983" sodipodi:docname="quacker_logo.svg"
                 inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
                 xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
                 xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg"
