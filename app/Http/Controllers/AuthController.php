@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\LoginRequest;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -16,14 +19,9 @@ class AuthController extends Controller
     }
 
     // Método para registrar un usuario e iniciar sesión automáticamente 
-    public function store(Request $request)
+    public function store(RegisterRequest $request)
     {
-        $data = $request->validate([
-            'display_name' => ['required', 'string', 'max:50'],
-            'username' => ['required', 'string', 'max:15', 'unique:users,username'],
-            'email' => ['required', 'email', 'unique:users,email'],
-            'password' => ['required', 'string', 'min:6', 'confirmed']
-        ]);
+        $data = $request->validated();
 
         $user = User::create([
             'display_name' => $data['display_name'],
@@ -50,12 +48,9 @@ class AuthController extends Controller
     }
 
     // Método para iniciar sesión
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required']
-        ]);
+        $credentials = $request->validated();
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
@@ -63,7 +58,7 @@ class AuthController extends Controller
         }
 
         return back()->withErrors([
-            'email' => 'Credenciales incorrectas.'
+            'email' => 'Credenciales incorrectas'
         ]);
     }
 
