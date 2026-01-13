@@ -1,32 +1,27 @@
-<!DOCTYPE html>
-<html lang="es">
+<x-layouts.app :title="'🦆' . $quashtag->name" :route="route('quashtags.create')">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🦆{{ $quashtag->name }} / {{ config('app.name') }}</title>
-    @vite(['resources/css/app.css'])
-</head>
+    @section('main')
+        <section class="resource-section">
+            <form method="POST" action="{{ route('quashtags.update', $quashtag) }}" class="resource-form">
+                @csrf
+                @method('PATCH')
+                <div class="input-group">
+                    <span class="quashtag-quack"></span>
+                    <input type="text" class="quashtag-input" id="name" name="name" value="{{ $quashtag->name }}"
+                        placeholder=" " required>
+                    <label>
+                        <span class="text-muted">Quashtag</span>
+                    </label>
+                    @error('name')
+                        <p class="error-message">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="form-actions">
+                    <a href="{{ route('quashtags.index') }}">Cancelar</a>
+                    <button type="submit">Guardar</button>
+                </div>
+            </form>
+        </section>
+    @endsection
 
-<body>
-    <main>
-        <form method="POST" action="{{ route('quashtags.update', $quashtag) }}" class="resource-form">
-            @csrf
-            @method('PATCH')
-            <label>
-                <span class="text-muted">Quashtag</span>
-                @error('name')
-                    <p class="error-message">{{ $message }}</p>
-                @enderror
-                <input type="text" name="name" value="{{ $quashtag->name }}" placeholder="QuackerEsMejorQueX"
-                    required>
-            </label>
-            <div class="form-actions">
-                <a href="{{ route('quashtags.index') }}">Cancelar</a>
-                <button type="submit">Guardar</button>
-            </div>
-        </form>
-    </main>
-</body>
-
-</html>
+</x-layouts.app>

@@ -1,15 +1,6 @@
-<!DOCTYPE html>
-<html lang="es">
+<x-layouts.app :title="'Quack ' . $quack->id" :route="route('quacks.create')">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quack {{ $quack->id }} / {{ config('app.name') }}</title>
-    @vite(['resources/css/app.css'])
-</head>
-
-<body>
-    <main>
+    @section('main')
         <article class="show">
             <p>{{ $quack->user->display_name }} <span
                     class="text-muted">{{ '@' }}{{ $quack->user->username }}</span>
@@ -28,7 +19,6 @@
                 @endcan
             </div>
         </article>
-    </main>
-</body>
+    @endsection
 
-</html>
+</x-layouts.app>
