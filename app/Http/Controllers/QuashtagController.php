@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\QuashtagRequest;
 use App\Models\Quashtag;
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 
 class QuashtagController extends Controller
 {
@@ -29,17 +28,9 @@ class QuashtagController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(QuashtagRequest $request)
     {
-        $request->validate(
-            [
-                'name' => 'required|unique:quashtags,name'
-            ],
-            [
-                'name.required' => 'Este campo es obligatorio',
-                'name.unique' => 'Este quashtag ya existe',
-            ]
-        );
+        $request->validated();
 
         Quashtag::create($request->all());
         return redirect('/quashtags');
@@ -68,17 +59,9 @@ class QuashtagController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Quashtag $quashtag)
+    public function update(QuashtagRequest $request, Quashtag $quashtag)
     {
-        $request->validate(
-            [
-                'name' => ['required', Rule::unique('quashtags', 'name')->ignore($quashtag->id)],
-            ],
-            [
-                'name.required' => 'Este campo es obligatorio',
-                'name.unique' => 'Este quashtag ya existe',
-            ]
-        );
+        $request->validated();
 
         $quashtag->update($request->all());
         return redirect('/quashtags');

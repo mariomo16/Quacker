@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\QuackRequest;
 use App\Models\Quack;
-use Illuminate\Http\Request;
 
 class QuackController extends Controller
 {
@@ -28,19 +28,9 @@ class QuackController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(QuackRequest $request)
     {
-        $request->validate(
-            [
-
-                'content' => 'required|max:280'
-            ],
-            [
-
-                'content.required' => 'Este campo es obligatorio',
-                'content.max' => 'Máximo 280 caracteres'
-            ]
-        );
+        $request->validated();
 
         $data = $request->all();
         $data['user_id'] = auth()->id();
@@ -74,19 +64,11 @@ class QuackController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Quack $quack)
+    public function update(QuackRequest $request, Quack $quack)
     {
         $this->authorize('manage', $quack);
 
-        $request->validate(
-            [
-                'content' => 'required|max:280'
-            ],
-            [
-                'content.required' => 'Este campo es obligatorio',
-                'content.max' => 'Máximo 280 caracteres'
-            ]
-        );
+        $request->validated();
 
         $quack->update($request->all());
         return redirect('/quacks');
