@@ -30,9 +30,7 @@ class QuackController extends Controller
      */
     public function store(QuackRequest $request)
     {
-        $request->validated();
-
-        $data = $request->all();
+        $data = $request->validated();
         $data['user_id'] = auth()->id();
 
         Quack::create($data);
@@ -68,9 +66,7 @@ class QuackController extends Controller
     {
         $this->authorize('manage', $quack);
 
-        $request->validated();
-
-        $quack->update($request->all());
+        $quack->update($request->validated());
         return redirect('/quacks');
     }
 

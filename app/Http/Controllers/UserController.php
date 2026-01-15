@@ -31,9 +31,7 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        $request->validated();
-
-        User::create($request->all());
+        User::create($request->validated());
         return redirect('/users');
     }
 
@@ -62,9 +60,7 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        $request->validated();
-
-        $user->update($request->all());
+        $user->update($request->validated());
         return redirect('/users');
     }
 

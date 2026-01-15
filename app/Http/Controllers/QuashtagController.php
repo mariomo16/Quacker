@@ -30,9 +30,7 @@ class QuashtagController extends Controller
      */
     public function store(QuashtagRequest $request)
     {
-        $request->validated();
-
-        Quashtag::create($request->all());
+        Quashtag::create($request->validated());
         return redirect('/quashtags');
     }
 
@@ -61,9 +59,7 @@ class QuashtagController extends Controller
      */
     public function update(QuashtagRequest $request, Quashtag $quashtag)
     {
-        $request->validated();
-
-        $quashtag->update($request->all());
+        $quashtag->update($request->validated());
         return redirect('/quashtags');
     }
 
