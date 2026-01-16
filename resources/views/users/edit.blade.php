@@ -40,7 +40,7 @@
                 </div>
 
                 <div class="input-group">
-                    <input type="password" id="password" name="password" placeholder=" " required>
+                    <input type="password" id="password" name="password" placeholder=" ">
                     <label for="password">
                         <span class="text-muted">Contraseña</span>
                     </label>
