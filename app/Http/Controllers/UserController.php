@@ -60,7 +60,7 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        $user->update($request->validated());
+        $user->update(array_filter($request->validated()));
         return redirect()->route('users.show', [$user]);
     }
 
