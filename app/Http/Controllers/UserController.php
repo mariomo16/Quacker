@@ -32,7 +32,7 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {
         User::create($request->validated());
-        return redirect('/users');
+        return redirect()->route('users.index');
     }
 
     /**
@@ -61,7 +61,7 @@ class UserController extends Controller
     public function update(UpdateUserRequest $request, User $user)
     {
         $user->update($request->validated());
-        return redirect('/users');
+        return redirect()->route('users.show', [$user]);
     }
 
     /**
@@ -70,6 +70,6 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         User::destroy($id);
-        return redirect('/users');
+        return redirect()->route('users.index');
     }
 }
