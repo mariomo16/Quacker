@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -29,30 +29,10 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        $request->validate(
-            [
-                'username' => 'required|max:15|unique:users,username',
-                'display_name' => 'required|max:50',
-                'email' => 'required|email|unique:users,email',
-                'password' => 'required',
-            ],
-            [
-                'username.required' => 'Este campo es obligatorio',
-                'username.max' => 'Máximo 15 caracteres',
-                'username.unique' => 'Este nombre de usuario ya esta en uso',
-                'display_name.required' => 'Este campo es obligatorio',
-                'display_name.max' => 'Máximo 50 caracteres',
-                'email.required' => 'Este campo es obligatorio',
-                'email.email' => 'Introduce un correo electrónico válido',
-                'email.unique' => 'Este correo electrónico ya esta en uso',
-                'password.required' => 'Este campo es obligatorio',
-            ]
-        );
-
-        User::create($request->all());
-        return redirect('/users');
+        User::create($request->validated());
+        return redirect()->route('users.index');
     }
 
     /**
@@ -78,30 +58,10 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        $request->validate(
-            [
-                'username' => ['required', 'max:15', Rule::unique('users', 'username')->ignore($user->id)],
-                'display_name' => 'required|max:50',
-                'email' => ['required', 'email', Rule::unique('users', 'email')->ignore($user->id)],
-                'password' => 'required',
-            ],
-            [
-                'username.required' => 'Este campo es obligatorio',
-                'username.max' => 'Máximo 15 caracteres',
-                'username.unique' => 'Este nombre de usuario ya esta en uso',
-                'display_name.required' => 'Este campo es obligatorio',
-                'display_name.max' => 'Máximo 50 caracteres',
-                'email.required' => 'Este campo es obligatorio',
-                'email.email' => 'Introduce un correo electrónico válido',
-                'email.unique' => 'Este correo electrónico ya esta en uso',
-                'password.required' => 'Este campo es obligatorio',
-            ]
-        );
-
-        $user->update($request->all());
-        return redirect('/users');
+        $user->update($request->validated());
+        return redirect()->route('users.show', [$user]);
     }
 
     /**
@@ -110,6 +70,6 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         User::destroy($id);
-        return redirect('/users');
+        return redirect()->route('users.index');
     }
 }

@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class LoginRequest extends FormRequest
+class QuashtagRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +23,7 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => 'required|string|email',
-            'password' => 'required|string',
+            'name' => ['required', 'string', Rule::unique('quashtags', 'name')->ignore($this->route('quashtag')?->id)],
         ];
     }
 
@@ -32,7 +32,7 @@ class LoginRequest extends FormRequest
         return [
             'required' => 'Este campo es obligatorio',
             'string' => 'Has introducido datos no válidos',
-            'email.email' => 'Introduce un correo electrónico válido',
+            'name.unique' => 'Este quashtag ya existe',
         ];
     }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RegisterRequest extends FormRequest
+class StoreUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,22 +25,20 @@ class RegisterRequest extends FormRequest
             'username' => 'required|string|max:15|unique:users',
             'display_name' => 'required|string|max:50',
             'email' => 'required|string|email|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|min:6',
         ];
     }
 
-    public function messages(): array
+    public function messsages(): array
     {
         return [
             'required' => 'Este campo es obligatorio',
             'string' => 'Has introducido datos no válidos',
-            'display_name.max' => 'Máximo 50 caracteres',
             'username.max' => 'Máximo 15 caracteres',
             'username.unique' => 'Este nombre de usuario ya esta en uso',
+            'display_name.max' => 'Máximo 50 caracteres',
             'email.email' => 'Introduce un correo electrónico válido',
             'email.unique' => 'Este correo electrónico ya esta en uso',
-            'password.min' => 'Mínimo 6 caracteres',
-            'password.confirmed' => 'Las contraseñas no coinciden',
         ];
     }
 }

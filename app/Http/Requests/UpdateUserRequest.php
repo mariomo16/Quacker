@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class RegisterRequest extends FormRequest
+class UpdateUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,25 +23,23 @@ class RegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'username' => 'required|string|max:15|unique:users',
+            'username' => ['required', 'string', 'max:15', Rule::unique('users', 'username')->ignore($this->route('user')->id)],
             'display_name' => 'required|string|max:50',
-            'email' => 'required|string|email|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'email' => ['required', 'string', 'email', Rule::unique('users', 'username')->ignore($this->route('user')->email)],
+            'password' => 'nullable|string|min:6',
         ];
     }
 
-    public function messages(): array
+    public function messsages(): array
     {
         return [
             'required' => 'Este campo es obligatorio',
             'string' => 'Has introducido datos no válidos',
-            'display_name.max' => 'Máximo 50 caracteres',
             'username.max' => 'Máximo 15 caracteres',
             'username.unique' => 'Este nombre de usuario ya esta en uso',
+            'display_name.max' => 'Máximo 50 caracteres',
             'email.email' => 'Introduce un correo electrónico válido',
             'email.unique' => 'Este correo electrónico ya esta en uso',
-            'password.min' => 'Mínimo 6 caracteres',
-            'password.confirmed' => 'Las contraseñas no coinciden',
         ];
     }
 }

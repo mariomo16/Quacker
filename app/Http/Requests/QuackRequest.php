@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class LoginRequest extends FormRequest
+class QuackRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +22,7 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => 'required|string|email',
-            'password' => 'required|string',
+            'content' => 'required|string|max:280',
         ];
     }
 
@@ -32,7 +31,7 @@ class LoginRequest extends FormRequest
         return [
             'required' => 'Este campo es obligatorio',
             'string' => 'Has introducido datos no válidos',
-            'email.email' => 'Introduce un correo electrónico válido',
+            'content.max' => 'Máximo 280 caracteres',
         ];
     }
 }
