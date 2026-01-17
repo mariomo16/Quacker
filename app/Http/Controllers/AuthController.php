@@ -25,7 +25,7 @@ class AuthController extends Controller
         Auth::login($user);
         $request->session()->regenerate();
 
-        return redirect()->route('quacks.index');
+        return to_route('quacks.index');
     }
 
     // Método para mostrar el formulario de inicio de sesión 
@@ -41,7 +41,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended(route('quacks.index'));
+            return to_route('quacks.index');
         }
 
         return back()->withErrors([
@@ -57,6 +57,6 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('login');
+        return to_route('login');
     }
 }
