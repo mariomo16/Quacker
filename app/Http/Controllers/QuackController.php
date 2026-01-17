@@ -30,10 +30,7 @@ class QuackController extends Controller
      */
     public function store(QuackRequest $request)
     {
-        $data = $request->validated();
-        $data['user_id'] = auth()->id();
-
-        Quack::create($data);
+        Quack::create($request->validated() + ['user_id' => auth()->id()]);
         return to_route('quacks.index');
     }
 
