@@ -13,7 +13,7 @@ class QuackController extends Controller
     public function index()
     {
         return view('quacks.index', [
-            'quacks' => Quack::latest()->get()
+            'quacks' => Quack::with('user')->latest()->get()
         ]);
     }
 
