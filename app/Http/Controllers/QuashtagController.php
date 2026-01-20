@@ -30,7 +30,10 @@ class QuashtagController extends Controller
      */
     public function store(QuashtagRequest $request)
     {
-        Quashtag::create($request->validated());
+        $data = $request->validated();
+        $data['name'] = str_replace(' ', '', $data['name']);
+
+        Quashtag::create($data);
         return to_route('quashtags.index');
     }
 
@@ -59,7 +62,10 @@ class QuashtagController extends Controller
      */
     public function update(QuashtagRequest $request, Quashtag $quashtag)
     {
-        $quashtag->update($request->validated());
+        $data = $request->validated();
+        $data['name'] = str_replace(' ', '', $data['name']);
+
+        $quashtag->update($data);
         return to_route('quashtags.show', [$quashtag]);
     }
 

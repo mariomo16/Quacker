@@ -29,7 +29,7 @@ class StoreUserRequest extends FormRequest
         ];
     }
 
-    public function messsages(): array
+    public function messages(): array
     {
         return [
             'required' => 'Este campo es obligatorio',
@@ -39,6 +39,7 @@ class StoreUserRequest extends FormRequest
             'display_name.max' => 'Máximo 50 caracteres',
             'email.email' => 'Introduce un correo electrónico válido',
             'email.unique' => 'Este correo electrónico ya esta en uso',
+            'password.min' => 'Mínimo 6 caracteres'
         ];
     }
 }
