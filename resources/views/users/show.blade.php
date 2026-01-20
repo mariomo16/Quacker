@@ -24,9 +24,7 @@
 
                 <div class="user-toolbar">
                     <div>
-                        <form method="POST" action="">
-                            @csrf
-                            @method('POST')
+                        <form method="" action="">
                             <button type="submit" class="user-follow">
                                 <x-icon.user-plus />
                                 {{ '0' }}
