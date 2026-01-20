@@ -18,7 +18,7 @@ import "./bootstrap";
 			const eyeSVG = document.getElementsByClassName("eye-svg")[0];
 			passwordInput.type =
 				passwordInput.type === "password" ? "text" : "password";
-			eyeSVG.style.fill =
+			eyeSVG.style.color =
 				passwordInput.type === "password"
 					? "var(--text-muted)"
 					: "var(--accent)";
