@@ -18,9 +18,7 @@
                     </div>
                     <div class="user-toolbar">
                         <div>
-                            <form method="POST" action="">
-                                @csrf
-                                @method('POST')
+                            <form method="" action="">
                                 <button type="submit" class="user-follow">
                                     <x-icon.user-plus />
                                     {{ '0' }}
@@ -30,9 +28,7 @@
                         <div class="user-actions">
                             <a href="{{ route('users.show', $user) }}">Mostrar más</a>
                             <a href="{{ route('users.edit', $user) }}">Editar</a>
-                            <form method="POST" action="{{ route('users.destroy', $user) }}">
-                                @csrf
-                                @method('DELETE')
+                            <form method="" action="{{ route('users.destroy', $user) }}">
                                 <button type="submit">Eliminar</button>
                             </form>
                         </div>

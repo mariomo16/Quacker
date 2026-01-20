@@ -17,17 +17,13 @@
 
                     <div class="quack-toolbar">
                         <div class="quack-social">
-                            <form method="POST" action="">
-                                @csrf
-                                @method('POST')
+                            <form method="" action="">
                                 <button type="submit" class="quack-quav">
                                     <x-icon.quav />
                                     {{ '0' }}
                                 </button>
                             </form>
-                            <form method="POST" action="">
-                                @csrf
-                                @method('POST')
+                            <form method="" action="">
                                 <button type="submit" class="quack-requack">
                                     <x-icon.requack />
                                     {{ '0' }}
