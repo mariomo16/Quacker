@@ -9,13 +9,14 @@
                     <input type="text" class="quashtag-input" id="name" name="name" value="{{ old('name') }}"
                         placeholder=" " required>
                     <label for="name">
-                        <span class="text-muted">Quashtag</span>
+                        <span class="text-muted select-none">Quashtag</span>
                     </label>
                     @error('name')
                         <p class="error-message">{{ $message }}</p>
                     @enderror
                 </div>
-                <div class="form-actions">
+
+                <div class="form-actions select-none">
                     <a href="{{ route('quashtags.index') }}">Cancelar</a>
                     <button type="submit">Crear quashtag</button>
                 </div>

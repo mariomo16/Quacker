@@ -3,9 +3,10 @@
     @section('main')
         @foreach ($quacks as $quack)
             <article class="index">
-                <div class="quack-user-avatar">
+                <div class="quack-user-avatar select-none">
                     {{ Str::of(strtoupper($quack->user->display_name))->substr(0, 1) }}
                 </div>
+
                 <div class="quack-content">
                     <p>
                         <strong>{{ $quack->user->display_name }}</strong>
@@ -13,9 +14,10 @@
                             <time>{{ $quack->created_at->diffForHumans(null, true, true, 1) }}</time>
                         </span>
                     </p>
+
                     <p>{{ $quack->content }}</p>
 
-                    <div class="quack-toolbar">
+                    <div class="quack-toolbar select-none">
                         <div class="quack-social">
                             <form method="" action="">
                                 <button type="submit" class="quack-quav">
@@ -30,6 +32,7 @@
                                 </button>
                             </form>
                         </div>
+
                         <div class="quack-actions">
                             <a href="{{ route('quacks.show', $quack) }}">Mostrar más</a>
                             @can('manage', $quack)

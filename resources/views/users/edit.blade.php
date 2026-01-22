@@ -2,7 +2,7 @@
 
     @section('main')
         <div class="resource-section">
-            <form method="POST" action="{{ route('users.update', $user) }}" class="resource-form unselectable">
+            <form method="POST" action="{{ route('users.update', $user) }}" class="resource-form select-none">
                 @csrf
                 @method('PATCH')
                 <div class="input-group">

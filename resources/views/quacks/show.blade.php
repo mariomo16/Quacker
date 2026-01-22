@@ -2,9 +2,10 @@
 
     @section('main')
         <article class="quack-show">
-            <div class="quack-user-avatar">
+            <div class="quack-user-avatar select-none">
                 {{ Str::of(strtoupper($quack->user->display_name))->substr(0, 1) }}
             </div>
+
             <div class="quack-content">
                 <div>
                     <p>
@@ -16,7 +17,7 @@
 
                 <time class="text-muted">{{ $quack->created_at->isoFormat('h:mm a D MMM YYYY') }}</time>
 
-                <div class="quack-toolbar">
+                <div class="quack-toolbar select-none">
                     <div class="quack-social">
                         <form method="" action="">
                             <button type="submit" class="quack-quav">
@@ -31,6 +32,7 @@
                             </button>
                         </form>
                     </div>
+
                     <div class="quack-actions">
                         <a href="{{ route('quacks.index') }}">Volver</a>
                         @can('manage', $quack)

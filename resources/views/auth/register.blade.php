@@ -2,7 +2,7 @@
 
     @section('main')
         <section class="auth-section">
-            <form method="POST" action="{{ route('register') }}" class="auth-form unselectable">
+            <form method="POST" action="{{ route('register') }}" class="auth-form select-none">
                 @csrf
                 <div class="input-group">
                     <input type="text" id="display_name" name="display_name" value="{{ old('display_name') }}"

@@ -6,14 +6,15 @@
                 @csrf
                 <div class="input-group">
                     <textarea name="content" maxlength="280" placeholder=" " required>{{ old('content') }}</textarea>
-                    <label class="textarea-label">
+                    <label class="textarea-label select-none">
                         <span class="text-muted">Quack, quack, ¿qué pasa?</span>
                     </label>
                     @error('content')
                         <p class="error-message">{{ $message }}</p>
                     @enderror
                 </div>
-                <div class="form-actions">
+
+                <div class="form-actions select-none">
                     <a href="{{ route('quacks.index') }}">Cancelar</a>
                     <button type="submit">Crear quack</button>
                 </div>

@@ -1,6 +1,3 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
 <svg version="1.1" id="svg1" width="165.8996" height="185.85983" viewBox="0 0 165.8996 185.85983"
     sodipodi:docname="quacker_logo.svg" inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
     xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"

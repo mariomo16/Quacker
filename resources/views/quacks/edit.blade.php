@@ -7,14 +7,15 @@
                 @method('PATCH')
                 <div class="input-group">
                     <textarea name="content" placeholder=" " maxlength="280" required>{{ $quack->content }}</textarea>
-                    <label class="textarea-label">
+                    <label class="textarea-label select-none">
                         <span class="text-muted">Quack, quack, ¿qué pasa?</span>
                     </label>
                     @error('content')
                         <p class="error-message">{{ $message }}</p>
                     @enderror
                 </div>
-                <div class="form-actions">
+
+                <div class="form-actions select-none">
                     <a href="{{ route('quacks.index') }}">Cancelar</a>
                     <button type="submit">Guardar</button>
                 </div>

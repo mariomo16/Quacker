@@ -17,7 +17,7 @@
         <header>
             {{-- https://laravel.com/docs/12.x/strings#method-fluent-str-substr --}}
             <div class="auth-user-profile">
-                <div class="auth-user-avatar unselectable">
+                <div class="auth-user-avatar">
                     {{ Str::of(strtoupper(auth()->user()->display_name))->substr(0, 1) }}
                 </div>
 
@@ -28,7 +28,6 @@
 
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    @method('POST')
                     <button type="submit" class="auth-user-logout-btn">Cerrar sesión<x-icon.logout /></button>
                 </form>
             </div>

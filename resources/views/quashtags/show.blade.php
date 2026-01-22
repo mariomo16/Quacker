@@ -13,7 +13,8 @@
                     </span>
                 </p>
             </div>
-            <div class="quashtag-actions">
+
+            <div class="quashtag-actions select-none">
                 <a href="{{ route('quashtags.index') }}">Volver</a>
                 <a href="{{ route('quashtags.edit', $quashtag) }}">Editar</a>
                 <form method="POST" action="{{ route('quashtags.destroy', $quashtag) }}">

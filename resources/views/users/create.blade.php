@@ -2,7 +2,7 @@
 
     @section('main')
         <section class="resource-section">
-            <form method="POST" action="{{ route('users.store') }}" class="resource-form unselectable">
+            <form method="POST" action="{{ route('users.store') }}" class="resource-form select-none">
                 @csrf
                 <div class="input-group">
                     <input type="text" id="display_name" name="display_name" value="{{ old('display_name') }}"
@@ -50,6 +50,7 @@
                         <x-icon.eye />
                     </div>
                 </div>
+
                 <div class="form-actions">
                     <a href="{{ route('users.index') }}">Cancelar</a>
                     <button type="submit">Crear usuario</button>

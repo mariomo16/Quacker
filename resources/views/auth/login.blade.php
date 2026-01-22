@@ -2,7 +2,7 @@
 
     @section('main')
         <section class="auth-section">
-            <form method="POST" action="{{ route('login') }}" class="auth-form unselectable">
+            <form method="POST" action="{{ route('login') }}" class="auth-form select-none">
                 @csrf
                 <div class="input-group">
                     <input type="email" id="email" name="email" autocomplete="email" placeholder=" " required>
@@ -13,6 +13,7 @@
                         <p class="error-message">{{ $message }}</p>
                     @enderror
                 </div>
+
                 <div class="input-group">
                     <input type="password" id="password" name="password" placeholder=" " required>
                     <label for="password">
@@ -26,6 +27,7 @@
                         <x-icon.eye />
                     </div>
                 </div>
+
                 <button type="submit">Iniciar sesión</button>
                 <p class="auth-redirect">¿No tienes cuenta? <a href="{{ route('register') }}">Regístrate</a>
                 </p>
@@ -36,9 +38,9 @@
 
                 <div class="auth-credentials">
                     <p><span class="text-muted">Correo electrónico: </span><b><span
-                                class="selectable">admin@quacker.es</span></b>
+                                class="select-text">admin@quacker.es</span></b>
                     </p>
-                    <p><span class="text-muted">Contraseña: </span><b><span class="selectable">Admin123</span></b></p>
+                    <p><span class="text-muted">Contraseña: </span><b><span class="select-text">Admin123</span></b></p>
                 </div>
             </form>
         </section>

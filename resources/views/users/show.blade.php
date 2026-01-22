@@ -2,13 +2,27 @@
 
     @section('main')
         <article class="user-show">
-            <div class="user-user-avatar">
+            <div class="user-user-avatar select-none">
                 {{ Str::of(strtoupper($user->display_name))->substr(0, 1) }}
             </div>
 
             <div class="user-card">
                 <div class="user-info">
                     <p>
+                        <div class="user-popularity select-none">
+                                <div class="user-quack">
+                                    <x-icon.quack />
+                                    {{ '0' }}
+                                </div>
+                                <div class="user-quav">
+                                    <x-icon.quav />
+                                    {{ '0' }}
+                                </div>
+                                <div class="user-requack">
+                                    <x-icon.requack />
+                                    {{ '0' }}
+                                </div>
+                            </div>
                         <strong>{{ $user->display_name }}</strong>
                         <span class="text-muted">{{ '@' }}{{ $user->username }}</span>
                     </p>
@@ -22,15 +36,15 @@
                     </p>
                 </div>
 
-                <div class="user-toolbar">
-                    <div>
-                        <form method="" action="">
-                            <button type="submit" class="user-follow">
-                                <x-icon.user-plus />
-                                {{ '0' }}
-                            </button>
-                        </form>
+                <div class="user-toolbar select-none">
+                    <div class="user-social">
+                        <span class="text-muted">Seguidos: {{ '0' }}</span>
+                        <button type="submit" class="user-follow">
+                            <x-icon.follow />
+                            {{ '0' }}
+                        </button>
                     </div>
+                    
                     <div class="user-actions">
                         <a href="{{ route('users.index') }}">Volver</a>
                         <a href="{{ route('users.edit', $user) }}">Editar</a>
@@ -42,7 +56,6 @@
                     </div>
                 </div>
             </div>
-
         </article>
     @endsection
 

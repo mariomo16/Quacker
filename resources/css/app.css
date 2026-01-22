@@ -28,21 +28,14 @@
 }
 
 .text-muted {
-	color: var(--text-muted);
+    	color: var(--text-muted);
 }
 
 .error-message {
 	color: var(--danger);
 	position: absolute;
-	top: -25px;
-}
-
-.unselectable {
-	user-select: none;
-}
-
-.selectable {
-	user-select: text;
+	top: -22px;
+    font-size: 0.8rem;
 }
 
 body {
@@ -73,7 +66,7 @@ article.index {
 	gap: 1rem;
 
 	margin: 0;
-	border: 1px solid var(--border-strong);
+	border: 1px solid var(--border-soft);
 	border-top: none;
 	transition: all 0.2s ease;
 
@@ -244,7 +237,6 @@ header {
 
 .quack-social {
 	display: flex;
-	gap: 1rem;
 	place-items: center;
 }
 
@@ -394,7 +386,6 @@ header {
 
 .user-card {
 	display: grid;
-	gap: 1rem;
 	width: 100%;
 }
 
@@ -413,12 +404,34 @@ header {
 	transition: all 0.2s ease;
 }
 
+.user-popularity {
+	display: flex;
+	place-items: center;
+    float: inline-end;
+}
+
+.user-quack,
+.user-quav,
+.user-requack {
+	display: flex;
+	align-items: center;
+	gap: 0.4rem;
+	padding: 4px 8px;
+	color: var(--text-muted);
+}
+
 .user-toolbar {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	margin-top: 0.8rem;
 	gap: 2rem;
+}
+
+.user-social {
+	display: flex;
+	place-items: center;
+    gap: 0.5rem;
 }
 
 .user-follow {
