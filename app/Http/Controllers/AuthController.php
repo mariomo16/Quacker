@@ -44,7 +44,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return to_route('quacks.index');
+            return to_route('feed');
         }
 
         return back()->withErrors([

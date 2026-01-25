@@ -46,7 +46,9 @@
                             @else
                                 <a href="{{ route('users.edit', $user) }}">Editar</a>
                             @endif
-                            <form method="" action="{{ route('users.destroy', $user) }}">
+                            <form method="POST" action="{{ route('users.destroy', $user) }}">
+                                @csrf
+                                @method('DELETE')
                                 <button type="submit">Eliminar</button>
                             </form>
                         </div>
