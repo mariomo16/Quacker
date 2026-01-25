@@ -53,7 +53,7 @@
                 </div>
 
                 <div class="form-actions">
-                    <a href="{{ route('users.index') }}">Cancelar</a>
+                    <a href="{{ url()->previous(route('users.index')) }}">Cancelar</a>
                     <button type="submit">Guardar</button>
                 </div>
             </form>

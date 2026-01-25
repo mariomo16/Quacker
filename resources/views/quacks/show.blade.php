@@ -36,7 +36,7 @@
                     </div>
 
                     <div class="quack-actions">
-                        <a href="{{ route('quacks.index') }}">Volver</a>
+                        <a href="{{ url()->previous(route('quacks.index')) }}">Volver</a>
                         @can('manage', $quack)
                             <a href="{{ route('quacks.edit', $quack) }}">Editar</a>
                             <form method="POST" action="{{ route('quacks.destroy', $quack) }}">

@@ -46,7 +46,7 @@
                     </div>
 
                     <div class="user-actions">
-                        <a href="{{ route('users.index') }}">Volver</a>
+                        <a href="{{ url()->previous(route('users.index')) }}">Volver</a>
                         @if ($user->id === auth()->user()->id)
                             <a href="{{ route('editAuth') }}">Editar</a>
                         @else
