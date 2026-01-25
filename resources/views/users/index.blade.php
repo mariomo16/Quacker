@@ -16,12 +16,12 @@
                                 {{ count($user->quacks) }}
                             </div>
                             <div class="user-quav">
-                                <x-icon.quav />
-                                {{ '0' }}
+                                <x-icon.quav :isQuaved="false" />
+                                {{ '?' }}
                             </div>
                             <div class="user-requack">
-                                <x-icon.requack />
-                                {{ '0' }}
+                                <x-icon.requack :isRequacked="false" />
+                                {{ '?' }}
                             </div>
                         </div>
                         <strong>{{ $user->display_name }}</strong>
@@ -32,10 +32,10 @@
 
                     <div class="user-toolbar select-none">
                         <div class="user-social">
-                            <span class="text-muted">Seguidos: {{ '0' }}</span>
+                            <span class="text-muted">Seguidos: {{ count($user->follows) }}</span>
                             <button type="submit" class="user-follow">
-                                <x-icon.follow />
-                                {{ '0' }}
+                                <x-icon.follow :isFollowed="$user->isFollowedByAuth()" />
+                                {{ count($user->follows) }}
                             </button>
                         </div>
 

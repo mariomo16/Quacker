@@ -9,9 +9,12 @@
 
                 <div class="quack-content">
                     <p>
-                        <strong>{{ $quack->user->display_name }}</strong>
-                        <span class="text-muted">{{ '@' }}{{ $quack->user->username }} ·
-                            <time>{{ $quack->created_at->diffForHumans(null, true, true, 1) }}</time>
+                        <a href="{{ route('user.quacks', $quack->user_id) }}">
+                            <strong class="hover:underline">{{ $quack->user->display_name }}</strong>
+                            <span class="text-muted">{{ '@' }}{{ $quack->user->username }}</span>
+                        </a>
+                        <span class="text-muted">
+                            · <time>{{ $quack->created_at->diffForHumans(null, true, true, 1) }}</time>
                         </span>
                     </p>
 
@@ -21,13 +24,13 @@
                         <div class="quack-social">
                             <form method="" action="">
                                 <button type="submit" class="quack-quav">
-                                    <x-icon.quav />
+                                    <x-icon.quav :isQuaved="$quack->hasQuaved(Auth::user()->id)" />
                                     {{ count($quack->quavs) }}
                                 </button>
                             </form>
                             <form method="" action="">
                                 <button type="submit" class="quack-requack">
-                                    <x-icon.requack />
+                                    <x-icon.requack :isRequacked="$quack->hasRequacked(Auth::user()->id)" />
                                     {{ count($quack->requacks) }}
                                 </button>
                             </form>
