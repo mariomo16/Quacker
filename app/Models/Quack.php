@@ -12,18 +12,6 @@ class Quack extends Model
 
     protected $fillable = ['content', 'user_id'];
 
-    //https://stackoverflow.com/questions/38686188/check-if-user-liked-post-laravel
-    public function hasQuaved(int $user_id)
-    {
-        return $this->quavs()->where('user_id', $user_id)->exists();
-    }
-
-    //https://stackoverflow.com/questions/38686188/check-if-user-liked-post-laravel
-    public function hasRequacked(int $user_id)
-    {
-        return $this->requacks()->where('user_id', $user_id)->exists();
-    }
-
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -42,5 +30,17 @@ class Quack extends Model
     public function requacks()
     {
         return $this->belongsToMany(User::class, 'requacks');
+    }
+
+    //https://stackoverflow.com/questions/38686188/check-if-user-liked-post-laravel
+    public function hasQuaved(int $user_id)
+    {
+        return $this->quavs()->where('user_id', $user_id)->exists();
+    }
+
+    //https://stackoverflow.com/questions/38686188/check-if-user-liked-post-laravel
+    public function hasRequacked(int $user_id)
+    {
+        return $this->requacks()->where('user_id', $user_id)->exists();
     }
 }
