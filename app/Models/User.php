@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -45,6 +46,12 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    //https://stackoverflow.com/questions/38686188/check-if-user-liked-post-laravel
+    public function isFollowedByAuth()
+    {
+        return auth()->user()->follows()->where('followed_id', $this->id)->exists();
     }
 
     public function quacks()

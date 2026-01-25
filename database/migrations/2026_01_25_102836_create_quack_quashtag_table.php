@@ -6,16 +6,15 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
     public function up(): void
     {
         Schema::create('quack_quashtag', function (Blueprint $table) {
-           $table->foreignIdFor(Quack::class)->constrained();
-           $table->foreignIdFor(Quashtag::class)->constrained();
+            $table->foreignIdFor(Quack::class);
+            $table->foreignIdFor(Quashtag::class);
         });
     }
 

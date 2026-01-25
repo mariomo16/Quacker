@@ -34,13 +34,14 @@
 
             {{-- https://laravel.com/docs/12.x/requests#inspecting-the-request-path --}}
             <nav class="main-nav">
-                <a href="{{ $route }}"><x-icon.plus />Crear recurso</a>
+                <a href="/" class="{{ request()->routeIs('feed') ? 'active-route' : '' }}"><x-icon.slash />Feed</a>
                 <a href="{{ route('quacks.index') }}"
                     class="{{ request()->routeIs('quacks.*') ? 'active-route' : '' }}"><x-icon.quack />Quacks</a>
                 <a href="{{ route('quashtags.index') }}"
                     class="{{ request()->routeIs('quashtags.*') ? 'active-route' : '' }}"><x-icon.quashtag />Quashtags</a>
                 <a href="{{ route('users.index') }}"
                     class="{{ request()->routeIs('users.*') ? 'active-route' : '' }}"><x-icon.user />Usuarios</a>
+                <a href="{{ $route }}"><x-icon.plus />Crear recurso</a>
             </nav>
 
             <div class="app-logo">

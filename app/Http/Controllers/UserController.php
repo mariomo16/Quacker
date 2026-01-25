@@ -48,13 +48,6 @@ class UserController extends Controller
         ]);
     }
 
-    public function editAuth()
-    {
-        return view('users.edit', [
-            'user' => auth()->user()
-        ]);
-    }
-
     /**
      * Show the form for editing the specified resource.
      */
@@ -84,5 +77,12 @@ class UserController extends Controller
     {
         User::destroy($id);
         return to_route('users.index');
+    }
+
+    public function editAuth()
+    {
+        return view('users.edit', [
+            'user' => auth()->user()
+        ]);
     }
 }
