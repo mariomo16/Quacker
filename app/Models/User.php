@@ -62,6 +62,7 @@ class User extends Authenticatable
         return $this->belongsToMany(Quack::class, 'requacks');
     }
 
+    //https://copyprogramming.com/howto/php-laravel-code-for-follow-users-code-example
     public function following()
     {
         return $this->belongsToMany(User::class, 'follows', 'follower_id', 'following_id');
