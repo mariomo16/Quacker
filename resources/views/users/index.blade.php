@@ -35,7 +35,7 @@
                             <span class="text-muted">Seguidos: {{ count($user->follows) }}</span>
                             <button type="submit" class="user-follow">
                                 <x-icon.follow :isFollowed="$user->isFollowedByAuth()" />
-                                {{ count($user->follows) }}
+                                {{ '?' }}
                             </button>
                         </div>
 
