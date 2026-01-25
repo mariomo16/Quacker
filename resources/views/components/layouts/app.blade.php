@@ -34,7 +34,7 @@
 
             {{-- https://laravel.com/docs/12.x/requests#inspecting-the-request-path --}}
             <nav class="main-nav">
-                <a href="/" class="{{ request()->routeIs('feed') ? 'active-route' : '' }}"><x-icon.slash />Feed</a>
+                <a href="{{ route('feed') }}" class="{{ request()->routeIs('feed') ? 'active-route' : '' }}"><x-icon.slash />Feed</a>
                 <a href="{{ route('quacks.index') }}"
                     class="{{ request()->routeIs('quacks.*') ? 'active-route' : '' }}"><x-icon.quack />Quacks</a>
                 <a href="{{ route('quashtags.index') }}"

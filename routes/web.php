@@ -9,9 +9,7 @@ use App\Http\Controllers\QuashtagController;
 
 // Rutas para invitados (no autenticados)
 Route::middleware('guest')->group(function () {
-    Route::get('/', function () {
-        return redirect('/login');
-    });
+    Route::redirect('/', 'login');
 
     Route::get('/register', [AuthController::class, 'create'])->name('register');
     Route::post('/register', [AuthController::class, 'store']);
@@ -23,9 +21,7 @@ Route::middleware('guest')->group(function () {
 
 // Rutas protegidas (requieren autenticación)
 Route::middleware('auth')->group(function () {
-    Route::get('/', function () {
-        return redirect('/feed');
-    });
+    Route::redirect('/', 'feed');
 
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
