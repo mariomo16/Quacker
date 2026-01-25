@@ -2,7 +2,7 @@
 
     @section('main')
         @foreach ($quacks as $quack)
-            @if ($quack->user->id === Auth::user()->id || $quack->hasRequacked(Auth::user()->id))
+            @if ($quack->user->id === auth()->user()->id || $quack->hasRequacked(auth()->user()->id))
                 <article class="index">
                     <div class="quack-user-avatar select-none">
                         {{ Str::of(strtoupper($quack->user->display_name))->substr(0, 1) }}
@@ -25,13 +25,13 @@
                             <div class="quack-social">
                                 <form method="" action="">
                                     <button type="submit" class="quack-quav">
-                                        <x-icon.quav :isQuaved="$quack->hasQuaved(Auth::user()->id)" />
+                                        <x-icon.quav :isQuaved="$quack->hasQuaved(auth()->user()->id)" />
                                         {{ count($quack->quavs) }}
                                     </button>
                                 </form>
                                 <form method="" action="">
                                     <button type="submit" class="quack-requack">
-                                        <x-icon.requack :isRequacked="$quack->hasRequacked(Auth::user()->id)" />
+                                        <x-icon.requack :isRequacked="$quack->hasRequacked(auth()->user()->id)" />
                                         {{ count($quack->requacks) }}
                                     </button>
                                 </form>

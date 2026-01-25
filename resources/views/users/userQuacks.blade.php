@@ -31,7 +31,7 @@
                                 </form>
                                 <form method="" action="">
                                     <button type="submit" class="quack-requack">
-                                        <x-icon.requack :isRequacked="$quack->hasRequacked(Auth::user()->id)" />
+                                        <x-icon.requack :isRequacked="$quack->hasRequacked(auth()->user()->id)" />
                                         {{ count($quack->requacks) }}
                                     </button>
                                 </form>
