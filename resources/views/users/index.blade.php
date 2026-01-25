@@ -10,22 +10,22 @@
                 <div class="user-card">
                     <div class="user-info">
                         <p>
-                            <div class="user-popularity select-none">
-                                <div class="user-quack">
-                                    <x-icon.quack />
-                                    {{ '0' }}
-                                </div>
-                                <div class="user-quav">
-                                    <x-icon.quav />
-                                    {{ '0' }}
-                                </div>
-                                <div class="user-requack">
-                                    <x-icon.requack />
-                                    {{ '0' }}
-                                </div>
+                        <div class="user-popularity select-none">
+                            <div class="user-quack">
+                                <x-icon.quack />
+                                {{ '0' }}
                             </div>
-                            <strong>{{ $user->display_name }}</strong>
-                            <span class="text-muted">{{ '@' }}{{ $user->username }}</span>
+                            <div class="user-quav">
+                                <x-icon.quav />
+                                {{ '0' }}
+                            </div>
+                            <div class="user-requack">
+                                <x-icon.requack />
+                                {{ '0' }}
+                            </div>
+                        </div>
+                        <strong>{{ $user->display_name }}</strong>
+                        <span class="text-muted">{{ '@' }}{{ $user->username }}</span>
                         </p>
                         <span class="text-muted">{{ $user->email }}</span>
                     </div>
@@ -38,10 +38,14 @@
                                 {{ '0' }}
                             </button>
                         </div>
-                        
+
                         <div class="user-actions">
                             <a href="{{ route('users.show', $user) }}">Mostrar más</a>
-                            <a href="{{ route('users.edit', $user) }}">Editar</a>
+                            @if ($user->id === Auth::user()->id)
+                                <a href="{{ route('editAuth') }}">Editar</a>
+                            @else
+                                <a href="{{ route('users.edit', $user) }}">Editar</a>
+                            @endif
                             <form method="" action="{{ route('users.destroy', $user) }}">
                                 <button type="submit">Eliminar</button>
                             </form>
