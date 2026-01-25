@@ -12,8 +12,10 @@ class Quashtag extends Model
 
     protected $fillable = ['name'];
 
-    public function quack()
+    public function quacks()
     {
-        return $this->hasMany(Quack::class);
+        return $this->belongsToMany(Quack::class, 'quack_quashtag');
     }
 }
+
+
