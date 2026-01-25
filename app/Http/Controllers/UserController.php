@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
+use Illuminate\Container\Attributes\Auth;
 
 class UserController extends Controller
 {
@@ -48,6 +49,21 @@ class UserController extends Controller
         ]);
     }
 
+     /*public function authEdit()
+    {
+        return view('users.authEdit', [
+            'user' => auth()->id()
+        ]);
+    }*/
+
+
+        public function editt()
+    {
+        return view('users.edit', [
+            'user' => auth()->id()
+        ]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      */
@@ -78,4 +94,6 @@ class UserController extends Controller
         User::destroy($id);
         return to_route('users.index');
     }
+
+
 }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Validation\Rules\Exists;
 
 class Quack extends Model
 {
@@ -11,6 +12,17 @@ class Quack extends Model
     use HasFactory;
 
     protected $fillable = ['content', 'user_id'];
+
+
+    //https://stackoverflow.com/questions/38686188/check-if-user-liked-post-laravel
+    /*public function hasRequacked() {
+        return $this->requacks()->where('user_id', auth()->id())->exists();
+    }
+    */
+
+    public function hasRequacked(int $user_id) {
+        return $this->requacks()->where('user_id', $user_id)->exists();
+    }
 
     public function user()
     {

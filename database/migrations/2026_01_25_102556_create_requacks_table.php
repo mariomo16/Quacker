@@ -14,9 +14,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('requacks', function (Blueprint $table) {
-            $table->foreignIdFor(User::class)->constrained();
-           $table->foreignIdFor(Quack::class)->constrained();
-           $table->primary(['user_id', 'quack_id']);
+        $table->foreignIdFor(User::class)->constrained();
+        $table->foreignIdFor(Quack::class)->constrained();
+        $table->primary(['user_id', 'quack_id']);
+        $table->timestamps();
         });
     }
 
