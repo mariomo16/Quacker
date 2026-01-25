@@ -13,15 +13,15 @@ class Quack extends Model
 
     protected $fillable = ['content', 'user_id'];
 
-
     //https://stackoverflow.com/questions/38686188/check-if-user-liked-post-laravel
-    /*public function hasRequacked() {
-        return $this->requacks()->where('user_id', auth()->id())->exists();
-    }
-    */
-
-    public function hasRequacked(int $user_id) {
+    public function hasRequacked(int $user_id)
+    {
         return $this->requacks()->where('user_id', $user_id)->exists();
+    }
+
+    public function authHasRequacked()
+    {
+        return $this->requacks()->where('user_id', auth()->id())->exists();
     }
 
     public function user()
@@ -34,13 +34,13 @@ class Quack extends Model
         return $this->belongsToMany(Quashtag::class, 'quack_quashtag');
     }
 
-        public function quavs() {
+    public function quavs()
+    {
         return $this->belongsToMany(User::class, 'quavs');
     }
 
-    public function requacks() {
+    public function requacks()
+    {
         return $this->belongsToMany(User::class, 'requacks');
     }
-
-
 }
