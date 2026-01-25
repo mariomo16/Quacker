@@ -14,7 +14,7 @@ class UserController extends Controller
     public function index()
     {
         return view('users.index', [
-            'users' => User::latest()->get()
+            'users' => User::withCount(['quacks', 'following', 'followers'])->latest()->get()
         ]);
     }
 
@@ -44,7 +44,7 @@ class UserController extends Controller
     public function show(User $user)
     {
         return view('users.show', [
-            'user' => $user
+            'user' => User::withCount(['quacks', 'following', 'followers'])->find($user->id)
         ]);
     }
 

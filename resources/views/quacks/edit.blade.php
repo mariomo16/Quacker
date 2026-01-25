@@ -16,7 +16,7 @@
                 </div>
 
                 <div class="form-actions select-none">
-                    <a href="{{ url()->previous(route('quacks.index')) }}">Cancelar</a>
+                    <a href="{{ route('quacks.index') }}">Cancelar</a>
                     <button type="submit">Guardar</button>
                 </div>
             </form>

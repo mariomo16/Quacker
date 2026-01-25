@@ -47,12 +47,6 @@ class User extends Authenticatable
         ];
     }
 
-    //https://stackoverflow.com/questions/38686188/check-if-user-liked-post-laravel
-    public function isFollowedByAuth()
-    {
-        return auth()->user()->follows()->where('following_id', $this->id)->exists();
-    }
-
     public function quacks()
     {
         return $this->hasMany(Quack::class);
@@ -68,8 +62,19 @@ class User extends Authenticatable
         return $this->belongsToMany(Quack::class, 'requacks');
     }
 
-    public function follows()
+    public function following()
     {
         return $this->belongsToMany(User::class, 'follows', 'follower_id', 'following_id');
+    }
+
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'follows', 'following_id', 'follower_id');
+    }
+
+    //https://stackoverflow.com/questions/38686188/check-if-user-liked-post-laravel
+    public function isFollowedByAuth()
+    {
+        return auth()->user()->following()->where('following_id', $this->id)->exists();
     }
 }

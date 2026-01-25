@@ -24,19 +24,19 @@
                         <form method="" action="">
                             <button type="submit" class="quack-quav">
                                 <x-icon.quav :isQuaved="$quack->hasQuaved(auth()->user()->id)" />
-                                {{ count($quack->quavs) }}
+                                {{ $quack->quavs_count }}
                             </button>
                         </form>
                         <form method="" action="">
                             <button type="submit" class="quack-requack">
                                 <x-icon.requack :isRequacked="$quack->hasRequacked(auth()->user()->id)" />
-                                {{ count($quack->requacks) }}
+                                {{ $quack->requacks_count }}
                             </button>
                         </form>
                     </div>
 
                     <div class="quack-actions">
-                        <a href="{{ url()->previous(route('quacks.index')) }}">Volver</a>
+                        <a href="{{ route('quacks.index') }}">Volver</a>
                         @can('manage', $quack)
                             <a href="{{ route('quacks.edit', $quack) }}">Editar</a>
                             <form method="POST" action="{{ route('quacks.destroy', $quack) }}">

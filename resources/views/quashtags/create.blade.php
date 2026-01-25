@@ -17,7 +17,7 @@
                 </div>
 
                 <div class="form-actions select-none">
-                    <a href="{{ url()->previous(route('quashtags.index')) }}">Cancelar</a>
+                    <a href="{{ route('quashtags.index') }}">Cancelar</a>
                     <button type="submit">Crear quashtag</button>
                 </div>
             </form>

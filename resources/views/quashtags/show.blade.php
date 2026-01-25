@@ -15,7 +15,7 @@
             </div>
 
             <div class="quashtag-actions select-none">
-                <a href="{{ url()->previous(route('quashtags.index')) }}">Volver</a>
+                <a href="{{ route('quashtags.index') }}">Volver</a>
                 <a href="{{ route('quashtags.edit', $quashtag) }}">Editar</a>
                 <form method="POST" action="{{ route('quashtags.destroy', $quashtag) }}">
                     @csrf

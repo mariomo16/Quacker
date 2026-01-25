@@ -25,14 +25,14 @@
                             <div class="quack-social">
                                 <form method="" action="">
                                     <button type="submit" class="quack-quav">
-                                        <x-icon.quav :isQuaved="false" />
-                                        {{ count($quack->quavs) }}
+                                        <x-icon.quav :isQuaved="$quack->hasQuaved(auth()->user()->id)" />
+                                        {{ $quack->quavs_count }}
                                     </button>
                                 </form>
                                 <form method="" action="">
                                     <button type="submit" class="quack-requack">
                                         <x-icon.requack :isRequacked="$quack->hasRequacked(auth()->user()->id)" />
-                                        {{ count($quack->requacks) }}
+                                        {{ $quack->requacks_count }}
                                     </button>
                                 </form>
                             </div>

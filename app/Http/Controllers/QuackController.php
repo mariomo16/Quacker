@@ -13,7 +13,7 @@ class QuackController extends Controller
     public function index()
     {
         return view('quacks.index', [
-            'quacks' => Quack::with('user')->latest()->get()
+            'quacks' => Quack::with(['user'])->withCount(['quavs', 'requacks'])->latest()->get()
         ]);
     }
 
@@ -40,7 +40,7 @@ class QuackController extends Controller
     public function show(Quack $quack)
     {
         return view('quacks.show', [
-            'quack' => $quack
+            'quack' => Quack::with(['user'])->withCount(['quavs', 'requacks'])->find($quack->id)
         ]);
     }
 
@@ -81,7 +81,7 @@ class QuackController extends Controller
     public function feed()
     {
         return view('quacks.feed', [
-            'quacks' => Quack::with(['user', 'requacks'])->latest()->get()
+            'quacks' => Quack::with(['user'])->withCount(['quavs', 'requacks'])->latest()->get()
         ]);
     }
 
@@ -89,7 +89,7 @@ class QuackController extends Controller
     {
         return view('users.userQuacks', [
             'user_id' => $id,
-            'quacks' => Quack::with(['user', 'requacks'])->latest()->get()
+            'quacks' => Quack::with(['user'])->withCount(['quavs', 'requacks'])->latest()->get()
         ]);
     }
 }

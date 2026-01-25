@@ -12,15 +12,15 @@
                     <div class="user-popularity select-none">
                         <div class="user-quack">
                             <x-icon.quack />
-                            {{ count($user->quacks) }}
+                            {{ $user->quacks_count }}
                         </div>
                         <div class="user-quav">
                             <x-icon.quav :isQuaved="false" />
-                            {{ '0' }}
+                            {{ '?' }}
                         </div>
                         <div class="user-requack">
                             <x-icon.requack :isRequacked="false" />
-                            {{ '0' }}
+                            {{ '?' }}
                         </div>
                     </div>
                     <strong>{{ $user->display_name }}</strong>
@@ -38,15 +38,15 @@
 
                 <div class="user-toolbar select-none">
                     <div class="user-social">
-                        <span class="text-muted">Seguidos: {{ count($user->follows) }}</span>
+                        <span class="text-muted">Seguidos: {{ $user->following_count }}</span>
                         <button type="submit" class="user-follow">
                             <x-icon.follow :isFollowed="$user->isFollowedByAuth()" />
-                            {{ '?' }}
+                            {{ $user->followers_count }}
                         </button>
                     </div>
 
                     <div class="user-actions">
-                        <a href="{{ url()->previous(route('users.index')) }}">Volver</a>
+                        <a href="{{ route('users.index') }}">Volver</a>
                         @if ($user->id === auth()->user()->id)
                             <a href="{{ route('editAuth') }}">Editar</a>
                         @else

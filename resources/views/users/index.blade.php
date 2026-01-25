@@ -13,7 +13,7 @@
                         <div class="user-popularity select-none">
                             <div class="user-quack">
                                 <x-icon.quack />
-                                {{ count($user->quacks) }}
+                                {{ $user->quacks_count }}
                             </div>
                             <div class="user-quav">
                                 <x-icon.quav :isQuaved="false" />
@@ -32,10 +32,10 @@
 
                     <div class="user-toolbar select-none">
                         <div class="user-social">
-                            <span class="text-muted">Seguidos: {{ count($user->follows) }}</span>
+                            <span class="text-muted">Seguidos: {{ $user->following_count }}</span>
                             <button type="submit" class="user-follow">
                                 <x-icon.follow :isFollowed="$user->isFollowedByAuth()" />
-                                {{ '?' }}
+                                {{ $user->followers_count }}
                             </button>
                         </div>
 
