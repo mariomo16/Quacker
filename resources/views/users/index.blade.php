@@ -13,7 +13,7 @@
                         <div class="user-popularity select-none">
                             <div class="user-quack">
                                 <x-icon.quack />
-                                {{ '0' }}
+                                {{ count($user->quacks) }}
                             </div>
                             <div class="user-quav">
                                 <x-icon.quav />

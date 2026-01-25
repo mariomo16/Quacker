@@ -12,7 +12,7 @@
                     <div class="user-popularity select-none">
                         <div class="user-quack">
                             <x-icon.quack />
-                            {{ '0' }}
+                            {{ count($user->quacks) }}
                         </div>
                         <div class="user-quav">
                             <x-icon.quav />
@@ -48,10 +48,10 @@
                     <div class="user-actions">
                         <a href="{{ route('users.index') }}">Volver</a>
                         @if ($user->id === Auth::user()->id)
-                                <a href="{{ route('editAuth') }}">Editar</a>
-                            @else
-                                <a href="{{ route('users.edit', $user) }}">Editar</a>
-                            @endif
+                            <a href="{{ route('editAuth') }}">Editar</a>
+                        @else
+                            <a href="{{ route('users.edit', $user) }}">Editar</a>
+                        @endif
                         <form method="POST" action="{{ route('users.destroy', $user) }}">
                             @csrf
                             @method('DELETE')

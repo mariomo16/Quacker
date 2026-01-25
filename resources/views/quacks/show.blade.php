@@ -22,13 +22,13 @@
                         <form method="" action="">
                             <button type="submit" class="quack-quav">
                                 <x-icon.quav />
-                                {{ '0' }}
+                                {{ count($quack->quavs) }}
                             </button>
                         </form>
                         <form method="" action="">
                             <button type="submit" class="quack-requack">
                                 <x-icon.requack />
-                                {{ '0' }}
+                                {{ count($quack->requacks) }}
                             </button>
                         </form>
                     </div>
