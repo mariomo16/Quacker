@@ -47,8 +47,23 @@ class User extends Authenticatable
         ];
     }
 
-    public function quack()
+    public function quacks()
     {
         return $this->hasMany(Quack::class);
+    }
+
+    public function quavs()
+    {
+        return $this->belongsToMany(Quack::class, 'quavs');
+    }
+
+    public function requacks()
+    {
+        return $this->belongsToMany(Quack::class, 'requacks');
+    }
+
+    public function follows()
+    {
+        return $this->belongsToMany(User::class, 'follows', 'follower_id', 'followed_id');
     }
 }

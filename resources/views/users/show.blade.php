@@ -9,22 +9,22 @@
             <div class="user-card">
                 <div class="user-info">
                     <p>
-                        <div class="user-popularity select-none">
-                                <div class="user-quack">
-                                    <x-icon.quack />
-                                    {{ '0' }}
-                                </div>
-                                <div class="user-quav">
-                                    <x-icon.quav />
-                                    {{ '0' }}
-                                </div>
-                                <div class="user-requack">
-                                    <x-icon.requack />
-                                    {{ '0' }}
-                                </div>
-                            </div>
-                        <strong>{{ $user->display_name }}</strong>
-                        <span class="text-muted">{{ '@' }}{{ $user->username }}</span>
+                    <div class="user-popularity select-none">
+                        <div class="user-quack">
+                            <x-icon.quack />
+                            {{ '0' }}
+                        </div>
+                        <div class="user-quav">
+                            <x-icon.quav />
+                            {{ '0' }}
+                        </div>
+                        <div class="user-requack">
+                            <x-icon.requack />
+                            {{ '0' }}
+                        </div>
+                    </div>
+                    <strong>{{ $user->display_name }}</strong>
+                    <span class="text-muted">{{ '@' }}{{ $user->username }}</span>
                     </p>
                     <p>
                         <span class="text-muted">Correo electrónico: {{ $user->email }}</span>
@@ -44,10 +44,14 @@
                             {{ '0' }}
                         </button>
                     </div>
-                    
+
                     <div class="user-actions">
                         <a href="{{ route('users.index') }}">Volver</a>
-                        <a href="{{ route('users.edit', $user) }}">Editar</a>
+                        @if ($user->id === Auth::user()->id)
+                                <a href="{{ route('editAuth') }}">Editar</a>
+                            @else
+                                <a href="{{ route('users.edit', $user) }}">Editar</a>
+                            @endif
                         <form method="POST" action="{{ route('users.destroy', $user) }}">
                             @csrf
                             @method('DELETE')

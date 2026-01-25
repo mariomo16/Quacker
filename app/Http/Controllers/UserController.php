@@ -48,6 +48,13 @@ class UserController extends Controller
         ]);
     }
 
+    public function editAuth()
+    {
+        return view('users.edit', [
+            'user' => auth()->user()
+        ]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      */
