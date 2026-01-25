@@ -13,9 +13,9 @@ return new class extends Migration {
     {
         Schema::create('follows', function (Blueprint $table) {
             $table->foreignIdFor(User::class, 'follower_id')->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(User::class, 'followed_id')->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(User::class, 'following_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
-            $table->primary(['follower_id', 'followed_id']);
+            $table->primary(['follower_id', 'following_id']);
         });
     }
 

@@ -51,7 +51,7 @@ class User extends Authenticatable
     //https://stackoverflow.com/questions/38686188/check-if-user-liked-post-laravel
     public function isFollowedByAuth()
     {
-        return auth()->user()->follows()->where('followed_id', $this->id)->exists();
+        return auth()->user()->follows()->where('following_id', $this->id)->exists();
     }
 
     public function quacks()
@@ -71,6 +71,6 @@ class User extends Authenticatable
 
     public function follows()
     {
-        return $this->belongsToMany(User::class, 'follows', 'follower_id', 'followed_id');
+        return $this->belongsToMany(User::class, 'follows', 'follower_id', 'following_id');
     }
 }
