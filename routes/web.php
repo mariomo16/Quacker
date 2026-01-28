@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FeedController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
@@ -25,7 +26,7 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-    Route::get('/feed', [QuackController::class, 'feed'])->name('feed');
+    Route::get('/feed', [FeedController::class, 'feed'])->name('feed');
 
     Route::resource('quacks', QuackController::class);
     Route::resource('quashtags', QuashtagController::class);

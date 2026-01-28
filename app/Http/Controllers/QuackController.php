@@ -78,13 +78,6 @@ class QuackController extends Controller
         return to_route('quacks.index');
     }
 
-    public function feed()
-    {
-        return view('quacks.feed', [
-            'quacks' => Quack::with(['user'])->withCount(['quavs', 'requacks'])->latest()->get()
-        ]);
-    }
-
     public function userQuacks(int $id)
     {
         return view('users.userQuacks', [
