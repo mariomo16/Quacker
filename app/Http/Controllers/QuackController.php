@@ -77,4 +77,12 @@ class QuackController extends Controller
         $quack->delete();
         return to_route('quacks.index');
     }
+
+    public function userQuacks(int $id)
+    {
+        return view('users.userQuacks', [
+            'user_id' => $id,
+            'quacks' => Quack::with(['user'])->withCount(['quavs', 'requacks'])->latest()->get()
+        ]);
+    }
 }

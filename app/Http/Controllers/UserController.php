@@ -86,12 +86,4 @@ class UserController extends Controller
             'user' => auth()->user()
         ]);
     }
-
-    public function quacks(int $id)
-    {
-        return view('users.userQuacks', [
-            'user_id' => $id,
-            'quacks' => Quack::with(['user'])->withCount(['quavs', 'requacks'])->latest()->get()
-        ]);
-    }
 }
