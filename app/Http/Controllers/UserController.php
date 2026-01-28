@@ -79,7 +79,7 @@ class UserController extends Controller
         return to_route('users.index');
     }
 
-    public function editAuth()
+    public function editMe()
     {
         return view('users.edit', [
             'user' => auth()->user()

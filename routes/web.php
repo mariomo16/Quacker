@@ -31,7 +31,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('quacks', QuackController::class);
     Route::resource('quashtags', QuashtagController::class);
 
-    Route::get('/users/edit', [UserController::class, 'editAuth'])->name('editAuth');
+    Route::get('/users/edit', [UserController::class, 'editMe'])->name('editMe');
     Route::get('/users/{id}/quacks', [QuackController::class, 'userQuacks'])->name('user.quacks');
     Route::resource('users', UserController::class);
 });
