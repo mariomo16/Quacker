@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\Quack;
 use App\Models\User;
 
 class UserController extends Controller
@@ -83,6 +84,14 @@ class UserController extends Controller
     {
         return view('users.edit', [
             'user' => auth()->user()
+        ]);
+    }
+
+    public function userQuacks(int $id)
+    {
+        return view('users.userQuacks', [
+            'user_id' => $id,
+            'quacks' => Quack::with(['user'])->withCount(['quavs', 'requacks'])->latest()->get()
         ]);
     }
 }
