@@ -1,12 +1,11 @@
 <?php
 
-use App\Http\Controllers\FeedController;
-use Illuminate\Support\Facades\Route;
-
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\QuackController;
 use App\Http\Controllers\QuashtagController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\FeedController;
+use Illuminate\Support\Facades\Route;
 
 // Rutas para invitados (no autenticados)
 Route::middleware('guest')->group(function () {
