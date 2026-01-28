@@ -87,7 +87,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function userQuacks(int $id)
+    public function quacks(int $id)
     {
         return view('users.userQuacks', [
             'user_id' => $id,
