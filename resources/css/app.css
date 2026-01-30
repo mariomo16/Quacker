@@ -6,770 +6,779 @@
 @source "../**/*.js";
 
 :root {
-    /* Fondos */
-    --bg-main: hsl(230, 40%, 9%);
-    --bg-secondary: hsl(228, 35%, 13%);
-    --bg-tertiary: hsl(226, 30%, 17%);
+	/* Fondos */
+	--bg-main: hsl(230, 40%, 9%);
+	--bg-secondary: hsl(228, 35%, 13%);
+	--bg-tertiary: hsl(226, 30%, 17%);
 
-    /* Acentos */
-    --accent: hsl(210, 100%, 58%);
-    --accent-hover: hsl(210, 100%, 50%);
+	/* Acentos */
+	--accent: hsl(210, 100%, 58%);
+	--accent-hover: hsl(210, 100%, 50%);
 
-    --danger: hsl(0, 85%, 58%);
-    --danger-hover: hsl(0, 85%, 50%);
+	--danger: hsl(0, 85%, 58%);
+	--danger-hover: hsl(0, 85%, 50%);
 
-    /* Texto */
-    --text-main: hsl(0, 0%, 96%);
-    --text-muted: hsl(210, 13%, 65%);
+	/* Texto */
+	--text-main: hsl(0, 0%, 96%);
+	--text-muted: hsl(210, 13%, 65%);
 
-    /* Bordes */
-    --border-soft: hsl(206, 16%, 22%);
-    --border-strong: hsl(206, 16%, 30%);
+	/* Bordes */
+	--border-soft: hsl(206, 16%, 22%);
+	--border-strong: hsl(206, 16%, 30%);
 }
 
 .text-muted {
-    color: var(--text-muted);
+	color: var(--text-muted);
 }
 
 .error-message {
-    color: var(--danger);
-    position: absolute;
-    top: -22px;
-    font-size: 0.8rem;
+	color: var(--danger);
+	position: absolute;
+	top: -22px;
+	font-size: 0.8rem;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    overflow-y: scroll;
+	margin: 0;
+	padding: 0;
+	overflow-y: scroll;
 
-    font-family: "Segoe UI", sans-serif;
-    font-size: 1rem;
+	font-family: "Segoe UI", sans-serif;
+	font-size: 1rem;
 
-    color: var(--text-main);
-    background-color: var(--bg-main);
+	color: var(--text-main);
+	background-color: var(--bg-main);
 }
 
 main {
-    position: absolute;
-    top: 75px;
-    left: 0;
-    right: 0;
+	position: absolute;
+	top: 75px;
+	left: 0;
+	right: 0;
 
-    width: 600px;
-    margin: 0 auto;
-    padding: 0;
+	width: 600px;
+	margin: 0 auto;
+	padding: 0;
 }
 
 article.index {
-    display: flex;
-    gap: 1rem;
+	display: flex;
+	gap: 1rem;
 
-    margin: 0;
-    border: 1px solid var(--border-soft);
-    border-top: none;
-    transition: all 0.2s ease;
+	margin: 0;
+	border: 1px solid var(--border-soft);
+	border-top: none;
+	transition: all 0.2s ease;
 
-    padding: 12px 16px;
-    line-height: 20px;
-    background-color: var(--bg-secondary);
+	padding: 12px 16px;
+	line-height: 20px;
+	background-color: var(--bg-secondary);
 }
 
 header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 999;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 999;
 
-    width: 100%;
-    height: 75px;
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
-    gap: 3rem;
+	width: 100%;
+	height: 75px;
+	display: grid;
+	grid-template-columns: 1fr auto 1fr;
+	align-items: center;
+	gap: 3rem;
 
-    background-color: var(--bg-main);
-    border-bottom: 1px solid var(--border-soft);
-    font-family: "Noto Sans", sans-serif;
-    user-select: none;
+	background-color: var(--bg-main);
+	border-bottom: 1px solid var(--border-soft);
+	font-family: "Noto Sans", sans-serif;
+	user-select: none;
 }
 
 .auth-user-profile,
 .main-nav,
 .app-logo {
-    height: 40px;
-    display: flex;
-    align-items: center;
+	height: 40px;
+	display: flex;
+	align-items: center;
 }
 
 .auth-user-profile {
-    justify-self: end;
-    gap: 0.8rem;
-    color: var(--text-main);
+	justify-self: end;
+	gap: 0.8rem;
+	color: var(--text-main);
 }
 
 .auth-user-avatar {
-    width: 3rem;
-    height: 3rem;
-    flex-shrink: 0;
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    background-color: var(--bg-tertiary);
-    font-family: sans-serif;
-    font-size: 1.5rem;
-    font-weight: bold;
+	width: 3rem;
+	height: 3rem;
+	flex-shrink: 0;
+	border-radius: 50%;
+	display: grid;
+	place-items: center;
+	background-color: var(--bg-tertiary);
+	font-family: sans-serif;
+	font-size: 1.5rem;
+	font-weight: bold;
 }
 
 .auth-user-info {
-    display: grid;
-    justify-items: start;
-    align-content: center;
-    font-size: 0.9rem;
-    line-height: 1.4;
+	display: grid;
+	justify-items: start;
+	align-content: center;
+	font-size: 0.9rem;
+	line-height: 1.4;
 }
 
 .auth-user-logout-btn {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-    padding: 8px 12px;
-    background: none;
-    border: none;
-    color: var(--text-muted);
-    cursor: pointer;
-    transition: all 0.2s ease;
+	display: flex;
+	align-items: center;
+	gap: 0.25rem;
+	padding: 8px 12px;
+	background: none;
+	border: none;
+	color: var(--text-muted);
+	cursor: pointer;
+	transition: all 0.2s ease;
 }
 
 .auth-user-logout-btn:hover {
-    color: var(--danger);
+	color: var(--danger);
 }
 
 .auth-user-logout-icon {
-    flex-shrink: 0;
-    width: 25px;
-    height: 25px;
+	flex-shrink: 0;
+	width: 25px;
+	height: 25px;
 }
 
 .main-nav {
-    justify-self: center;
+	justify-self: center;
 }
 
 .main-nav a {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    height: 100%;
-    padding: 0 1rem;
-    color: var(--text-muted);
-    font-weight: bold;
-    transition: all 0.2s ease;
+	display: flex;
+	align-items: center;
+	gap: 0.4rem;
+	height: 100%;
+	padding: 0 1rem;
+	color: var(--text-muted);
+	font-weight: bold;
+	transition: all 0.2s ease;
 }
 
 .main-nav a svg {
-    width: 18px;
-    height: 18px;
-    color: currentColor;
-    flex-shrink: 0;
+	width: 18px;
+	height: 18px;
+	color: currentColor;
+	flex-shrink: 0;
 }
 
 .main-nav a:hover {
-    color: var(--text-main);
+	color: var(--text-main);
 }
 
 .main-nav a.active-route {
-    color: var(--accent);
+	color: var(--accent);
 }
 
 .app-logo {
-    justify-self: start;
+	justify-self: start;
 }
 
 .app-logo a {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1rem;
-    color: var(--text-main);
-    font-family: "Rubik", sans-serif;
-    font-size: 1.5rem;
-    font-weight: bold;
-    transition: all 0.2s ease;
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	padding: 1rem;
+	color: var(--text-main);
+	font-family: "Rubik", sans-serif;
+	font-size: 1.5rem;
+	font-weight: bold;
+	transition: all 0.2s ease;
 }
 
 .app-logo svg {
-    width: 2rem;
-    height: 2rem;
-    color: var(--accent);
+	width: 2rem;
+	height: 2rem;
+	color: var(--accent);
 }
 
 .app-logo a:hover {
-    color: var(--accent);
+	color: var(--accent);
 }
 
 .quack-user-avatar {
-    width: 40px;
-    height: 40px;
-    flex-shrink: 0;
-    border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	flex-shrink: 0;
+	border-radius: 50%;
 
-    display: grid;
-    place-items: center;
+	display: grid;
+	place-items: center;
 
-    background-color: var(--bg-tertiary);
-    font-family: sans-serif;
-    font-size: 1.5rem;
-    font-weight: bold;
+	background-color: var(--bg-tertiary);
+	font-family: sans-serif;
+	font-size: 1.5rem;
+	font-weight: bold;
 }
 
 .quack-content {
-    display: grid;
-    width: 100%;
+	display: grid;
+	width: 100%;
 }
 
 .quack-toolbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 0.8rem;
-    gap: 2rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 0.8rem;
+	gap: 2rem;
 }
 
 .quack-social {
-    display: flex;
-    place-items: center;
+	display: flex;
+	place-items: center;
 }
 
 .quack-quav,
 .quack-requack {
-    display: flex;
-    align-items: center;
-    gap: 0.2rem;
-    padding: 4px 8px;
-    border-radius: 999px;
-    color: var(--text-muted);
-    cursor: pointer;
-    transition: all 0.2s ease;
+	display: flex;
+	align-items: center;
+	gap: 0.2rem;
+	padding: 4px 8px;
+	border-radius: 999px;
+	color: var(--text-muted);
+	cursor: pointer;
+	transition: all 0.2s ease;
 }
 
 .quack-quav:hover {
-    color: hsl(332, 93%, 53%);
-    background-color: hsla(332, 93%, 53%, 10%);
+	color: hsl(332, 93%, 53%);
+	background-color: hsla(332, 93%, 53%, 10%);
 }
 
 .quack-requack:hover {
-    color: hsl(160, 100%, 36%);
-    background-color: hsla(160, 100%, 36%, 10%);
+	color: hsl(160, 100%, 36%);
+	background-color: hsla(160, 100%, 36%, 10%);
 }
 
 .quack-actions {
-    display: flex;
-    gap: 0.5rem;
+	display: flex;
+	gap: 0.5rem;
 }
 
 .quack-actions a,
 .quack-actions button {
-    padding: 6px 16px;
-    border: 1px solid var(--border-soft);
-    border-radius: 6px;
-    background: none;
-    color: var(--text-muted);
-    transition: all 0.2s ease;
+	padding: 6px 16px;
+	border: 1px solid var(--border-soft);
+	border-radius: 6px;
+	background: none;
+	color: var(--text-muted);
+	transition: all 0.2s ease;
 }
 
 .quack-actions a:hover {
-    color: var(--text-main);
-    background-color: var(--accent);
-    border-color: var(--accent);
+	color: var(--text-main);
+	background-color: var(--accent);
+	border-color: var(--accent);
 }
 
 .quack-actions button {
-    color: var(--danger);
-    cursor: pointer;
+	color: var(--danger);
+	cursor: pointer;
 }
 
 .quack-actions button:hover {
-    color: var(--text-main);
-    background-color: var(--danger-hover);
-    border-color: var(--danger-hover);
+	color: var(--text-main);
+	background-color: var(--danger-hover);
+	border-color: var(--danger-hover);
 }
 
 .quack-show {
-    position: relative;
-    display: flex;
-    gap: 1rem;
-    width: 600px;
-    margin: 1rem 0;
-    padding: 12px 16px;
-    background-color: var(--bg-secondary);
-    border: 1px solid var(--border-strong);
-    border-radius: 4px;
-    line-height: 20px;
-    transition: all 0.2s ease;
+	position: relative;
+	display: flex;
+	gap: 1rem;
+	width: 600px;
+	margin: 1rem 0;
+	padding: 12px 16px;
+	background-color: var(--bg-secondary);
+	border: 1px solid var(--border-strong);
+	border-radius: 4px;
+	line-height: 20px;
+	transition: all 0.2s ease;
 }
 
 .quack-show .quack-content time {
-    margin-top: 0.5rem;
+	margin-top: 0.5rem;
 }
 
 .quashtag-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
 }
 
 .quashtag-show {
-    position: relative;
-    display: grid;
-    place-items: center;
-    gap: 1rem;
+	position: relative;
+	display: grid;
+	place-items: center;
+	gap: 1rem;
 
-    width: 100%;
-    margin: 1rem 0;
-    padding: 12px 16px;
+	width: 100%;
+	margin: 1rem 0;
+	padding: 12px 16px;
 
-    background-color: var(--bg-secondary);
-    border: 1px solid var(--border-strong);
-    border-radius: 4px;
-    line-height: 20px;
-    transition: all 0.2s ease;
+	background-color: var(--bg-secondary);
+	border: 1px solid var(--border-strong);
+	border-radius: 4px;
+	line-height: 20px;
+	transition: all 0.2s ease;
 }
 
 .quashtag-actions {
-    display: flex;
-    justify-content: end;
-    gap: 0.5rem;
+	display: flex;
+	justify-content: end;
+	gap: 0.5rem;
 }
 
 .quashtag-actions a,
 .quashtag-actions button {
-    padding: 6px 16px;
-    border: 1px solid var(--border-soft);
-    border-radius: 6px;
-    background: none;
-    color: var(--text-muted);
-    transition: all 0.2s ease;
+	padding: 6px 16px;
+	border: 1px solid var(--border-soft);
+	border-radius: 6px;
+	background: none;
+	color: var(--text-muted);
+	transition: all 0.2s ease;
 }
 
 .quashtag-actions a:hover {
-    color: var(--text-main);
-    background-color: var(--accent);
-    border-color: var(--accent);
+	color: var(--text-main);
+	background-color: var(--accent);
+	border-color: var(--accent);
 }
 
 .quashtag-actions button {
-    color: var(--danger);
-    cursor: pointer;
+	color: var(--danger);
+	cursor: pointer;
 }
 
 .quashtag-actions button:hover {
-    color: var(--text-main);
-    background-color: var(--danger-hover);
-    border-color: var(--danger-hover);
+	color: var(--text-main);
+	background-color: var(--danger-hover);
+	border-color: var(--danger-hover);
 }
 
 .user-user-avatar {
-    width: 40px;
-    height: 40px;
-    flex-shrink: 0;
-    border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	flex-shrink: 0;
+	border-radius: 50%;
 
-    display: grid;
-    place-items: center;
+	display: grid;
+	place-items: center;
 
-    background-color: var(--bg-tertiary);
-    font-family: sans-serif;
-    font-size: 1.5rem;
-    font-weight: bold;
+	background-color: var(--bg-tertiary);
+	font-family: sans-serif;
+	font-size: 1.5rem;
+	font-weight: bold;
 }
 
 .user-card {
-    display: grid;
-    width: 100%;
+	display: grid;
+	width: 100%;
+}
+
+.user-info {
+	align-content: center;
+}
+
+.user-name {
+	display: flex;
+	gap: 0.25rem;
 }
 
 .user-show {
-    position: relative;
-    display: flex;
-    gap: 1rem;
-    width: 600px;
-    margin: 1rem 0;
-    padding: 12px 16px;
+	position: relative;
+	display: flex;
+	gap: 1rem;
+	width: 600px;
+	margin: 1rem 0;
+	padding: 12px 16px;
 
-    background-color: var(--bg-secondary);
-    border: 1px solid var(--border-strong);
-    border-radius: 4px;
-    line-height: 20px;
-    transition: all 0.2s ease;
+	background-color: var(--bg-secondary);
+	border: 1px solid var(--border-strong);
+	border-radius: 4px;
+	line-height: 20px;
+	transition: all 0.2s ease;
 }
 
 .user-popularity {
-    display: flex;
-    place-items: center;
-    float: inline-end;
+	display: flex;
+	place-items: center;
+	float: inline-end;
 }
 
 .user-quack,
 .user-quav,
 .user-requack {
-    display: flex;
-    align-items: center;
-    gap: 0.2rem;
-    padding: 4px 8px;
-    color: var(--text-muted);
+	display: flex;
+	align-items: center;
+	gap: 0.2rem;
+	padding: 4px;
+	color: var(--text-muted);
 }
 
 .user-toolbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 0.8rem;
-    gap: 2rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 0.8rem;
+	gap: 2rem;
 }
 
 .user-social {
-    display: flex;
-    place-items: center;
-    gap: 0.5rem;
+	display: flex;
+	place-items: center;
+	gap: 0.5rem;
 }
 
 .user-follow {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    padding: 4px 8px;
-    border-radius: 999px;
-    color: var(--text-muted);
-    transition: all 0.2s ease;
-    cursor: pointer;
+	display: flex;
+	align-items: center;
+	gap: 0.2rem;
+	padding: 4px 8px;
+	border-radius: 999px;
+	color: var(--text-muted);
+	transition: all 0.2s ease;
+	cursor: pointer;
 }
 
 .user-follow:hover {
-    color: hsl(204, 88%, 53%);
-    background-color: hsla(204, 88%, 53%, 10%);
+	color: hsl(204, 88%, 53%);
+	background-color: hsla(204, 88%, 53%, 10%);
 }
 
 .user-actions {
-    display: flex;
-    gap: 0.5rem;
+	display: flex;
+	gap: 0.5rem;
 }
 
 .user-actions a,
 .user-actions button {
-    padding: 6px 16px;
-    border: 1px solid var(--border-soft);
-    border-radius: 6px;
-    background: none;
-    color: var(--text-muted);
-    transition: all 0.2s ease;
+	padding: 6px 16px;
+	border: 1px solid var(--border-soft);
+	border-radius: 6px;
+	background: none;
+	color: var(--text-muted);
+	transition: all 0.2s ease;
 }
 
 .user-actions a:hover {
-    color: var(--text-main);
-    background-color: var(--accent);
-    border-color: var(--accent);
+	color: var(--text-main);
+	background-color: var(--accent);
+	border-color: var(--accent);
 }
 
 .user-actions button {
-    color: var(--danger);
-    cursor: pointer;
+	color: var(--danger);
+	cursor: pointer;
 }
 
 .user-actions button:hover {
-    color: var(--text-main);
-    background-color: var(--danger-hover);
-    border-color: var(--danger-hover);
+	color: var(--text-main);
+	background-color: var(--danger-hover);
+	border-color: var(--danger-hover);
 }
 
 .auth-section {
-    display: flex;
-    place-items: center;
-    justify-content: center;
-    height: 90vh;
-    transform: translateY(-50px);
+	display: flex;
+	place-items: center;
+	justify-content: center;
+	height: 90vh;
+	transform: translateY(-50px);
 }
 
 .auth-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
 
-    padding: 50px 40px;
-    border: 1px solid var(--border-soft);
-    border-radius: 6px;
+	padding: 50px 40px;
+	border: 1px solid var(--border-soft);
+	border-radius: 6px;
 
-    background-color: var(--bg-secondary);
-    box-shadow:
-        0 10px 25px -5px var(--accent),
-        0 8px 10px -6px var(--accent);
+	background-color: var(--bg-secondary);
+	box-shadow:
+		0 10px 25px -5px var(--accent),
+		0 8px 10px -6px var(--accent);
 }
 
 .auth-form button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
 
-    height: 48px;
-    padding-inline: 8px;
-    border-radius: 12px;
-    cursor: pointer;
+	height: 48px;
+	padding-inline: 8px;
+	border-radius: 12px;
+	cursor: pointer;
 
-    transition: all 0.2s ease;
+	transition: all 0.2s ease;
 }
 
 .auth-form button[type="submit"] {
-    margin-top: 20px;
-    font-size: 16px;
-    font-weight: 600;
-    background-color: var(--accent);
-    transition: background-color 0.3 ease;
+	margin-top: 20px;
+	font-size: 16px;
+	font-weight: 600;
+	background-color: var(--accent);
+	transition: background-color 0.3 ease;
 }
 
 .auth-form button[type="submit"]:hover {
-    background-color: var(--accent-hover);
+	background-color: var(--accent-hover);
 }
 
 .auth-form a {
-    color: var(--accent);
+	color: var(--accent);
 }
 
 .auth-form a:hover {
-    color: var(--accent-hover);
-    text-decoration: underline;
+	color: var(--accent-hover);
+	text-decoration: underline;
 }
 
 .divider {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    font-size: 14px;
-    color: var(--text-muted);
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	font-size: 14px;
+	color: var(--text-muted);
 }
 
 .divider::before,
 .divider::after {
-    content: "";
-    flex: 1;
-    height: 1px;
-    background-color: var(--text-muted);
+	content: "";
+	flex: 1;
+	height: 1px;
+	background-color: var(--text-muted);
 }
 
 .auth-form #username {
-    padding-left: 25px;
-    color: var(--text-main);
+	padding-left: 25px;
+	color: var(--text-main);
 }
 
 /* Para que al autocompletar un input, no se cambie el fondo a blanco ni el texto a negro */
 form input:-webkit-autofill,
 form input:-webkit-autofill:focus {
-    -webkit-box-shadow: 0 0 0px 1000px var(--bg-tertiary) inset;
-    -webkit-text-fill-color: var(--text-main);
-    transition: background-color 5000s ease-in-out 0s;
+	-webkit-box-shadow: 0 0 0px 1000px var(--bg-tertiary) inset;
+	-webkit-text-fill-color: var(--text-main);
+	transition: background-color 5000s ease-in-out 0s;
 }
 
 .form-actions {
-    display: flex;
-    gap: 0.5rem;
-    margin-top: 1rem;
+	display: flex;
+	gap: 0.5rem;
+	margin-top: 1rem;
 }
 
 .form-actions {
-    justify-content: end;
+	justify-content: end;
 }
 
 .form-actions a,
 .form-actions button {
-    padding: 6px 16px;
-    border: 1px solid var(--border-soft);
-    border-radius: 6px;
+	padding: 6px 16px;
+	border: 1px solid var(--border-soft);
+	border-radius: 6px;
 
-    background: none;
-    color: var(--text-muted);
-    cursor: pointer;
+	background: none;
+	color: var(--text-muted);
+	cursor: pointer;
 
-    transition: all 0.2s ease;
+	transition: all 0.2s ease;
 }
 
 .form-actions button:hover {
-    color: var(--text-main);
-    background-color: var(--accent);
-    border-color: var(--accent);
+	color: var(--text-main);
+	background-color: var(--accent);
+	border-color: var(--accent);
 }
 
 .form-actions a:hover {
-    color: var(--text-primary);
-    background-color: var(--danger);
-    border-color: var(--danger);
+	color: var(--text-primary);
+	background-color: var(--danger);
+	border-color: var(--danger);
 }
 
 .resource-section {
-    display: flex;
-    justify-content: center;
-    margin-top: 16px;
-    height: fit-content;
+	display: flex;
+	justify-content: center;
+	margin-top: 16px;
+	height: fit-content;
 }
 
 .resource-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
 
-    padding: 50px 40px;
-    border: 1px solid var(--border-soft);
-    border-radius: 6px;
+	padding: 50px 40px;
+	border: 1px solid var(--border-soft);
+	border-radius: 6px;
 
-    background-color: var(--bg-secondary);
-    box-shadow:
-        0 10px 25px -5px var(--accent),
-        0 8px 10px -6px var(--accent);
+	background-color: var(--bg-secondary);
+	box-shadow:
+		0 10px 25px -5px var(--accent),
+		0 8px 10px -6px var(--accent);
 }
 
 .input-group {
-    position: relative;
-    display: flex;
+	position: relative;
+	display: flex;
 }
 
 .input-group input {
-    width: 100%;
-    min-width: 300px;
-    height: 40px;
-    padding-inline: 14px;
+	width: 100%;
+	min-width: 300px;
+	height: 40px;
+	padding-inline: 14px;
 
-    border: 1px solid var(--border-soft);
-    border-radius: 6px;
-    outline: none;
+	border: 1px solid var(--border-soft);
+	border-radius: 6px;
+	outline: none;
 
-    background: var(--bg-tertiary);
-    transition: all 0.2s ease;
+	background: var(--bg-tertiary);
+	transition: all 0.2s ease;
 }
 
 .input-group input[type="password"] {
-    padding-right: 30px;
+	padding-right: 30px;
 }
 
 .input-group input:focus {
-    border-color: var(--accent);
+	border-color: var(--accent);
 }
 
 /* Label flotante: https://www.youtube.com/watch?v=UYVJ_ji1Jfk&t */
 .input-group input + label {
-    position: absolute;
-    top: 50%;
-    left: 8px;
-    transform: translateY(-50%);
+	position: absolute;
+	top: 50%;
+	left: 8px;
+	transform: translateY(-50%);
 
-    padding-inline: 6px;
-    color: var(--text-muted);
-    background: var(--bg-tertiary);
+	padding-inline: 6px;
+	color: var(--text-muted);
+	background: var(--bg-tertiary);
 
-    pointer-events: none;
-    transition: all 0.2s ease;
+	pointer-events: none;
+	transition: all 0.2s ease;
 }
 
 .input-group input:focus ~ label,
 .input-group input:not(:placeholder-shown) ~ label {
-    top: 0;
-    transform: translateY(-50%);
-    font-size: 12px;
-    color: var(--accent);
-    background: linear-gradient(var(--bg-secondary), var(--bg-tertiary));
+	top: 0;
+	transform: translateY(-50%);
+	font-size: 12px;
+	color: var(--accent);
+	background: linear-gradient(var(--bg-secondary), var(--bg-tertiary));
 }
 
 .input-group input:not(:focus):not(:placeholder-shown) ~ label {
-    color: var(--text-muted);
+	color: var(--text-muted);
 }
 
 .show-hide-password {
-    position: absolute;
-    top: 50%;
-    right: 15px;
-    transform: translateY(-50%);
-    display: flex;
+	position: absolute;
+	top: 50%;
+	right: 15px;
+	transform: translateY(-50%);
+	display: flex;
 }
 
 .show-hide-password svg {
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-    color: var(--text-muted);
-    transition: all 0.15s ease;
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
+	color: var(--text-muted);
+	transition: all 0.15s ease;
 }
 
 .username-arroba::before {
-    content: "@";
-    position: absolute;
-    top: 50%;
-    left: 8px;
-    transform: translateY(-50%);
-    color: var(--text-muted);
+	content: "@";
+	position: absolute;
+	top: 50%;
+	left: 8px;
+	transform: translateY(-50%);
+	color: var(--text-muted);
 }
 
 .quashtag-quack::before {
-    content: "🦆";
-    position: absolute;
-    top: 50%;
-    left: 8px;
-    transform: translateY(-50%);
-    color: var(--text-muted);
+	content: "🦆";
+	position: absolute;
+	top: 50%;
+	left: 8px;
+	transform: translateY(-50%);
+	color: var(--text-muted);
 }
 
 .resource-form #username {
-    padding-left: 25px;
-    color: var(--text-main);
+	padding-left: 25px;
+	color: var(--text-main);
 }
 
 .resource-form .quashtag-input {
-    padding-left: 30px;
-    color: var(--text-main);
+	padding-left: 30px;
+	color: var(--text-main);
 }
 
 .input-group textarea {
-    width: 100%;
-    min-width: 500px;
-    height: 250px;
+	width: 100%;
+	min-width: 500px;
+	height: 250px;
 
-    padding-inline: 14px;
-    padding-top: 5px;
+	padding-inline: 14px;
+	padding-top: 5px;
 
-    border: 1px solid var(--border-soft);
-    border-radius: 6px;
-    outline: none;
+	border: 1px solid var(--border-soft);
+	border-radius: 6px;
+	outline: none;
 
-    background: var(--bg-tertiary);
-    transition: all 0.2s ease;
+	background: var(--bg-tertiary);
+	transition: all 0.2s ease;
 }
 
 .input-group textarea:focus {
-    border-color: var(--accent);
+	border-color: var(--accent);
 }
 
 .input-group textarea:focus ~ label,
 .input-group textarea:not(:placeholder-shown) ~ label {
-    top: 0;
-    left: 8px;
-    transform: translateY(-50%);
-    font-size: 12px;
-    color: var(--accent);
-    background: linear-gradient(var(--bg-secondary), var(--bg-tertiary));
+	top: 0;
+	left: 8px;
+	transform: translateY(-50%);
+	font-size: 12px;
+	color: var(--accent);
+	background: linear-gradient(var(--bg-secondary), var(--bg-tertiary));
 }
 
 .input-group textarea:not(:focus):not(:placeholder-shown) ~ label {
-    color: var(--text-muted);
+	color: var(--text-muted);
 }
 
 .textarea-label {
-    position: absolute;
-    top: 49%;
-    left: 23%;
-    transform: translateY(-50%);
+	position: absolute;
+	top: 49%;
+	left: 23%;
+	transform: translateY(-50%);
 
-    padding-inline: 6px;
-    font-size: 1.4rem;
-    color: var(--text-muted);
-    background: var(--bg-tertiary);
+	padding-inline: 6px;
+	font-size: 1.4rem;
+	color: var(--text-muted);
+	background: var(--bg-tertiary);
 
-    pointer-events: none;
-    transition: all 0.2s ease;
+	pointer-events: none;
+	transition: all 0.2s ease;
 }

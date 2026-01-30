@@ -80,9 +80,16 @@ class QuackController extends Controller
 
     public function userQuacks(int $id)
     {
-        return view('users.userQuacks', [
+        return view('quacks.index', [
             'user_id' => $id,
-            'quacks' => Quack::with(['user'])->withCount(['quavs', 'requacks'])->latest()->get()
+            'quacks' => Quack::with(['user', 'requacks'])
+                ->withCount(['quavs', 'requacks'])
+                ->where('user_id', $id)
+                ->orWhereHas('requacks', function ($query) use ($id) {
+                    $query->where('user_id', $id);
+                })
+                ->latest()
+                ->get()
         ]);
     }
 }

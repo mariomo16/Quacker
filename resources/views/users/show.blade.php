@@ -23,8 +23,13 @@
                             {{ '?' }}
                         </div>
                     </div>
-                    <strong>{{ $user->display_name }}</strong>
-                    <span class="text-muted">{{ '@' }}{{ $user->username }}</span>
+                    <div class="user-name">
+                        @if ($user->email_verified_at)
+                            <x-icon.verified />
+                        @endif
+                        <strong>{{ $user->display_name }}</strong>
+                        <span class="text-muted">{{ '@' }}{{ $user->username }}</span>
+                    </div>
                     </p>
                     <p>
                         <span class="text-muted">Correo electrónico: {{ $user->email }}</span>
@@ -39,24 +44,16 @@
                 <div class="user-toolbar select-none">
                     <div class="user-social">
                         <span class="text-muted">Seguidos: {{ $user->following_count }}</span>
-                        <button type="submit" class="user-follow">
-                            <x-icon.follow :isFollowed="$user->isFollowedByAuth()" />
-                            {{ $user->followers_count }}
-                        </button>
+                        @if ($user->id !== auth()->id())
+                            <livewire:follow :userId="$user->id" />
+                        @endif
                     </div>
 
                     <div class="user-actions">
-                        <a href="{{ route('users.index') }}">Volver</a>
                         @if ($user->id === auth()->user()->id)
                             <a href="{{ route('editMe') }}">Editar</a>
-                        @else
-                            <a href="{{ route('users.edit', $user) }}">Editar</a>
                         @endif
-                        <form method="POST" action="{{ route('users.destroy', $user) }}">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit">Eliminar</button>
-                        </form>
+                        <a href="{{ route('users.index') }}">Volver</a>
                     </div>
                 </div>
             </div>

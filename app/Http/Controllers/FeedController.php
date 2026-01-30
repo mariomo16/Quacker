@@ -8,8 +8,25 @@ class FeedController extends Controller
 {
     public function feed()
     {
+        $userId = auth()->user()->id;
+
         return view('quacks.feed', [
-            'quacks' => Quack::with(['user'])->withCount(['quavs', 'requacks'])->latest()->get()
+            'quacks' => Quack::with(['user', 'requacks'])
+                ->withCount(['quavs', 'requacks'])
+                ->where('user_id', $userId)
+                ->orWhereHas('requacks', function ($query) use ($userId) {
+                    $query->where('user_id', $userId);
+                })
+                ->orWhereHas('user.followers', function ($query) use ($userId) {
+                    $query->where('follower_id', $userId);
+                })
+                ->orWhereHas('requacks', function ($query) use ($userId) {
+                    $query->whereHas('followers', function ($query) use ($userId) {
+                        $query->where('follower_id', $userId);
+                    });
+                })
+                ->latest()
+                ->get()
         ]);
     }
 }

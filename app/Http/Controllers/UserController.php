@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
-use App\Models\Quack;
 use App\Models\User;
 
 class UserController extends Controller
@@ -15,7 +14,7 @@ class UserController extends Controller
     public function index()
     {
         return view('users.index', [
-            'users' => User::withCount(['quacks', 'following', 'followers'])->latest()->get()
+            'users' => User::withCount(['quacks', 'following', 'followers',])->orderByDesc('id')->get()
         ]);
     }
 
