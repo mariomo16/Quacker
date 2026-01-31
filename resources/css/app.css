@@ -44,7 +44,7 @@ body {
 	overflow-y: scroll;
 
 	font-family: "Plus Jakarta Sans", sans-serif;
-	font-size: 0.99rem;
+	font-size: 1rem;
 
 	color: var(--text-main);
 	background-color: var(--bg-main);
@@ -59,7 +59,7 @@ main {
 	width: 600px;
 	margin: 0 auto;
 	padding: 0;
-    word-break: break-all;
+    word-break: break-word;
 }
 
 main.main-auth-form {
