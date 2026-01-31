@@ -29,15 +29,15 @@
                     </div>
 
                     <div class="quack-actions">
-                        <a href="{{ route('quacks.index') }}">Volver</a>
                         @can('manage', $quack)
-                            <a href="{{ route('quacks.edit', $quack) }}">Editar</a>
                             <form method="POST" action="{{ route('quacks.destroy', $quack) }}">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit">Eliminar</button>
                             </form>
+                            <a href="{{ route('quacks.edit', $quack) }}">Editar</a>
                         @endcan
+                        <a href="{{ route('quacks.index') }}">Volver</a>
                     </div>
                 </div>
             </div>

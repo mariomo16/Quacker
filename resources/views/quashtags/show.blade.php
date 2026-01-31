@@ -15,13 +15,13 @@
             </div>
 
             <div class="quashtag-actions select-none">
-                <a href="{{ route('quashtags.index') }}">Volver</a>
-                <a href="{{ route('quashtags.edit', $quashtag) }}">Editar</a>
                 <form method="POST" action="{{ route('quashtags.destroy', $quashtag) }}">
                     @csrf
                     @method('DELETE')
                     <button type="submit">Eliminar</button>
                 </form>
+                <a href="{{ route('quashtags.edit', $quashtag) }}">Editar</a>
+                <a href="{{ route('quashtags.index') }}">Volver</a>
             </div>
         </article>
     @endsection
