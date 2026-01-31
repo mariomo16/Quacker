@@ -3,14 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Quack;
-use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class FeedController extends Controller
 {
     public function feed()
     {
-        $userId = auth()->user()->id;
+        $userId = auth()->id();
 
+        // Quacks propios del usuario y de los usuarios que sigue
         $quacks = Quack::query()->select([
             'quacks.id',
             'quacks.user_id',
@@ -25,7 +26,8 @@ class FeedController extends Controller
                     });
             });
 
-        $requacks = \DB::table('requacks')->join(
+        // Requacks realizados por el usuario y por los usuarios que sigue
+        $requacks = DB::table('requacks')->join(
             'quacks',
             'requacks.quack_id',
             '=',
@@ -38,20 +40,25 @@ class FeedController extends Controller
                     });
             });
 
-        $feed = \DB::query()->fromSub($quacks->unionAll($requacks), 'feed')->orderByDesc('feed_date')->get();
+        // Unión de quacks y requacks y orden por fecha descendente
+        $feed = DB::query()
+            ->fromSub($quacks->unionAll($requacks), 'feed')
+            ->orderByDesc('feed_date')
+            ->get();
 
+        // Cargar relaciones y contadores de los quacks
         $quackModels = Quack::with(['user', 'requacks'])
             ->withCount(['quavs', 'requacks'])
             ->whereIn('id', $feed->pluck('id'))
             ->get()
             ->keyBy('id');
 
+        // Mapear los resultados del feed a los modelos Eloquent
         $feed = $feed->map(function ($item) use ($quackModels) {
             return $quackModels[$item->id];
         });
 
-        return view('quacks.index', [
-            'quacks' => $feed
-        ]);
+        // Retornar la vista con el feed
+        return view('quacks.index', ['quacks' => $feed]);
     }
 }

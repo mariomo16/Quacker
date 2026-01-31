@@ -1,4 +1,4 @@
-<x-layouts.app :title="'@' . $user->username" :route="route('users.create')">
+<x-layouts.app :title="'@' . $user->username" {{-- :route="route('users.create')" --}}>
 
     @section('main')
         <article class="user-show">
@@ -16,11 +16,11 @@
                         </div>
                         <div class="user-quav">
                             <x-icon.quav />
-                            {{ $user->quavs_count }}
+                            {{ $user->quavs_count ?: '0' }}
                         </div>
                         <div class="user-requack">
                             <x-icon.requack />
-                            {{ $user->requacks_count }}
+                            {{ $user->requacks_count ?: '0' }}
                         </div>
                     </div>
                     <div class="user-name">

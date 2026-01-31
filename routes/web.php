@@ -24,15 +24,14 @@ Route::middleware('auth')->group(function () {
     Route::redirect('/', 'feed');
 
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
     Route::get('/feed', [FeedController::class, 'feed'])->name('feed');
 
-    Route::resource('quacks', QuackController::class);
+    Route::resource('quacks', QuackController::class)->except('create');
 
     Route::get('/quashtags/{quashtag}/quacks', [QuackController::class, 'quashtagQuacks'])->name('quashtag.quacks');
-    Route::resource('quashtags', QuashtagController::class);
+    Route::resource('quashtags', QuashtagController::class)->only('index');
 
     Route::get('/users/edit', [UserController::class, 'editMe'])->name('editMe');
     Route::get('/users/{id}/quacks', [QuackController::class, 'userQuacks'])->name('user.quacks');
-    Route::resource('users', UserController::class);
+    Route::resource('users', UserController::class)->only(['index', 'show', 'update']);
 });

@@ -5,19 +5,21 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\LoginRequest;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    // Método para mostrar el formulario de registro 
     public function create()
     {
         return view('auth.register');
     }
 
-    // Método para registrar un usuario e iniciar sesión automáticamente 
+    /** 
+     * Registra un nuevo usuario a partir de los datos validados,
+     * normaliza el username, inicia sesión automáticamente,
+     * regenera la sesión y redirige al feed.
+     */
     public function store(RegisterRequest $request)
     {
         $data = $request->validated();
@@ -28,16 +30,19 @@ class AuthController extends Controller
         Auth::login($user);
         $request->session()->regenerate();
 
-        return to_route('quacks.index');
+        return to_route('feed');
     }
 
-    // Método para mostrar el formulario de inicio de sesión 
     public function showLoginForm()
     {
         return view('auth.login');
     }
 
-    // Método para iniciar sesión
+    /**
+     * Intenta iniciar sesión con las credenciales validadas.
+     * Regenera la sesión en caso de éxito y redirige al feed;
+     * en caso de fallo, retorna al formulario con mensaje de error.
+     */
     public function login(LoginRequest $request)
     {
         $credentials = $request->validated();
@@ -52,7 +57,11 @@ class AuthController extends Controller
         ]);
     }
 
-    // Método para cerrar sesión 
+    /**
+     * Cierra la sesión actual,
+     * invalida la sesión y regenera el token CSRF,
+     * luego redirige al formulario de login.
+     */
     public function logout(Request $request)
     {
         Auth::logout();

@@ -61,6 +61,13 @@ main {
 	padding: 0;
 }
 
+main.main-auth-form {
+    display: grid;
+    align-items: center;
+	top: 0px;
+    height: 100vh;
+}
+
 article.index {
 	display: flex;
 	gap: 1rem;
@@ -734,7 +741,7 @@ form input:-webkit-autofill:focus {
 	color: var(--text-main);
 }
 
-.input-group textarea {
+.resource-form .input-group textarea {
 	width: 100%;
 	min-width: 500px;
 	height: 250px;
@@ -750,12 +757,12 @@ form input:-webkit-autofill:focus {
 	transition: all 0.2s ease;
 }
 
-.input-group textarea:focus {
+.resource-form .input-group textarea:focus {
 	border-color: var(--accent);
 }
 
-.input-group textarea:focus ~ label,
-.input-group textarea:not(:placeholder-shown) ~ label {
+.resource-form .input-group textarea:focus ~ label,
+.resource-form .input-group textarea:not(:placeholder-shown) ~ label {
 	top: 0;
 	left: 8px;
 	transform: translateY(-50%);
@@ -764,14 +771,79 @@ form input:-webkit-autofill:focus {
 	background: linear-gradient(var(--bg-secondary), var(--bg-tertiary));
 }
 
-.input-group textarea:not(:focus):not(:placeholder-shown) ~ label {
+.resource-form
+	.input-group
+	textarea:not(:focus):not(:placeholder-shown)
+	~ label {
 	color: var(--text-muted);
 }
 
-.textarea-label {
+.resource-form .textarea-label {
 	position: absolute;
 	top: 49%;
 	left: 23%;
+	transform: translateY(-50%);
+
+	padding-inline: 6px;
+	font-size: 1.4rem;
+	color: var(--text-muted);
+	background: var(--bg-tertiary);
+
+	pointer-events: none;
+	transition: all 0.2s ease;
+}
+
+.feed-form {
+	display: flex;
+	flex-direction: column;
+
+	padding: 12px 16px;
+	border: 1px solid var(--border-soft);
+	border-top: none;
+
+	background-color: var(--bg-secondary);
+}
+
+.feed-form .input-group textarea {
+	width: 100%;
+	min-height: 50px;
+
+	padding-inline: 14px;
+	padding-top: 5px;
+
+	border: 1px solid var(--border-soft);
+	border-radius: 6px;
+	outline: none;
+
+	background: var(--bg-tertiary);
+	transition: all 0.2s ease;
+
+	field-sizing: content;
+	resize: none;
+}
+
+.feed-form .input-group textarea:focus {
+	border-color: var(--accent);
+}
+
+.feed-form .input-group textarea:focus ~ label,
+.feed-form .input-group textarea:not(:placeholder-shown) ~ label {
+	top: 0;
+	left: 8px;
+	transform: translateY(-50%);
+	font-size: 12px;
+	color: var(--accent);
+	background: linear-gradient(var(--bg-secondary), var(--bg-tertiary));
+}
+
+.feed-form .input-group textarea:not(:focus):not(:placeholder-shown) ~ label {
+	color: var(--text-muted);
+}
+
+.feed-form .textarea-label {
+	position: absolute;
+	top: 49%;
+	left: 26%;
 	transform: translateY(-50%);
 
 	padding-inline: 6px;

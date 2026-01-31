@@ -1,6 +1,24 @@
-<x-layouts.app title="Quacks" :route="route('quacks.create')">
+<x-layouts.app title="Quacks" {{-- :route="route('quacks.create')" --}}>
 
     @section('main')
+        @if (request()->routeIs('feed'))
+            <form method="POST" action="{{ route('quacks.store') }}" class="feed-form">
+                @csrf
+                <div class="input-group">
+                    <textarea name="content" maxlength="280" placeholder=" " required>{{ old('content') }}</textarea>
+                    <label class="textarea-label select-none">
+                        <span class="text-muted">Quack, quack, ¿qué pasa?</span>
+                    </label>
+                    @error('content')
+                        <p class="error-message">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div class="form-actions select-none">
+                    <button type="submit">Postear</button>
+                </div>
+            </form>
+        @endif
         @foreach ($quacks as $quack)
             <article class="index">
                 <div class="quack-user-avatar select-none">
@@ -22,9 +40,9 @@
                     </div>
 
                     <p>{{ $quack->content }}</p>
-                    <div class="flex mt-2 text-blue-500 gap-1.5">
+                    <div class="flex mt-2 text-(--accent) gap-1.5">
                         @foreach ($quack->quashtags as $quashtag)
-                            <a class="hover:text-blue-700"
+                            <a class="hover:text-(--accent-hover) hover:underline"
                                 href="{{ route('quashtag.quacks', $quashtag->id) }}">#{{ $quashtag->name }}</a>
                         @endforeach
                     </div>
