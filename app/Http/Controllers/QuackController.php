@@ -135,9 +135,9 @@ class QuackController extends Controller
     {
         return view('quacks.index', [
             'quacks' => Quack::with(['quashtags', 'user'])
-            ->whereHas('quashtags', function ($q) use ($id) {
-                $q->where('quashtag_id', $id);
-            })
+                ->whereHas('quashtags', function ($q) use ($id) {
+                    $q->where('quashtag_id', $id);
+                })
                 ->withCount(['quavs', 'requacks'])
                 ->latest()
                 ->get()

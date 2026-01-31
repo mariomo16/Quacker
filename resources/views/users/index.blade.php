@@ -1,4 +1,4 @@
-<x-layouts.app title="Usuarios" :route="route('users.create')">
+<x-layouts.app title="Usuarios" {{-- :route="route('users.create')" --}}>
 
     @section('main')
         @foreach ($users as $user)

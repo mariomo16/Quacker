@@ -1,4 +1,4 @@
-<x-layouts.app :title="'@' . $user->username" :route="route('users.create')">
+<x-layouts.app :title="'@' . $user->username" {{-- :route="route('users.create')" --}}>
 
     @section('main')
         <div class="resource-section">

@@ -1,4 +1,4 @@
-<x-layouts.app :title="'Quack ' . $quack->id" :route="route('quacks.create')">
+<x-layouts.app :title="'Quack ' . $quack->id" {{-- :route="route('quacks.create')" --}}>
 
     @section('main')
         <article class="quack-show">
@@ -18,9 +18,9 @@
                         </a>
                     </div>
                     <p>{{ $quack->content }}</p>
-                    <div class="flex mt-2 text-blue-500 gap-1.5">
+                    <div class="flex mt-2 text-(--accent) gap-1.5">
                         @foreach ($quack->quashtags as $quashtag)
-                            <a class="hover:text-blue-700"
+                            <a class="hover:text-(--accent-hover) hover:underline"
                                 href="{{ route('quashtag.quacks', $quashtag->id) }}">#{{ $quashtag->name }}</a>
                         @endforeach
                     </div>

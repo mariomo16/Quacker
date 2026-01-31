@@ -42,9 +42,7 @@
                     class="{{ request()->routeIs('quashtags.*') ? 'active-route' : '' }}"><x-icon.quashtag />Quashtags</a>
                 <a href="{{ route('users.index') }}"
                     class="{{ request()->routeIs('users.*') ? 'active-route' : '' }}"><x-icon.user />Usuarios</a>
-                @if (request()->routeIs('feed'))
-                    <a href="{{ $route }}"><x-icon.plus />Crear recurso</a>
-                @endif
+                {{-- <a href="{{ $route }}"><x-icon.plus />Crear recurso</a> --}}
             </nav>
 
             <div class="app-logo">

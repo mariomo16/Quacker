@@ -85,6 +85,9 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
+        // Evita que se puedan hacer peticiones POST para actualizar usuarios distintos al usuario autenticado
+        $this->authorize('updateUser', $user);
+
         $data = array_filter($request->validated());
         $data['username'] = str_replace(' ', '.', $data['username']);
 
@@ -95,9 +98,12 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
-        User::destroy($id);
+        // Evita que se puedan hacer peticiones POST para actualizar usuarios distintos al usuario autenticado
+        $this->authorize('updateUser', $user);
+
+        User::destroy($user);
         return to_route('users.index');
     }
 

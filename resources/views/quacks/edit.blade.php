@@ -1,4 +1,4 @@
-<x-layouts.app :title="'Quack ' . $quack->id" :route="route('quacks.create')">
+<x-layouts.app :title="'Quack ' . $quack->id" {{-- :route="route('quacks.create')" --}}>
 
     @section('main')
         <section class="resource-section">
