@@ -19,7 +19,7 @@ class Quack extends Model
 
     public function quashtags()
     {
-        return $this->belongsToMany(Quashtag::class, 'quack_quashtag')->withTimestamps();
+        return $this->belongsToMany(Quashtag::class, 'quack_quashtag');
     }
 
     public function quavs()

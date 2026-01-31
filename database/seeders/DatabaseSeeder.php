@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
     {
         User::factory(16)->create();
         Quack::factory(50)->create();
-        Quashtag::factory(20)->create();
+        //Quashtag::factory(20)->create();
 
         // Usuario de prueba para desarrollo
         User::factory()->create([

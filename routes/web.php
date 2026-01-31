@@ -28,6 +28,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/feed', [FeedController::class, 'feed'])->name('feed');
 
     Route::resource('quacks', QuackController::class);
+
+    Route::get('/quashtags/{quashtag}/quacks', [QuackController::class, 'quashtagQuacks'])->name('quashtag.quacks');
     Route::resource('quashtags', QuashtagController::class);
 
     Route::get('/users/edit', [UserController::class, 'editMe'])->name('editMe');

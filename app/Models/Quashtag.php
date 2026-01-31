@@ -14,6 +14,6 @@ class Quashtag extends Model
 
     public function quacks()
     {
-        return $this->belongsToMany(Quack::class);
+        return $this->belongsToMany(Quack::class, 'quack_quashtag');
     }
 }

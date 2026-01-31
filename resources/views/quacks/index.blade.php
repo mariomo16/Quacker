@@ -22,6 +22,10 @@
                     </div>
 
                     <p>{{ $quack->content }}</p>
+                    <br>
+                    @foreach ($quack->quashtags as $quashtag)
+                        <a href="{{ route('quashtag.quacks', $quashtag->id) }}">#{{ $quashtag->name }}</a>
+                    @endforeach
 
                     <div class="quack-toolbar select-none">
                         <div class="quack-social">

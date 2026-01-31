@@ -34,14 +34,17 @@
 
             {{-- https://laravel.com/docs/12.x/requests#inspecting-the-request-path --}}
             <nav class="main-nav">
-                <a href="{{ route('feed') }}" class="{{ request()->routeIs('feed') ? 'active-route' : '' }}"><x-icon.slash />Feed</a>
+                <a href="{{ route('feed') }}"
+                    class="{{ request()->routeIs('feed') ? 'active-route' : '' }}"><x-icon.slash />Feed</a>
                 <a href="{{ route('quacks.index') }}"
                     class="{{ request()->routeIs('quacks.*') ? 'active-route' : '' }}"><x-icon.quack />Quacks</a>
                 <a href="{{ route('quashtags.index') }}"
                     class="{{ request()->routeIs('quashtags.*') ? 'active-route' : '' }}"><x-icon.quashtag />Quashtags</a>
                 <a href="{{ route('users.index') }}"
                     class="{{ request()->routeIs('users.*') ? 'active-route' : '' }}"><x-icon.user />Usuarios</a>
-                <a href="{{ $route }}"><x-icon.plus />Crear recurso</a>
+                @if (request()->routeIs('feed'))
+                    <a href="{{ $route }}"><x-icon.plus />Crear recurso</a>
+                @endif
             </nav>
 
             <div class="app-logo">
