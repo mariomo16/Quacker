@@ -53,7 +53,7 @@
             </div>
         </header>
     @endauth
-    <main @if (auth()) class="main-auth-form" @endif>
+    <main @class(['main-auth-form' => !auth()->check()])>
         @yield('main')
     </main>
 </body>
