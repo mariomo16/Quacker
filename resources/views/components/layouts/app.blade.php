@@ -52,10 +52,15 @@
                 </a>
             </div>
         </header>
+        <main>
+            @yield('main')
+        </main>
     @endauth
-    <main>
-        @yield('main')
-    </main>
+    @guest
+        <main class="main-auth-form">
+            @yield('main')
+        </main>
+    @endguest
 </body>
 
 </html>

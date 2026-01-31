@@ -61,6 +61,13 @@ main {
 	padding: 0;
 }
 
+main.main-auth-form {
+    display: grid;
+    align-items: center;
+	top: 0px;
+    height: 100vh;
+}
+
 article.index {
 	display: flex;
 	gap: 1rem;

@@ -47,7 +47,7 @@ class QuackController extends Controller
         if (!empty($quashtags)) {
             $quack->quashtags()->saveMany($quashtags);
         }
-        return to_route('quacks.index');
+        return to_route('feed');
     }
 
     /**
