@@ -62,10 +62,10 @@ main {
 }
 
 main.main-auth-form {
-    display: grid;
-    align-items: center;
+	display: grid;
+	align-items: center;
 	top: 0px;
-    height: 100vh;
+	height: 100vh;
 }
 
 article.index {
@@ -500,10 +500,7 @@ header {
 
 .auth-section {
 	display: flex;
-	place-items: center;
 	justify-content: center;
-	height: 90vh;
-	transform: translateY(-50px);
 }
 
 .auth-form {

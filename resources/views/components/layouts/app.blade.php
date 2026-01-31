@@ -1,5 +1,5 @@
 {{-- https://laravel.com/docs/12.x/blade#anonymous-components --}}
-@props(['title', 'route']) {{-- https://laravel.com/docs/12.x/blade#data-properties-attributes --}}
+@props(['title', 'route', 'class' => '']) {{-- https://laravel.com/docs/12.x/blade#data-properties-attributes --}}
 
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -52,15 +52,10 @@
                 </a>
             </div>
         </header>
-        <main>
-            @yield('main')
-        </main>
     @endauth
-    @guest
-        <main class="main-auth-form">
-            @yield('main')
-        </main>
-    @endguest
+    <main @if (auth()) class="main-auth-form" @endif>
+        @yield('main')
+    </main>
 </body>
 
 </html>
