@@ -53,7 +53,7 @@ class QuackController extends Controller
      */
     public function show(Quack $quack)
     {
-        $quack = Quack::with(['user'])->withCount(['quavs', 'requacks'])->find($quack->id);
+        $quack->load('user')->loadCount(['quavs', 'requacks']);
 
         return view('quacks.show', compact('quack'));
     }
