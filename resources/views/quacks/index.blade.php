@@ -22,10 +22,11 @@
                     </div>
 
                     <p>{{ $quack->content }}</p>
-                    <br>
-                    @foreach ($quack->quashtags as $quashtag)
-                        <a href="{{ route('quashtag.quacks', $quashtag->id) }}">#{{ $quashtag->name }}</a>
-                    @endforeach
+                    <div class="flex mt-2 text-blue-500 gap-1.5">
+                        @foreach ($quack->quashtags as $quashtag)
+                            <a class="hover:text-blue-700" href="{{ route('quashtag.quacks', $quashtag->id) }}">#{{ $quashtag->name }}</a>
+                        @endforeach
+                    </div>
 
                     <div class="quack-toolbar select-none">
                         <div class="quack-social">
