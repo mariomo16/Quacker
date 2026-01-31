@@ -17,11 +17,11 @@
                                 </div>
                                 <div class="user-quav">
                                     <x-icon.quav />
-                                    {{ '?' }}
+                                    {{ $user->quavs_count }}
                                 </div>
                                 <div class="user-requack">
                                     <x-icon.requack />
-                                    {{ '?' }}
+                                    {{ $user->requacks_count }}
                                 </div>
                             </div>
                             <div class="user-name">

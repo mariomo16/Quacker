@@ -80,16 +80,38 @@ class QuackController extends Controller
 
     public function userQuacks(int $id)
     {
+        $quacks = Quack::query()->select([
+            'quacks.id',
+            'quacks.user_id',
+            'quacks.created_at as feed_date',
+            'quack as feed_type',
+            'NULL as requack_user_id'
+        ])
+            ->where('quacks.user_id', $id);
+
+        $requacks = \DB::table('requacks')->join(
+            'quacks',
+            'requacks.quack_id',
+            '=',
+            'quacks.id',
+        )->select('quacks.id', 'quacks.user_id', 'requacks.created_at as feed_date', 'requack', 'requacks.user_id')
+            ->where('requacks.user_id', $id);
+
+
+        $feed = \DB::query()->fromSub($quacks->unionAll($requacks), 'feed')->orderByDesc('feed_date')->get();
+
+        $quackModels = Quack::with(['user', 'requacks'])
+            ->withCount(['quavs', 'requacks'])
+            ->whereIn('id', $feed->pluck('id'))
+            ->get()
+            ->keyBy('id');
+
+        $feed = $feed->map(function ($item) use ($quackModels) {
+            return $quackModels[$item->id];
+        });
+
         return view('quacks.index', [
-            'user_id' => $id,
-            'quacks' => Quack::with(['user', 'requacks'])
-                ->withCount(['quavs', 'requacks'])
-                ->where('user_id', $id)
-                ->orWhereHas('requacks', function ($query) use ($id) {
-                    $query->where('user_id', $id);
-                })
-                ->latest()
-                ->get()
+            'quacks' => $feed
         ]);
     }
 }

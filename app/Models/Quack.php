@@ -19,28 +19,16 @@ class Quack extends Model
 
     public function quashtags()
     {
-        return $this->belongsToMany(Quashtag::class, 'quack_quashtag');
+        return $this->belongsToMany(Quashtag::class, 'quack_quashtag')->withTimestamps();
     }
 
     public function quavs()
     {
-        return $this->belongsToMany(User::class, 'quavs');
+        return $this->belongsToMany(User::class, 'quavs')->withTimestamps();
     }
 
     public function requacks()
     {
-        return $this->belongsToMany(User::class, 'requacks');
-    }
-
-    //https://stackoverflow.com/questions/38686188/check-if-user-liked-post-laravel
-    public function hasQuaved(int $user_id)
-    {
-        return $this->quavs()->where('user_id', $user_id)->exists();
-    }
-
-    //https://stackoverflow.com/questions/38686188/check-if-user-liked-post-laravel
-    public function hasRequacked(int $user_id)
-    {
-        return $this->requacks()->where('user_id', $user_id)->exists();
+        return $this->belongsToMany(User::class, 'requacks')->withTimestamps();
     }
 }

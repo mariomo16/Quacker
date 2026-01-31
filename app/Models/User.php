@@ -54,23 +54,23 @@ class User extends Authenticatable
 
     public function quavs()
     {
-        return $this->belongsToMany(Quack::class, 'quavs');
+        return $this->belongsToMany(Quack::class, 'quavs')->withTimestamps();
     }
 
     public function requacks()
     {
-        return $this->belongsToMany(Quack::class, 'requacks');
+        return $this->belongsToMany(Quack::class, 'requacks')->withTimestamps();
     }
 
     //https://copyprogramming.com/howto/php-laravel-code-for-follow-users-code-example
     public function following()
     {
-        return $this->belongsToMany(User::class, 'follows', 'follower_id', 'following_id');
+        return $this->belongsToMany(User::class, 'follows', 'follower_id', 'following_id')->withTimestamps();
     }
 
     public function followers()
     {
-        return $this->belongsToMany(User::class, 'follows', 'following_id', 'follower_id');
+        return $this->belongsToMany(User::class, 'follows', 'following_id', 'follower_id')->withTimestamps();
     }
 
     //https://stackoverflow.com/questions/38686188/check-if-user-liked-post-laravel

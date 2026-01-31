@@ -14,7 +14,18 @@ class UserController extends Controller
     public function index()
     {
         return view('users.index', [
-            'users' => User::withCount(['quacks', 'following', 'followers',])->orderByDesc('id')->get()
+            'users' => User::withCount(['quacks', 'following', 'followers',])
+                ->withCount([
+                    'quacks as quavs_count' => function ($q) {
+                        $q->select(\DB::raw('(SELECT COUNT(*) FROM quavs WHERE quavs.quack_id = quacks.id)'));
+                    }
+                ])
+                ->withCount([
+                    'quacks as requacks_count' => function ($q) {
+                        $q->select(\DB::raw('(SELECT COUNT(*) FROM requacks WHERE requacks.quack_id = quacks.id)'));
+                    }
+                ])
+                ->orderByDesc('id')->get()
         ]);
     }
 
@@ -44,7 +55,18 @@ class UserController extends Controller
     public function show(User $user)
     {
         return view('users.show', [
-            'user' => User::withCount(['quacks', 'following', 'followers'])->find($user->id)
+            'user' => User::withCount(['quacks', 'following', 'followers',])
+                ->withCount([
+                    'quacks as quavs_count' => function ($q) {
+                        $q->select(\DB::raw('(SELECT COUNT(*) FROM quavs WHERE quavs.quack_id = quacks.id)'));
+                    }
+                ])
+                ->withCount([
+                    'quacks as requacks_count' => function ($q) {
+                        $q->select(\DB::raw('(SELECT COUNT(*) FROM requacks WHERE requacks.quack_id = quacks.id)'));
+                    }
+                ])
+                ->orderByDesc('id')->find($user->id)
         ]);
     }
 
