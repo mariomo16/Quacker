@@ -6,8 +6,10 @@ use App\Models\User;
 
 class UserPolicy
 {
-    // Evita que se puedan hacer peticiones POST para actualizar usuarios distintos al usuario autenticado
-    public function updateUser(User $user)
+    /**
+     * Permite que el usuario solo gestione su propio perfil.
+     */
+    public function manageProfile(User $user)
     {
         return $user->id === auth()->id();
     }

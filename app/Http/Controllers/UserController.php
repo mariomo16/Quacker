@@ -2,43 +2,40 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
-use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Muestra todos los usuarios con sus contadores de quacks, quavs, requacks,
+     * seguidores y seguidos, ordenados por ID descendente.
      */
     public function index()
     {
-        return view('users.index', [
-            'users' => User::withCount(['quacks', 'following', 'followers',])
-                ->withCount([
-                    'quacks as quavs_count' => function ($q) {
-                        $q->select(\DB::raw('(SELECT COUNT(*) FROM quavs WHERE quavs.quack_id = quacks.id)'));
-                    }
-                ])
-                ->withCount([
-                    'quacks as requacks_count' => function ($q) {
-                        $q->select(\DB::raw('(SELECT COUNT(*) FROM requacks WHERE requacks.quack_id = quacks.id)'));
-                    }
-                ])
-                ->orderByDesc('id')->get()
-        ]);
+        $users = User::withCount(['quacks', 'following', 'followers',])
+            ->withCount([
+                'quacks as quavs_count' => fn($q) =>
+                    $q->select(DB::raw('(SELECT COUNT(*) FROM quavs WHERE quavs.quack_id = quacks.id)')),
+                'quacks as requacks_count' => fn($q) =>
+                    $q->select(DB::raw('(SELECT COUNT(*) FROM requacks WHERE requacks.quack_id = quacks.id)'))
+            ])
+            ->orderByDesc('id')
+            ->get();
+
+        return view('users.index', compact('users'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('users.create');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Crea un nuevo usuario a partir de los datos validados,
+     * reemplazando espacios en el username por puntos, y redirige al index.
      */
     public function store(StoreUserRequest $request)
     {
@@ -46,71 +43,68 @@ class UserController extends Controller
         $data['username'] = str_replace(' ', '.', $data['username']);
 
         User::create($data);
+
         return to_route('users.index');
     }
 
     /**
-     * Display the specified resource.
+     * Muestra un usuario específico con sus contadores de quacks, quavs, requacks,
+     * seguidores y seguidos, ordenados por ID.
      */
     public function show(User $user)
     {
-        return view('users.show', [
-            'user' => User::withCount(['quacks', 'following', 'followers',])
-                ->withCount([
-                    'quacks as quavs_count' => function ($q) {
-                        $q->select(\DB::raw('(SELECT COUNT(*) FROM quavs WHERE quavs.quack_id = quacks.id)'));
-                    }
-                ])
-                ->withCount([
-                    'quacks as requacks_count' => function ($q) {
-                        $q->select(\DB::raw('(SELECT COUNT(*) FROM requacks WHERE requacks.quack_id = quacks.id)'));
-                    }
-                ])
-                ->orderByDesc('id')->find($user->id)
-        ]);
+        $user = User::withCount(['quacks', 'following', 'followers',])
+            ->withCount([
+                'quacks as quavs_count' => fn($q) =>
+                    $q->select(DB::raw('(SELECT COUNT(*) FROM quavs WHERE quavs.quack_id = quacks.id)')),
+                'quacks as requacks_count' => fn($q) =>
+                    $q->select(DB::raw('(SELECT COUNT(*) FROM requacks WHERE requacks.quack_id = quacks.id)'))
+            ])
+            ->find($user->id);
+
+        return view('users.show', compact('user'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(User $user)
     {
-        return view('users.edit', [
-            'user' => $user
-        ]);
+        $this->authorize('manageProfile', $user);
+
+        return view('users.edit', compact('user'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualizar un usuario tras comprobar que corresponde al usuario autenticado,
+     * ignorando campos vacíos (por ejemplo, para no modificar la contraseña) 
+     * y normalizando el username.
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        // Evita que se puedan hacer peticiones POST para actualizar usuarios distintos al usuario autenticado
-        $this->authorize('updateUser', $user);
+        $this->authorize('manageProfile', $user);
 
         $data = array_filter($request->validated());
         $data['username'] = str_replace(' ', '.', $data['username']);
 
         $user->update($data);
+
         return to_route('users.show', [$user]);
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Elimina un usuario tras comprobar que corresponde al usuario autenticado.
      */
     public function destroy(User $user)
     {
-        // Evita que se puedan hacer peticiones POST para actualizar usuarios distintos al usuario autenticado
-        $this->authorize('updateUser', $user);
+        $this->authorize('manageProfile', $user);
 
-        User::destroy($user);
+        $user->delete();
+
         return to_route('users.index');
     }
 
     public function editMe()
     {
-        return view('users.edit', [
-            'user' => auth()->user()
-        ]);
+        $user = auth()->user();
+
+        return view('users.edit', compact('user'));
     }
 }
