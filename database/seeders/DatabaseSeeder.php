@@ -20,8 +20,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         User::factory(16)->create();
-        Quack::factory(50)->create();
-        //Quashtag::factory(20)->create();
+        Quack::factory(20)->create();
 
         foreach (Quack::all() as $quack) {
             foreach (User::all() as $user) {
