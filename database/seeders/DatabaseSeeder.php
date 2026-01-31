@@ -19,9 +19,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(19)->create();
+        User::factory(16)->create();
         Quack::factory(50)->create();
-        Quashtag::factory(30)->create();
+        Quashtag::factory(20)->create();
 
         // Usuario de prueba para desarrollo
         User::factory()->create([
