@@ -23,6 +23,17 @@ class DatabaseSeeder extends Seeder
         Quack::factory(50)->create();
         //Quashtag::factory(20)->create();
 
+        foreach (Quack::all() as $quack) {
+            foreach (User::all() as $user) {
+                if (rand(1, 100) > 70) {
+                    $user->quavs()->attach($quack->id);
+                }
+                if (rand(1, 100) > 70) {
+                    $user->requacks()->attach($quack->id);
+                }
+            }
+        }
+
         // Usuario de prueba para desarrollo
         User::factory()->create([
             'username' => 'admin',
@@ -33,10 +44,13 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // Quack de prueba para desarrollo
-        Quack::factory()->create([
+        $quack = Quack::factory()->create([
             'user_id' => User::max('id'),
-            'content' => 'Solo puedo editar y eliminar mis quacks!',
+            'content' => 'Bueno, son las 5, no he comido, pero Quacker ya tiene #quashtags',
             'created_at' => now()->addSeconds(1)
         ]);
+
+        $quashtag = Quashtag::create(['name' => 'quashtags']);
+        $quack->quashtags()->attach($quashtag);
     }
 }

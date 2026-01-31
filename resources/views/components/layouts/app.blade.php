@@ -1,5 +1,5 @@
 {{-- https://laravel.com/docs/12.x/blade#anonymous-components --}}
-@props(['title', 'route']) {{-- https://laravel.com/docs/12.x/blade#data-properties-attributes --}}
+@props(['title', 'route', 'class' => '']) {{-- https://laravel.com/docs/12.x/blade#data-properties-attributes --}}
 
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -15,23 +15,7 @@
 <body>
     @auth
         <header>
-            {{-- https://laravel.com/docs/12.x/strings#method-fluent-str-substr --}}
-            <div class="auth-user-profile">
-                <div class="auth-user-avatar">
-                    {{ Str::of(strtoupper(auth()->user()->display_name))->substr(0, 1) }}
-                </div>
-
-                <div class="auth-user-info">
-                    <strong>{{ auth()->user()->display_name }}</strong>
-                    <span class="text-muted">{{ '@' }}{{ auth()->user()->username }}</span>
-                </div>
-
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button type="submit" class="auth-user-logout-btn">Cerrar sesión<x-icon.logout /></button>
-                </form>
-            </div>
-
+            <div></div>
             {{-- https://laravel.com/docs/12.x/requests#inspecting-the-request-path --}}
             <nav class="main-nav">
                 <a href="{{ route('feed') }}"
@@ -45,22 +29,36 @@
                 {{-- <a href="{{ $route }}"><x-icon.plus />Crear recurso</a> --}}
             </nav>
 
-            <div class="app-logo">
-                <a href="https://github.com/mariomo16/Quacker" target="_blank">
-                    <span>QUACKER</span>
-                    <x-icon.quacker />
-                </a>
+            <div class="flex gap-3">
+                <div class="app-logo">
+                    <a href="https://github.com/mariomo16/Quacker" target="_blank">
+                        <x-icon.github />
+                    </a>
+                </div>
+                {{-- https://laravel.com/docs/12.x/strings#method-fluent-str-substr --}}
+                <div class="auth-user-profile">
+                    <div class="flex gap-2">
+                        <div class="auth-user-avatar">
+                            {{ Str::of(strtoupper(auth()->user()->display_name))->substr(0, 1) }}
+                        </div>
+    
+                        <div class="auth-user-info">
+                            <strong>{{ auth()->user()->display_name }}</strong>
+                            <span class="text-muted">{{ '@' }}{{ auth()->user()->username }}</span>
+                        </div>
+                    </div>
+
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="auth-user-logout-btn"><x-icon.logout /></button>
+                    </form>
+                </div>
             </div>
         </header>
-        <main>
-            @yield('main')
-        </main>
     @endauth
-    @guest
-        <main class="main-auth-form">
-            @yield('main')
-        </main>
-    @endguest
+    <main @class(['main-auth-form' => !auth()->check()])>
+        @yield('main')
+    </main>
 </body>
 
 </html>

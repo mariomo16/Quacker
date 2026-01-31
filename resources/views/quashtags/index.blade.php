@@ -6,7 +6,7 @@
                 <div class="quashtag-card">
                     <p>🦆{{ $quashtag->name }} <span class="text-muted">ID: {{ $quashtag->id }}</span></p>
                     <div class="quashtag-actions select-none">
-                        <a href="{{ route('quashtag.quacks', $quashtag->id) }}">Mostrar más</a>
+                        <a href="{{ route('quashtag.quacks', $quashtag->id) }}">Ver quacks</a>
                     </div>
                 </div>
             </article>

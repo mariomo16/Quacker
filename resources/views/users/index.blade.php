@@ -47,7 +47,7 @@
                             @if ($user->id === auth()->user()->id)
                                 <a href="{{ route('editMe') }}">Editar</a>
                             @endif
-                            <a href="{{ route('users.show', $user) }}">Mostrar más</a>
+                            <a href="{{ route('users.show', $user) }}">Ver perfil</a>
                         </div>
                     </div>
                 </div>

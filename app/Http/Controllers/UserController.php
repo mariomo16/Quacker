@@ -16,12 +16,14 @@ class UserController extends Controller
     public function index()
     {
         $users = User::withCount(['quacks', 'following', 'followers',])
-            ->withCount([
+            ->withSum([
                 'quacks as quavs_count' => fn($q) =>
-                    $q->select(DB::raw('(SELECT COUNT(*) FROM quavs WHERE quavs.quack_id = quacks.id)')),
+                    $q->leftJoin('quavs', 'quavs.quack_id', '=', 'quacks.id')
+                        ->select(DB::raw('COUNT(quavs.quack_id)')),
                 'quacks as requacks_count' => fn($q) =>
-                    $q->select(DB::raw('(SELECT COUNT(*) FROM requacks WHERE requacks.quack_id = quacks.id)'))
-            ])
+                    $q->leftJoin('requacks', 'requacks.quack_id', '=', 'quacks.id')
+                        ->select(DB::raw('COUNT(requacks.quack_id)'))
+            ], 'quack_id')
             ->orderByDesc('id')
             ->get();
 
