@@ -1,6 +1,6 @@
 # 🦆 Quacker
 
-> Aplicación web estilo X (Twitter) desarrollada con Laravel, con enfoque en backend.
+> Aplicación web estilo X (Twitter) desarrollada con Laravel, con enfoque en backend
 
 [![PHP](https://img.shields.io/badge/PHP-8.2+-blue.svg)](https://www.php.net)
 [![Laravel](https://img.shields.io/badge/Laravel-12.x-red.svg)](https://laravel.com)

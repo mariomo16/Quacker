@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -14,7 +14,18 @@ class UserController extends Controller
     public function index()
     {
         return view('users.index', [
-            'users' => User::latest()->get()
+            'users' => User::withCount(['quacks', 'following', 'followers',])
+                ->withCount([
+                    'quacks as quavs_count' => function ($q) {
+                        $q->select(\DB::raw('(SELECT COUNT(*) FROM quavs WHERE quavs.quack_id = quacks.id)'));
+                    }
+                ])
+                ->withCount([
+                    'quacks as requacks_count' => function ($q) {
+                        $q->select(\DB::raw('(SELECT COUNT(*) FROM requacks WHERE requacks.quack_id = quacks.id)'));
+                    }
+                ])
+                ->orderByDesc('id')->get()
         ]);
     }
 
@@ -29,30 +40,13 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        $request->validate(
-            [
-                'username' => 'required|max:15|unique:users,username',
-                'display_name' => 'required|max:50',
-                'email' => 'required|email|unique:users,email',
-                'password' => 'required',
-            ],
-            [
-                'username.required' => 'Este campo es obligatorio',
-                'username.max' => 'Máximo 15 caracteres',
-                'username.unique' => 'Este nombre de usuario ya esta en uso',
-                'display_name.required' => 'Este campo es obligatorio',
-                'display_name.max' => 'Máximo 50 caracteres',
-                'email.required' => 'Este campo es obligatorio',
-                'email.email' => 'Introduce un correo electrónico válido',
-                'email.unique' => 'Este correo electrónico ya esta en uso',
-                'password.required' => 'Este campo es obligatorio',
-            ]
-        );
+        $data = $request->validated();
+        $data['username'] = str_replace(' ', '.', $data['username']);
 
-        User::create($request->all());
-        return redirect('/users');
+        User::create($data);
+        return to_route('users.index');
     }
 
     /**
@@ -61,7 +55,18 @@ class UserController extends Controller
     public function show(User $user)
     {
         return view('users.show', [
-            'user' => $user
+            'user' => User::withCount(['quacks', 'following', 'followers',])
+                ->withCount([
+                    'quacks as quavs_count' => function ($q) {
+                        $q->select(\DB::raw('(SELECT COUNT(*) FROM quavs WHERE quavs.quack_id = quacks.id)'));
+                    }
+                ])
+                ->withCount([
+                    'quacks as requacks_count' => function ($q) {
+                        $q->select(\DB::raw('(SELECT COUNT(*) FROM requacks WHERE requacks.quack_id = quacks.id)'));
+                    }
+                ])
+                ->orderByDesc('id')->find($user->id)
         ]);
     }
 
@@ -78,30 +83,13 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        $request->validate(
-            [
-                'username' => ['required', 'max:15', Rule::unique('users', 'username')->ignore($user->id)],
-                'display_name' => 'required|max:50',
-                'email' => ['required', 'email', Rule::unique('users', 'email')->ignore($user->id)],
-                'password' => 'required',
-            ],
-            [
-                'username.required' => 'Este campo es obligatorio',
-                'username.max' => 'Máximo 15 caracteres',
-                'username.unique' => 'Este nombre de usuario ya esta en uso',
-                'display_name.required' => 'Este campo es obligatorio',
-                'display_name.max' => 'Máximo 50 caracteres',
-                'email.required' => 'Este campo es obligatorio',
-                'email.email' => 'Introduce un correo electrónico válido',
-                'email.unique' => 'Este correo electrónico ya esta en uso',
-                'password.required' => 'Este campo es obligatorio',
-            ]
-        );
+        $data = array_filter($request->validated());
+        $data['username'] = str_replace(' ', '.', $data['username']);
 
-        $user->update($request->all());
-        return redirect('/users');
+        $user->update($data);
+        return to_route('users.show', [$user]);
     }
 
     /**
@@ -110,6 +98,13 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         User::destroy($id);
-        return redirect('/users');
+        return to_route('users.index');
+    }
+
+    public function editMe()
+    {
+        return view('users.edit', [
+            'user' => auth()->user()
+        ]);
     }
 }

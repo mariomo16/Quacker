@@ -22,10 +22,10 @@ class RegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'display_name' => ['required', 'string', 'max:50'],
-            'username' => ['required', 'string', 'max:15', 'unique:users'],
-            'email' => ['required', 'string', 'email', 'unique:users'],
-            'password' => ['required', 'string', 'min:6', 'confirmed']
+            'username' => 'required|string|max:15|unique:users',
+            'display_name' => 'required|string|max:50',
+            'email' => 'required|string|email|unique:users',
+            'password' => 'required|string|min:6|confirmed',
         ];
     }
 
@@ -39,7 +39,8 @@ class RegisterRequest extends FormRequest
             'username.unique' => 'Este nombre de usuario ya esta en uso',
             'email.email' => 'Introduce un correo electrónico válido',
             'email.unique' => 'Este correo electrónico ya esta en uso',
-            'password.min' => 'Mínimo 6 caracteres'
+            'password.min' => 'Mínimo 6 caracteres',
+            'password.confirmed' => 'Las contraseñas no coinciden',
         ];
     }
 }

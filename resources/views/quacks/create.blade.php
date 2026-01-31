@@ -1,30 +1,25 @@
-<!DOCTYPE html>
-<html lang="es">
+<x-layouts.app title="Crear quack" :route="route('quacks.create')">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear quack / {{ config('app.name') }}</title>
-    @vite(['resources/css/app.css'])
-</head>
+    @section('main')
+        <section class="resource-section">
+            <form method="POST" action="{{ route('quacks.store') }}" class="resource-form">
+                @csrf
+                <div class="input-group">
+                    <textarea name="content" maxlength="280" placeholder=" " required>{{ old('content') }}</textarea>
+                    <label class="textarea-label select-none">
+                        <span class="text-muted">Quack, quack, ¿qué pasa?</span>
+                    </label>
+                    @error('content')
+                        <p class="error-message">{{ $message }}</p>
+                    @enderror
+                </div>
 
-<body>
-    <main>
-        <form method="POST" action="{{ route('quacks.store') }}" class="resource-form">
-            @csrf
-            <label>
-                <span class="text-muted">Quack, quack, ¿qué pasa?</span>
-                @error('content')
-                    <p class="error-message">{{ $message }}</p>
-                @enderror
-            </label>
-            <textarea name="content" maxlength="280" required>{{ old('content') }}</textarea>
-            <div class="form-actions">
-                <a href="{{ route('quacks.index') }}">Cancelar</a>
-                <button type="submit">Crear quack</button>
-            </div>
-        </form>
-    </main>
-</body>
+                <div class="form-actions select-none">
+                    <a href="{{ route('quacks.index') }}">Cancelar</a>
+                    <button type="submit">Crear quack</button>
+                </div>
+            </form>
+        </section>
+    @endsection
 
-</html>
+</x-layouts.app>

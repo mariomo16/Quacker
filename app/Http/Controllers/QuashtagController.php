@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\QuashtagRequest;
 use App\Models\Quashtag;
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 
 class QuashtagController extends Controller
 {
@@ -29,20 +28,13 @@ class QuashtagController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(QuashtagRequest $request)
     {
-        $request->validate(
-            [
-                'name' => 'required|unique:quashtags,name'
-            ],
-            [
-                'name.required' => 'Este campo es obligatorio',
-                'name.unique' => 'Este quashtag ya existe',
-            ]
-        );
+        $data = $request->validated();
+        $data['name'] = str_replace(' ', '', $data['name']);
 
-        Quashtag::create($request->all());
-        return redirect('/quashtags');
+        Quashtag::create($data);
+        return to_route('quashtags.index');
     }
 
     /**
@@ -68,20 +60,13 @@ class QuashtagController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Quashtag $quashtag)
+    public function update(QuashtagRequest $request, Quashtag $quashtag)
     {
-        $request->validate(
-            [
-                'name' => ['required', Rule::unique('quashtags', 'name')->ignore($quashtag->id)],
-            ],
-            [
-                'name.required' => 'Este campo es obligatorio',
-                'name.unique' => 'Este quashtag ya existe',
-            ]
-        );
+        $data = $request->validated();
+        $data['name'] = str_replace(' ', '', $data['name']);
 
-        $quashtag->update($request->all());
-        return redirect('/quashtags');
+        $quashtag->update($data);
+        return to_route('quashtags.show', [$quashtag]);
     }
 
     /**
@@ -90,6 +75,6 @@ class QuashtagController extends Controller
     public function destroy(string $id)
     {
         Quashtag::destroy($id);
-        return redirect('/quashtags');
+        return to_route('quashtags.index');
     }
 }

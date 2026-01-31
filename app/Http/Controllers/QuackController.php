@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\QuackRequest;
 use App\Models\Quack;
-use Illuminate\Http\Request;
+use App\Models\Quashtag;
 
 class QuackController extends Controller
 {
@@ -13,7 +14,7 @@ class QuackController extends Controller
     public function index()
     {
         return view('quacks.index', [
-            'quacks' => Quack::latest()->get()
+            'quacks' => Quack::with(['user'])->withCount(['quavs', 'requacks', 'quashtags'])->latest()->get()
         ]);
     }
 
@@ -28,25 +29,25 @@ class QuackController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(QuackRequest $request)
     {
-        $request->validate(
-            [
 
-                'content' => 'required|max:280'
-            ],
-            [
+        preg_match_all('/#(\w+)/u', $request->validated()['content'], $matches);
+        $quashtagNames = array_unique($matches[1]);
 
-                'content.required' => 'Este campo es obligatorio',
-                'content.max' => 'Máximo 280 caracteres'
-            ]
-        );
+        $quashtags = [];
+        foreach ($quashtagNames as $quashtagName) {
+            $quashtags[] = Quashtag::firstOrCreate([
+                'name' =>
+                    $quashtagName
+            ]);
+        }
 
-        $data = $request->all();
-        $data['user_id'] = auth()->id();
-
-        Quack::create($data);
-        return redirect('/quacks');
+        $quack = Quack::create($request->validated() + ['user_id' => auth()->id()]);
+        if (!empty($quashtags)) {
+            $quack->quashtags()->saveMany($quashtags);
+        }
+        return to_route('quacks.index');
     }
 
     /**
@@ -55,7 +56,7 @@ class QuackController extends Controller
     public function show(Quack $quack)
     {
         return view('quacks.show', [
-            'quack' => $quack
+            'quack' => Quack::with(['user'])->withCount(['quavs', 'requacks'])->find($quack->id)
         ]);
     }
 
@@ -74,22 +75,12 @@ class QuackController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Quack $quack)
+    public function update(QuackRequest $request, Quack $quack)
     {
         $this->authorize('manage', $quack);
 
-        $request->validate(
-            [
-                'content' => 'required|max:280'
-            ],
-            [
-                'content.required' => 'Este campo es obligatorio',
-                'content.max' => 'Máximo 280 caracteres'
-            ]
-        );
-
-        $quack->update($request->all());
-        return redirect('/quacks');
+        $quack->update($request->validated());
+        return to_route('quacks.show', [$quack]);
     }
 
     /**
@@ -100,6 +91,56 @@ class QuackController extends Controller
         $this->authorize('manage', $quack);
 
         $quack->delete();
-        return redirect('/quacks');
+        return to_route('quacks.index');
+    }
+
+    public function userQuacks(int $id)
+    {
+        $quacks = Quack::query()->select([
+            'quacks.id',
+            'quacks.user_id',
+            'quacks.created_at as feed_date',
+            'quack as feed_type',
+            'NULL as requack_user_id'
+        ])
+            ->where('quacks.user_id', $id);
+
+        $requacks = \DB::table('requacks')->join(
+            'quacks',
+            'requacks.quack_id',
+            '=',
+            'quacks.id',
+        )->select('quacks.id', 'quacks.user_id', 'requacks.created_at as feed_date', 'requack', 'requacks.user_id')
+            ->where('requacks.user_id', $id);
+
+
+        $feed = \DB::query()->fromSub($quacks->unionAll($requacks), 'feed')->orderByDesc('feed_date')->get();
+
+        $quackModels = Quack::with(['user', 'requacks'])
+            ->withCount(['quavs', 'requacks'])
+            ->whereIn('id', $feed->pluck('id'))
+            ->get()
+            ->keyBy('id');
+
+        $feed = $feed->map(function ($item) use ($quackModels) {
+            return $quackModels[$item->id];
+        });
+
+        return view('quacks.index', [
+            'quacks' => $feed
+        ]);
+    }
+
+    public function quashtagQuacks(int $id)
+    {
+        return view('quacks.index', [
+            'quacks' => Quack::with(['quashtags', 'user'])
+            ->whereHas('quashtags', function ($q) use ($id) {
+                $q->where('quashtag_id', $id);
+            })
+                ->withCount(['quavs', 'requacks'])
+                ->latest()
+                ->get()
+        ]);
     }
 }

@@ -8,7 +8,6 @@ use App\Http\Requests\LoginRequest;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -22,19 +21,14 @@ class AuthController extends Controller
     public function store(RegisterRequest $request)
     {
         $data = $request->validated();
+        $data['username'] = str_replace(' ', '.', $data['username']);
 
-        $user = User::create([
-            'display_name' => $data['display_name'],
-            'username' => $data['username'],
-            'email' => $data['email'],
-            'email_verified_at' => now(),
-            'password' => Hash::make($data['password'])
-        ]);
+        $user = User::create($data);
 
         Auth::login($user);
         $request->session()->regenerate();
 
-        return redirect()->route('quacks.index');
+        return to_route('quacks.index');
     }
 
     // Método para mostrar el formulario de inicio de sesión 
@@ -50,7 +44,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended(route('quacks.index'));
+            return to_route('feed');
         }
 
         return back()->withErrors([
@@ -66,6 +60,6 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('login');
+        return to_route('login');
     }
 }

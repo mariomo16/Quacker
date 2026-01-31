@@ -21,7 +21,6 @@ class User extends Authenticatable
         'username',
         'display_name',
         'email',
-        'email_verified_at',
         'password',
     ];
 
@@ -48,8 +47,35 @@ class User extends Authenticatable
         ];
     }
 
-    public function quack()
+    public function quacks()
     {
         return $this->hasMany(Quack::class);
+    }
+
+    public function quavs()
+    {
+        return $this->belongsToMany(Quack::class, 'quavs')->withTimestamps();
+    }
+
+    public function requacks()
+    {
+        return $this->belongsToMany(Quack::class, 'requacks')->withTimestamps();
+    }
+
+    //https://copyprogramming.com/howto/php-laravel-code-for-follow-users-code-example
+    public function following()
+    {
+        return $this->belongsToMany(User::class, 'follows', 'follower_id', 'following_id')->withTimestamps();
+    }
+
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'follows', 'following_id', 'follower_id')->withTimestamps();
+    }
+
+    //https://stackoverflow.com/questions/38686188/check-if-user-liked-post-laravel
+    public function isFollowedByAuth()
+    {
+        return auth()->user()->following()->where('following_id', $this->id)->exists();
     }
 }
