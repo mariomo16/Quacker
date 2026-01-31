@@ -59,6 +59,7 @@ main {
 	width: 600px;
 	margin: 0 auto;
 	padding: 0;
+    word-break: break-all;
 }
 
 main.main-auth-form {
@@ -810,7 +811,7 @@ form input:-webkit-autofill:focus {
 	min-height: 50px;
 
 	padding-inline: 14px;
-	padding-top: 5px;
+	padding-top: 8px;
 
 	border: 1px solid var(--border-soft);
 	border-radius: 6px;
