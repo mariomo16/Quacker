@@ -1,5 +1,5 @@
 {{-- https://laravel.com/docs/12.x/blade#anonymous-components --}}
-@props(['title', 'route', 'class' => '']) {{-- https://laravel.com/docs/12.x/blade#data-properties-attributes --}}
+@props(['title', 'route']) {{-- https://laravel.com/docs/12.x/blade#data-properties-attributes --}}
 
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
