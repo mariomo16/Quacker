@@ -16,11 +16,11 @@
                                     {{ $user->quacks_count }}
                                 </div>
                                 <div class="user-quav">
-                                    <x-icon.quav :isQuaved="false" />
+                                    <x-icon.quav />
                                     {{ '?' }}
                                 </div>
                                 <div class="user-requack">
-                                    <x-icon.requack :isRequacked="false" />
+                                    <x-icon.requack />
                                     {{ '?' }}
                                 </div>
                             </div>
