@@ -10,7 +10,7 @@ class FeedController extends Controller
     {
         $userId = auth()->user()->id;
 
-        return view('quacks.feed', [
+        return view('quacks.index', [
             'quacks' => Quack::with(['user', 'requacks'])
                 ->withCount(['quavs', 'requacks'])
                 ->where('user_id', $userId)
