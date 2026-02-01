@@ -73,9 +73,42 @@ class User extends Authenticatable
         return $this->belongsToMany(User::class, 'follows', 'following_id', 'follower_id')->withTimestamps();
     }
 
-    //https://stackoverflow.com/questions/38686188/check-if-user-liked-post-laravel
-    public function isFollowedByAuth()
+    public function feed()
     {
-        return auth()->user()->following()->where('following_id', $this->id)->exists();
+        $userIds = $this->following()->pluck('users.id')->push($this->id);
+
+        $quacks = Quack::query()
+            ->select('quacks.*', 'quacks.created_at as feed_date')
+            ->whereIn('user_id', $userIds);
+
+        $requacks = Quack::query()
+            ->join('requacks', 'quacks.id', '=', 'requacks.quack_id')
+            ->select('quacks.*', 'requacks.created_at as feed_date')
+            ->whereIn('requacks.user_id', $userIds);
+
+        $feed = $quacks->unionAll($requacks)
+            ->with(['user', 'quashtags'])
+            ->orderByDesc('feed_date')
+            ->get();
+
+        return $feed;
+    }
+
+    public function activity()
+    {
+        $feed = $this
+            ->quacks()
+            ->select('quacks.*', 'created_at AS feed_date')
+            ->unionAll(
+                $this
+                    ->requacks()
+                    ->select('quacks.*', 'requacks.created_at AS feed_date')
+                    ->getQuery()
+            )
+            ->with(['user', 'quashtags'])
+            ->orderByDesc('feed_date')
+            ->get();
+
+        return $feed;
     }
 }

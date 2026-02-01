@@ -15,7 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::withCount(['quacks', 'following', 'followers',])
+        $users = User::withCount(['quacks', 'following'])
             ->withSum([
                 'quacks as quavs_count' => fn($q) =>
                     $q->leftJoin('quavs', 'quavs.quack_id', '=', 'quacks.id')
@@ -24,7 +24,7 @@ class UserController extends Controller
                     $q->leftJoin('requacks', 'requacks.quack_id', '=', 'quacks.id')
                         ->select(DB::raw('COUNT(requacks.quack_id)'))
             ], 'quack_id')
-            ->orderByDesc('id')
+            ->latest()
             ->get();
 
         return view('users.index', compact('users'));

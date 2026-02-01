@@ -40,6 +40,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@quacker.es',
             'email_verified_at' => now(),
             'password' => Hash::make('Admin123'),
+            'created_At' => now()->addSeconds(1)
         ]);
 
         // Quack de prueba para desarrollo
