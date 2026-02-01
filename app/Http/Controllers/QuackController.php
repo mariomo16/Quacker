@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Quack;
 use App\Models\Quashtag;
 use App\Http\Requests\QuackRequest;
-use Illuminate\Support\Facades\DB;
 
 class QuackController extends Controller
 {
@@ -87,73 +86,5 @@ class QuackController extends Controller
         $quack->delete();
 
         return to_route('quacks.index');
-    }
-
-    /**
-     * Devuelve el feed de un usuario, combinando sus quacks y requacks,
-     * con relaciones y contadores cargados, ordenados por fecha.
-     */
-    public function userQuacks(int $id)
-    {
-        // Quacks propios del usuario
-        $quacks = Quack::query()->select([
-            'quacks.id',
-            'quacks.user_id',
-            'quacks.created_at as feed_date',
-            'quack as feed_type',
-            'NULL as requack_user_id'
-        ])->where('quacks.user_id', $id);
-
-        // Requacks realizados por el usuario
-        $requacks = DB::table('requacks')->join(
-            'quacks',
-            'requacks.quack_id',
-            '=',
-            'quacks.id',
-        )->select(
-                'quacks.id',
-                'quacks.user_id',
-                'requacks.created_at as feed_date',
-                'requack',
-                'requacks.user_id'
-            )->where('requacks.user_id', $id);
-
-        // Unión de quacks y requacks y orden por fecha descendente
-        $feed = DB::query()
-            ->fromSub($quacks->unionAll($requacks), 'feed')
-            ->orderByDesc('feed_date')
-            ->get();
-
-        // Cargar relaciones y contadores de los quacks
-        $quackModels = Quack::with(['user', 'requacks'])
-            ->withCount(['quavs', 'requacks'])
-            ->whereIn('id', $feed->pluck('id'))
-            ->get()
-            ->keyBy('id');
-
-        // Mapear los resultados del feed a los modelos Eloquent
-        $feed = $feed->map(function ($item) use ($quackModels) {
-            return $quackModels[$item->id];
-        });
-
-        // Retornar la vista con el feed
-        return view('quacks.index', ['quacks' => $feed]);
-    }
-
-    /**
-     * Muestra todos los quacks asociados a un quashtag específico,
-     * incluyendo usuario, relaciones de quashtags y contadores.
-     */
-    public function quashtagQuacks(int $id)
-    {
-        $quacks = Quack::with(['quashtags', 'user'])
-            ->withCount(['quavs', 'requacks'])
-            ->whereHas('quashtags', function ($q) use ($id) {
-                $q->where('quashtag_id', $id);
-            })
-            ->latest()
-            ->get();
-
-        return view('quacks.index', compact('quacks'));
     }
 }

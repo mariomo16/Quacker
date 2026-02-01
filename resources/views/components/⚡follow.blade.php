@@ -5,7 +5,7 @@ use App\Models\User;
 
 new class extends Component {
     public int $userId;
-    public bool $authIsFollower;
+    public bool $isAuthFollowing;
     public int $followersCount;
 
     public function mount(int $userId)
@@ -14,11 +14,9 @@ new class extends Component {
         $this->refreshData();
     }
 
-    public function follow()
+    public function toggleFollow()
     {
-        User::find($this->userId)
-            ->followers()
-            ->toggle(auth()->id());
+        auth()->user()->following()->toggle($this->userId);
         $this->refreshData();
     }
 
@@ -28,13 +26,13 @@ new class extends Component {
             ->withExists(['followers as has_followed' => fn($q) => $q->where('follower_id', auth()->id())])
             ->find($this->userId);
         $this->followersCount = $user->followers_count;
-        $this->authIsFollower = $user->has_followed;
+        $this->isAuthFollowing = $user->has_followed;
     }
 };
 ?>
 
-<button wire:click="follow" class="user-follow">
-    @if ($authIsFollower)
+<button wire:click="toggleFollow" class="user-follow">
+    @if ($isAuthFollowing)
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
             stroke="hsl(204, 88%, 53%)" class="size-6">
             <path stroke-linecap="round" stroke-linejoin="round"
