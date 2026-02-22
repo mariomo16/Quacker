@@ -55,13 +55,16 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $user = User::withCount(['quacks', 'following', 'followers',])
-            ->withCount([
+        $user = User::withCount(['quacks', 'following'])
+            ->withSum([
                 'quacks as quavs_count' => fn($q) =>
-                    $q->select(DB::raw('(SELECT COUNT(*) FROM quavs WHERE quavs.quack_id = quacks.id)')),
+                    $q->leftJoin('quavs', 'quavs.quack_id', '=', 'quacks.id')
+                        ->select(DB::raw('COUNT(quavs.quack_id)')),
                 'quacks as requacks_count' => fn($q) =>
-                    $q->select(DB::raw('(SELECT COUNT(*) FROM requacks WHERE requacks.quack_id = quacks.id)'))
-            ])
+                    $q->leftJoin('requacks', 'requacks.quack_id', '=', 'quacks.id')
+                        ->select(DB::raw('COUNT(requacks.quack_id)'))
+            ], 'quack_id')
+            ->latest()
             ->find($user->id);
 
         return view('users.show', compact('user'));
