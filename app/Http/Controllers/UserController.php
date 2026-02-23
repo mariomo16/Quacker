@@ -64,7 +64,6 @@ class UserController extends Controller
                     $q->leftJoin('requacks', 'requacks.quack_id', '=', 'quacks.id')
                         ->select(DB::raw('COUNT(requacks.quack_id)'))
             ], 'quack_id')
-            ->latest()
             ->find($user->id);
 
         return view('users.show', compact('user'));
